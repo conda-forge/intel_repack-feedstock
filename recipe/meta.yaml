@@ -1,5 +1,6 @@
 {% set version = "2020.1" %}
-{% set buildnum = "217" if target_platform.startswith('linux') else "216" %}
+{% set buildnum = "217" %}  [linux]
+{% set buildnum = "216" %}  [not linux]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
