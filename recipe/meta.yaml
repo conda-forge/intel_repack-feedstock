@@ -41,7 +41,7 @@ build:
   number: {{ buildnum }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  skip: True                                  # [win or not x86]
+  skip: True                                  # [not x86]
   missing_dso_whitelist:
     # just ignore tbb on mac.  We could add it as a dep when we have it.
     - libtbb.dylib                   # [osx]
@@ -71,7 +71,7 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     requirements:
-      {% if 'conda-forge' not in my_channel_targets %}
+      {% if win or 'conda-forge' not in my_channel_targets %}
       host:
         - intel-openmp
       run:
@@ -113,7 +113,7 @@ outputs:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
 
-  {% if 'conda-forge' not in my_channel_targets %}
+  {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
@@ -132,7 +132,9 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
+  {% endif %}
 
+  {% if 'conda-forge' not in my_channel_targets %}
   # mutex package to keep only one blas implementation in a given env
   - name: blas
     version: 1.0
