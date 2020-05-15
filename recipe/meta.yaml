@@ -5,7 +5,7 @@
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 # use this if our build script changes and we need to increment beyond intel's version
-# {% set dstbuildnum='4' %}
+{% set dstbuildnum='2' %}
 {% set openmp_version = version %}
 # 117 was intel's base build number.  We're up 1 after making the license file not read-only
 {% set openmp_buildnum = buildnum %}
@@ -38,7 +38,7 @@ source:
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
-  number: {{ buildnum }}
+  number: {{ buildnum|int + dstbuildnum|int}}
   binary_relocation: false
   detect_binary_files_with_prefix: false
   skip: True                                  # [win or not x86]
