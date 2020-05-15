@@ -8,7 +8,7 @@
 {% set dstbuildnum = '2' %}
 {% set openmp_version = version %}
 # 117 was intel's base build number.  We're up 1 after making the license file not read-only
-{% set openmp_buildnum = int(buildnum) + int(dstbuildnum) %}
+{% set openmp_buildnum = buildnum|int + dstbuildnum|int %}
 
 package:
   name: intel_repack
@@ -84,7 +84,7 @@ outputs:
       {% endif %}
     about:
       home: https://software.intel.com/en-us/mkl
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
       summary: Math library for Intel and compatible processors
@@ -101,7 +101,7 @@ outputs:
     script: repack.bat  # [win]
     about:
       home: https://software.intel.com/en-us/mkl
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
       summary: MKL headers for developing software that uses MKL
@@ -121,7 +121,7 @@ outputs:
     version: {{ openmp_version }}
     about:
       home: https://software.intel.com/en-us/node/522690
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
       summary: Math library for Intel and compatible processors
@@ -171,7 +171,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/mkl
       summary: Metapackage of MKL headers and libraries for developing software that uses MKL
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -219,7 +219,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: DAAL runtime libraries
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -234,7 +234,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: Headers for building against DAAL libraries
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -253,7 +253,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: Static libraries for DAAL
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -274,7 +274,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: Devel package for building things linked against DAAL shared libraries
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -286,7 +286,7 @@ outputs:
 # please the linter
 about:
   home: https://github.com/conda-forge/intel-repack-feedstock
-  license: proprietary - Intel
+  license: LicenseRef-ProprietaryIntel
   summary: 'repackaged intel libraries'
 
 extra:
