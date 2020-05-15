@@ -5,10 +5,10 @@
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 # use this if our build script changes and we need to increment beyond intel's version
-# {% set dstbuildnum='4' %}
+{% set dstbuildnum = '2' %}
 {% set openmp_version = version %}
 # 117 was intel's base build number.  We're up 1 after making the license file not read-only
-{% set openmp_buildnum = buildnum %}
+{% set openmp_buildnum = buildnum|int + dstbuildnum|int %}
 
 package:
   name: intel_repack
@@ -38,7 +38,7 @@ source:
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
-  number: {{ buildnum }}
+  number: {{ buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
   skip: True                                  # [win or not x86]
@@ -84,7 +84,7 @@ outputs:
       {% endif %}
     about:
       home: https://software.intel.com/en-us/mkl
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
       summary: Math library for Intel and compatible processors
@@ -101,7 +101,7 @@ outputs:
     script: repack.bat  # [win]
     about:
       home: https://software.intel.com/en-us/mkl
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
       summary: MKL headers for developing software that uses MKL
@@ -121,7 +121,7 @@ outputs:
     version: {{ openmp_version }}
     about:
       home: https://software.intel.com/en-us/node/522690
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
       summary: Math library for Intel and compatible processors
@@ -153,7 +153,7 @@ outputs:
     script: install-devel.bat  # [win]
     build:
       # we had to fix site.cfg in 2019.1.  We're off by one.
-      number: {{ buildnum | int + 1 }}
+      number: {{ buildnum|int + dstbuildnum|int + 1 }}
       # when stuff is built with MKL, ensure that constraint makes mkl runtime libs as new or
       #     newer than build version
       run_exports:
@@ -171,7 +171,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/mkl
       summary: Metapackage of MKL headers and libraries for developing software that uses MKL
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -184,7 +184,9 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
-      number: {{ buildnum }}
+      number: {{ buildnum|int + dstbuildnum|int }}
+      binary_relocation: false
+      detect_binary_files_with_prefix: false
       missing_dso_whitelist:
         # just ignore tbb on mac.  We could add it as a dep when we have it.
         - libtbb.dylib                   # [osx]
@@ -217,7 +219,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: DAAL runtime libraries
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -228,11 +230,11 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
-      number: {{ buildnum }}
+      number: {{ buildnum|int + dstbuildnum|int }}
     about:
       home: https://software.intel.com/en-us/daal
       summary: Headers for building against DAAL libraries
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -243,7 +245,7 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
-      number: {{ buildnum }}
+      number: {{ buildnum|int + dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('daal-include', exact=True) }}
@@ -251,7 +253,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: Static libraries for DAAL
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -262,7 +264,7 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
-      number: {{ buildnum }}
+      number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
         - {{ pin_subpackage('daal') }}
     requirements:
@@ -272,7 +274,7 @@ outputs:
     about:
       home: https://software.intel.com/en-us/daal
       summary: Devel package for building things linked against DAAL shared libraries
-      license: proprietary - Intel
+      license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file: mkl/info/LICENSE.txt
     test:
@@ -284,7 +286,7 @@ outputs:
 # please the linter
 about:
   home: https://github.com/conda-forge/intel-repack-feedstock
-  license: proprietary - Intel
+  license: LicenseRef-ProprietaryIntel
   summary: 'repackaged intel libraries'
 
 extra:
