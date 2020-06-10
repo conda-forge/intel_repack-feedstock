@@ -3,7 +3,7 @@ About intel_repack
 
 Home: https://software.intel.com/en-us/daal
 
-Package license: proprietary - Intel
+Package license: LicenseRef-ProprietaryIntel
 
 Feedstock license: BSD 3-Clause
 
