@@ -1,0 +1,139 @@
+---
+base: compilers_and_libraries_%{version}/mac/
+packages:
+  daal:
+    dmgs:
+      m_daal_*.dmg:
+        tars:
+          m_comp_lib_daal.core_p-%{version}.tgz:
+            prefix:
+              daal/:
+              - lib/libdaal_*.dylib
+            sourcecopy:
+            - - "%{base}/../licensing/daal/en/license.txt"
+              - LICENSE.TXT
+  daal-devel:
+    dmgs:
+      m_daal_*.dmg:
+        tars:
+          m_comp_lib_daal.core_p-%{version}.tgz:
+            prefix:
+              daal/:
+              - pydaal_sources/**/*
+            sourcecopy:
+            - - "%{base}/../licensing/daal/en/license.txt"
+              - LICENSE.TXT
+  daal-include:
+    dmgs:
+      m_daal_*.dmg:
+        tars:
+          m_comp_lib_daal.core_p-%{version}.tgz:
+            prefix:
+              daal/:
+              - include/**/*.h
+            sourcecopy:
+            - - "%{base}/../licensing/daal/en/license.txt"
+              - LICENSE.TXT
+  daal-static:
+    dmgs:
+      m_daal_*.dmg:
+        tars:
+          m_comp_lib_daal.core_p-%{version}.tgz:
+            prefix:
+              daal/:
+              - lib/libdaal_*.a
+            sourcecopy:
+            - - "%{base}/../licensing/daal/en/license.txt"
+              - LICENSE.TXT
+  mkl:
+    dmgs:
+      m_mkl_*.dmg:
+        tars:
+          m_comp_lib_mkl.cluster_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_blacs_mpich_ilp64.dylib
+              - lib/libmkl_blacs_mpich_lp64.dylib
+              - lib/libmkl_cdft_core.dylib
+              - lib/libmkl_scalapack_ilp64.dylib
+              - lib/libmkl_scalapack_lp64.dylib
+          m_comp_lib_mkl.core_p-%{version}.tgz:
+            sourcecopy:
+            - - "%{base}/../licensing/mkl/en/license.txt"
+              - LICENSE.TXT
+            copies:
+              files:
+              - mkl_msg.cat
+              from: mkl/lib/locale/en_US
+              to: lib
+            prefix:
+              mkl/:
+              - lib/libmkl_*.dylib
+          m_comp_lib_mkl.tbb_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_tbb_thread.dylib
+  mkl-devel:
+    dmgs: {} # package is empty on osx
+  mkl-include:
+    dmgs:
+      m_mkl_*.dmg:
+        tars:
+          m_comp_lib_mkl.core_c_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - include/**/*.h
+          m_comp_lib_mkl.core_f_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - include/**/*
+          m_comp_lib_mkl.f95_p-%{version}.tgz:
+            copies:
+              files:
+              - "**/*.mod"
+              from: mkl/include/intel64
+              to: include
+          m_comp_lib_mkl.core_p-%{version}.tgz:
+            sourcecopy:
+            - - "%{base}/../licensing/mkl/en/license.txt"
+              - LICENSE.TXT
+  mkl-static:
+    dmgs:
+      m_mkl_*.dmg:
+        tars:
+          m_comp_lib_mkl.cluster_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_blacs_mpich_ilp64.a
+              - lib/libmkl_blacs_mpich_lp64.a
+              - lib/libmkl_cdft_core.a
+              - lib/libmkl_scalapack_ilp64.a
+              - lib/libmkl_scalapack_lp64.a
+          m_comp_lib_mkl.core_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_core.a
+              - lib/libmkl_intel_ilp64.a
+              - lib/libmkl_intel_lp64.a
+              - lib/libmkl_intel_thread.a
+              - lib/libmkl_sequential.a
+          m_comp_lib_mkl.f95_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_blas95_ilp64.a
+              - lib/libmkl_blas95_lp64.a
+              - lib/libmkl_lapack95_ilp64.a
+              - lib/libmkl_lapack95_lp64.a
+          m_comp_lib_mkl.pgi_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_pgi_thread.a
+          m_comp_lib_mkl.tbb_p-%{version}.tgz:
+            prefix:
+              mkl/:
+              - lib/libmkl_tbb_thread.a
+          m_comp_lib_mkl.core_p-%{version}.tgz:
+            sourcecopy:
+            - - "%{base}/../licensing/mkl/en/license.txt"
+              - LICENSE.TXT
+

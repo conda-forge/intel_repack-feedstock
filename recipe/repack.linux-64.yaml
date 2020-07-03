@@ -1,0 +1,179 @@
+base: opt/intel/compilers_and_libraries_%{version}/
+packages:
+  daal:
+    tars:
+      l_daal_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-daal-core-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/daal/lib/intel64_lin
+              to: lib
+              files:
+              - libdaal_*.so
+  daal-devel:
+    tars:
+      l_daal_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-daal-common-%{rpmversion}-%{rpmversion}.noarch.rpm:
+            prefix:
+              linux/daal/:
+                - pydaal_sources/**/*
+  daal-include:
+    tars:
+      l_daal_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-daal-common-%{rpmversion}-%{rpmversion}.noarch.rpm:
+            prefix:
+              linux/daal/:
+              - include/**/*.h
+  daal-static:
+    tars:
+      l_daal_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-daal-core-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/daal/lib/intel64_lin
+              to: lib
+              files:
+              - libdaal_*.a
+  mkl:
+    tars:
+      l_mkl_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-mkl-cluster-rt-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl*.so
+          intel-mkl-core-rt-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl*.so
+          intel-mkl-core-rt-32bit-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/ia32_lin/locale/en_US
+              to: lib
+              files:
+              - mkl_msg.cat
+          intel-mkl-gnu-f-rt-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl*.so
+          intel-mkl-gnu-rt-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl*.so
+          intel-mkl-pgi-rt-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl*.so
+          intel-mkl-tbb-rt-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl*.so
+  mkl-devel:
+    tars:
+      l_mkl_*.tgz:
+        recipecopy:
+          - - site.cfg
+            - site.cfg
+        rpms:
+          intel-mkl-common-%{rpmversion}-%{rpmversion}.noarch.rpm:
+            sourcecopy:
+            - - "%{base}/licensing/mkl/en/license.txt"
+              - LICENSE.TXT
+  mkl-include:
+    tars:
+      l_mkl_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-mkl-common-c-%{rpmversion}-%{rpmversion}.noarch.rpm:
+            prefix:
+              linux/mkl/:
+              - include/**/*.h
+          intel-mkl-common-f-%{rpmversion}-%{rpmversion}.noarch.rpm:
+            prefix:
+              linux/mkl/:
+              - include/**/*
+          intel-mkl-f95-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            prefix:
+              linux/mkl/:
+              - include/intel64/**/*.mod
+  mkl-static:
+    tars:
+      l_mkl_*.tgz:
+        sourcecopy:
+          - - rpm/EULA.txt
+            - LICENSE.TXT
+        rpms:
+          intel-mkl-cluster-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_*.a
+          intel-mkl-core-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_*.a
+          intel-mkl-f95-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_*.a
+          intel-mkl-gnu-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_gnu_thread.a
+          intel-mkl-gnu-f-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_gf_ilp64.a
+              - libmkl_gf_lp64.a
+          intel-mkl-pgi-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_pgi_thread.a
+          intel-mkl-tbb-%{rpmversion}-%{rpmversion}.x86_64.rpm:
+            copies:
+              from: linux/mkl/lib/intel64_lin
+              to: lib
+              files:
+              - libmkl_tbb_thread.a
