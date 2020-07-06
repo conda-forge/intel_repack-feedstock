@@ -1,0 +1,229 @@
+base: Program Files/Intel/Composer XE 2015/compilers_and_libraries_%{version}/
+packages:
+  daal:
+    exes:
+      w_daal_*.exe:
+        msis:
+          ww_daal_core_intel64_p_*.msi:
+            copies:
+              files:
+              - daal_*.dll
+              from: windows/redist/intel64_win/daal
+              to: Library/bin
+  daal-devel:
+    exes:
+      w_daal_*.exe:
+        msis:
+          ww_daal_common_c_p_*.msi:
+            copies:
+              files:
+              - __init__.py
+              from: windows/daal/pydaal_sources/daal/algorithms/linear_regression/quality_metric
+              to: pydaal_sources/daal/algorithms/normalization
+            copy:
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__adaboost__prediction.h
+              - pydaal_sources/daal/wrp/_algorithms__decision_tree__regression__prediction.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__adaboost__quality_metric_set.h
+              - pydaal_sources/daal/wrp/_algorithms__linear_regression__quality_metric_set.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__adaboost__training.h
+              - pydaal_sources/daal/wrp/_algorithms__decision_tree__classification__training.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__decision_forest__regression.h
+              - pydaal_sources/daal/wrp/_algorithms__decision_tree__regression.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__math__logistic.h
+              - pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__logistic.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__math__relu.h
+              - pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__relu.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__math__tanh.h
+              - pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__tanh.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__abs__backward.h
+              - pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__logistic__backward.h
+            - - windows/daal/pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__abs__forward.h
+              - pydaal_sources/daal/wrp/_algorithms__neural_networks__layers__dropout__forward.h
+            - - windows/daal/pydaal_sources/daal/wrp/_daal.h
+              - pydaal_sources/daal/wrp/_services.h
+            prefix:
+              windows/daal/:
+              - pydaal_sources/**/*
+          ww_daal_core_intel64_p_*.msi:
+            copies:
+              files:
+              - daal_core_dll.lib
+              from: windows/daal/lib/intel64_win
+              to: Library/lib
+  daal-include:
+    exes:
+      w_daal_*.exe:
+        msis:
+          ww_daal_core_common_p_*.msi:
+            prefix:
+              windows/daal/:
+              - include/**/*.h
+  daal-static:
+    exes:
+      w_daal_*.exe:
+        msis:
+          ww_daal_core_intel64_p_*.msi:
+            copies:
+              files:
+              - daal_core.lib
+              - daal_sequential.lib
+              - daal_thread.lib
+              from: windows/daal/lib/intel64_win
+              to: Library/lib
+  mkl:
+    exes:
+      w_mkl_*.exe:
+        msis:
+          ww_mkl_clstr_cmn_ps_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_*.dll
+              from: windows/redist/intel64_win/mkl
+              to: Library/bin
+          ww_mkl_core_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_msg.dll
+              from: windows/redist/intel64_win/mkl/1033
+              to: Library/bin
+            copies_2:
+              files:
+              - libimalloc.dll
+              - mkl_avx.dll
+              - mkl_avx2.dll
+              - mkl_avx512.dll
+              - mkl_core.dll
+              - mkl_def.dll
+              - mkl_intel_thread.dll
+              - mkl_mc.dll
+              - mkl_mc3.dll
+              - mkl_rt.dll
+              - mkl_sequential.dll
+              - mkl_vml_avx.dll
+              - mkl_vml_avx2.dll
+              - mkl_vml_avx512.dll
+              - mkl_vml_cmpt.dll
+              - mkl_vml_def.dll
+              - mkl_vml_mc.dll
+              - mkl_vml_mc2.dll
+              - mkl_vml_mc3.dll
+              from: windows/redist/intel64_win/mkl
+              to: Library/bin
+          ww_mkl_pgi_common_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_pgi_thread.dll
+              from: windows/redist/intel64_win/mkl
+              to: Library/bin
+          ww_mkl_tbb_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_tbb_thread.dll
+              from: windows/redist/intel64_win/mkl
+              to: Library/bin
+  mkl-devel:
+    exes:
+      w_mkl_*.exe:
+        msis:
+          ww_mkl_clstr_cmn_ps_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_blacs_ilp64_dll.lib
+              - mkl_blacs_lp64_dll.lib
+              - mkl_cdft_core_dll.lib
+              - mkl_scalapack_ilp64_dll.lib
+              - mkl_scalapack_lp64_dll.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_core_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_core_dll.lib
+              - mkl_intel_ilp64_dll.lib
+              - mkl_intel_lp64_dll.lib
+              - mkl_intel_thread_dll.lib
+              - mkl_rt.lib
+              - mkl_sequential_dll.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_pgi_common_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_pgi_thread_dll.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_tbb_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_tbb_thread_dll.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+  mkl-include:
+    exes:
+      w_mkl_*.exe:
+        msis:
+          ww_mkl_c_core_p_*.msi:
+            copies:
+              files:
+              - "**/*.h"
+              from: windows/mkl/include/
+              to: Library/include/
+          ww_mkl_f95_ps_intel64_p_*.msi:
+            copies:
+              files:
+              - "**/*.mod"
+              from: windows/mkl/include/intel64
+              to: Library/include/intel64
+          ww_mkl_f_core_ps_p_*.msi:
+            copies:
+              files:
+              - "**/*"
+              from: windows/mkl/include
+              to: Library/include
+  mkl-static:
+    exes:
+      w_mkl_*.exe:
+        msis:
+          ww_mkl_clstr_cmn_ps_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_blacs_intelmpi_ilp64.lib
+              - mkl_blacs_intelmpi_lp64.lib
+              - mkl_blacs_mpich2_ilp64.lib
+              - mkl_blacs_mpich2_lp64.lib
+              - mkl_blacs_msmpi_ilp64.lib
+              - mkl_blacs_msmpi_lp64.lib
+              - mkl_cdft_core.lib
+              - mkl_scalapack_ilp64.lib
+              - mkl_scalapack_lp64.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_core_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_core.lib
+              - mkl_intel_ilp64.lib
+              - mkl_intel_lp64.lib
+              - mkl_intel_thread.lib
+              - mkl_sequential.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_f95_ps_intel64_p_*.msi:
+            copies:
+              files:
+              - "*.lib"
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_pgi_common_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_pgi_thread.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+          ww_mkl_tbb_intel64_p_*.msi:
+            copies:
+              files:
+              - mkl_tbb_thread.lib
+              from: windows/mkl/lib/intel64_win
+              to: Library/lib
+
