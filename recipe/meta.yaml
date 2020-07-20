@@ -1,6 +1,6 @@
 {% set version = "2020.2" %}
-{% set buildnum = "254" %}  # [not osx]
-{% set buildnum = "258" %}  # [osx]
+{% set buildnum = "252" %}  # [not osx]
+{% set buildnum = "248" %}  # [osx]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
@@ -86,7 +86,8 @@ outputs:
       home: https://software.intel.com/en-us/mkl
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt
+      license_file: mkl/info/LICENSE.txt  # [win]
+      license_file: mkl/info/license.txt  # [not win]
       summary: Math library for Intel and compatible processors
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
