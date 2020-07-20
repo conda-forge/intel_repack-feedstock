@@ -1,6 +1,6 @@
 {% set version = "2020.2" %}
-{% set buildnum = "252" %}  # [not osx]
-{% set buildnum = "248" %}  # [osx]
+{% set buildnum = "254" %}  # [not osx]
+{% set buildnum = "258" %}  # [osx]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
