@@ -224,7 +224,8 @@ outputs:
       summary: DAAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt
+      license_file: mkl/info/LICENSE.txt  # [win]
+      license_file: mkl/info/license.txt  # [unix]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -258,7 +259,8 @@ outputs:
       summary: Static libraries for DAAL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt
+      license_file: mkl/info/LICENSE.txt  # [win]
+      license_file: mkl/info/license.txt  # [unix]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -279,7 +281,8 @@ outputs:
       summary: Devel package for building things linked against DAAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt
+      license_file: mkl/info/LICENSE.txt  # [win]
+      license_file: mkl/info/license.txt  # [unix]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
