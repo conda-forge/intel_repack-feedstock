@@ -1,5 +1,5 @@
 # not all packages have the license file.  Copy it from mkl, where we know it exists
-cp -f $SRC_DIR/mkl/info/license.txt $SRC_DIR
+cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR
 # ro by default.  Makes installations not cleanly removable.
 chmod 664 $SRC_DIR/license.txt
 
