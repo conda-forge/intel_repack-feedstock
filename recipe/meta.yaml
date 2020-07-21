@@ -125,7 +125,8 @@ outputs:
       home: https://software.intel.com/en-us/node/522690
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt
+      license_file: mkl/info/LICENSE.txt  # [win]
+      license_file: mkl/info/license.txt  # [unix]
       summary: Math library for Intel and compatible processors
       description: |
         Intel openmp runtime implementation
