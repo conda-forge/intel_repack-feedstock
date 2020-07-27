@@ -1,20 +1,20 @@
 
-{% set version = "2020.1" %}
-{% set buildnum = "217" %}  # [linux]
-{% set buildnum = "216" %}  # [not linux]
+{% set version = "2020.2" %}
+{% set buildnum = "254" %}  # [not osx]
+{% set buildnum = "258" %}  # [osx]
 
 # These numbers change on each release
-{% set mkl_num = "16533" %}  # [linux]
-{% set daal_num = "16536" %}  # [linux]
-{% set mkl_num = "16543" %}  # [win64]
-{% set daal_num = "16545" %}  # [win64]
-{% set mkl_num = "16525" %}  # [osx]
-{% set daal_num = "16570" %}  # [osx]
+{% set mkl_num = "16849" %}  # [linux]
+{% set daal_num = "16822" %}  # [linux]
+{% set mkl_num = "16850" %}  # [win64]
+{% set daal_num = "16823" %}  # [win64]
+{% set mkl_num = "16851" %}  # [osx]
+{% set daal_num = "16811" %}  # [osx]
 {% set intel_url = "http://registrationcenter-download.intel.com/akdlm/IRC_NAS/tec" %}
 
 # use this if our build script changes and we need to increment beyond
 # Intel's version
-{% set dstbuildnum = '3' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
@@ -129,8 +129,6 @@ outputs:
     script: repack.py
     script_interpreter: python repack.py -a {{ target_platform }}
     build:
-      # we had to fix site.cfg in 2019.1.  We're off by one
-      number: {{ buildnum|int + dstbuildnum|int + 1 }}
       # when stuff is built with MKL, ensure that constraint makes mkl
       # runtime libs as new or newer than build version
       run_exports:
