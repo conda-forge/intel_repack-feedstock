@@ -10,7 +10,7 @@
 {% set daal_num = "16545" %}  # [win64]
 {% set mkl_num = "16525" %}  # [osx]
 {% set daal_num = "16570" %}  # [osx]
-{% set intel_url = "http://registrationcenter-download.intel.com/akdlm/irc_nas/tec" %}
+{% set intel_url = "http://registrationcenter-download.intel.com/akdlm/IRC_NAS/tec" %}
 
 # use this if our build script changes and we need to increment beyond
 # Intel's version
