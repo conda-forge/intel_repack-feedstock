@@ -24,18 +24,18 @@ package:
 source:
   - url: {{ intel_url }}/{{ mkl_num }}/l_mkl_{{ version }}.{{ buildnum }}.tgz  # [linux]
     folder: l_mkl_{{ version }}.{{ buildnum }}  # [linux]
-    sha256: 082a4be30bf4f6998e4d6e3da815a77560a5e66a68e254d161ab96f07086066d  # [linux]
+    sha256: ed00a267af362a6c14212bd259ab1673d64337e077263033edeef8ac72c10223  # [linux]
   - url: {{ intel_url }}/{{ daal_num }}/l_daal_{{ version }}.{{ buildnum }}.tgz  # [linux]
     folder: l_daal_{{ version }}.{{ buildnum }}  # [linux]
-    sha256: 3f84dea0ce1038ac1b9c25b3e2c02e9fac440fa36cc8adfce69edfc06fe0edda  # [linux]
+    sha256: 08528bc150dad312ff2ae88ce12d6078ed8ba2f378f4bf3daf0fbbb9657dce1e  # [linux]
   - url: {{ intel_url }}/{{ mkl_num }}/w_mkl_{{ version }}.{{ buildnum }}.exe  # [win64]
-    sha256: 129610f33db871ccd2f2b05f7392c1821403efecd1679614848362eae92963f5  # [win64]
+    sha256: 7a0e8accbde7a7540d6fc1dbb9947103ecc7ae76202bb118fcc5cbd71861335a  # [win64]
   - url: {{ intel_url }}/{{ daal_num }}/w_daal_{{ version }}.{{ buildnum }}.exe  # [win64]
-    sha256: c313ef2ff8a0bf13ba89366b0a51b4dae09af29ab08c9d2a78d19f3b54136ea5  # [win64]
+    sha256: 375f2d4ecbb7b281d85ff8200326dc2c0730cc010ec0ec0540e799d64282483d  # [win64]
   - url: {{ intel_url }}/{{ mkl_num }}/m_mkl_{{ version }}.{{ buildnum }}.dmg  # [osx]
-    sha256: aac27e5bc872620ead693f7441b399c2a1fa13797d1b0f9c4917003bfc13d3b5  # [osx]
+    sha256: c11d944c96b6d43a29663bdccaca6e4dcf91917bb5ff993a87434068db3c5fb6  # [osx]
   - url: {{ intel_url }}/{{ daal_num }}/m_daal_{{ version }}.{{ buildnum }}.dmg  # [osx]
-    sha256: 368a675b88c961305dc03f3cf29133bd66c92f0f9e72d3c96d6dda70a4ba0d04  # [osx]
+    sha256: b44fd21ae29770f16737539d40d5c0dd19e2b2abfd31b16887f217ddb4dd6eb8  # [osx]
   - path: repack.{{ target_platform }}.yaml
 
 build:
