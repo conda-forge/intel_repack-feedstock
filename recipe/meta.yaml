@@ -215,8 +215,6 @@ outputs:
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
-      host:
-        - tbb {{ version.split('.')[0] }}.*
       run:
         - tbb {{ version.split('.')[0] }}.*
     about:
