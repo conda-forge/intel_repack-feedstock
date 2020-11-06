@@ -233,12 +233,18 @@ outputs:
         - tbb {{ version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
-      summary: DAAL runtime libraries
+      summary: Intel® DAAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - mkl/info/licenses/license.txt
          - mkl/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® DAAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://software.intel.com/en-us/daal/documentation
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -250,12 +256,18 @@ outputs:
       number: {{ buildnum|int + dstbuildnum|int }}
     about:
       home: https://software.intel.com/en-us/daal
-      summary: Headers for building against DAAL libraries
+      summary: Headers for building against Intel® DAAL libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - mkl/info/licenses/license.txt
          - mkl/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® DAAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://software.intel.com/en-us/daal/documentation
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
@@ -271,12 +283,18 @@ outputs:
         - tbb {{ version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
-      summary: Static libraries for DAAL
+      summary: Static libraries for Intel® DAAL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - mkl/info/licenses/license.txt
          - mkl/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® DAAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://software.intel.com/en-us/daal/documentation
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -294,12 +312,18 @@ outputs:
         - {{ pin_subpackage('daal', exact=True) }}
     about:
       home: https://software.intel.com/en-us/daal
-      summary: Devel package for building things linked against DAAL shared libraries
+      summary: Devel package for building things linked against Intel® DAAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - mkl/info/licenses/license.txt
          - mkl/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® DAAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://software.intel.com/en-us/daal/documentation
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
