@@ -1,10 +1,8 @@
 {% set version = "2020.4" %}
 {% set daal_version = "2020.3" %}
-{% set buildnum = "304" %}  # [lnx]
+{% set buildnum = "304" %}  # [linux]
 {% set buildnum = "301" %}  # [osx]
 {% set buildnum = "311" %}  # [win]
-
-
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
