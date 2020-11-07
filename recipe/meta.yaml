@@ -215,8 +215,10 @@ outputs:
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
+      host:
+        - tbb {{ version }}
       run:
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ version }}
     about:
       home: https://software.intel.com/en-us/daal
       summary: DAAL runtime libraries
@@ -252,7 +254,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('daal-include', exact=True) }}
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ version }}
     about:
       home: https://software.intel.com/en-us/daal
       summary: Static libraries for DAAL
