@@ -215,8 +215,6 @@ outputs:
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
-      host:
-        - tbb {{ version }}
       run:
         - tbb {{ version }}
     about:
