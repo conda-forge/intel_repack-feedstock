@@ -1,5 +1,5 @@
-{% set version = "2020.4" %}
-{% set daal_version = "2020.3" %}
+{% set mkl_version = "2020.4" %}
+{% set version = "2020.3" %}
 {% set buildnum = "304" %}  # [linux]
 {% set buildnum = "301" %}  # [osx]
 {% set buildnum = "311" %}  # [win]
@@ -8,7 +8,7 @@
 
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '0' %}
-{% set openmp_version = daal_version %}
+{% set openmp_version = version %}
 # 117 was intel's base build number.  We're up 1 after making the license file not read-only
 {% set openmp_buildnum = buildnum|int + dstbuildnum|int %}
 
@@ -17,23 +17,23 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://anaconda.org/intel/mkl/{{ version }}/download/{{ target_platform }}/mkl-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl
-  - url: https://anaconda.org/intel/mkl-devel/{{ version }}/download/{{ target_platform }}/mkl-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl-devel
-  - url: https://anaconda.org/intel/mkl-include/{{ version }}/download/{{ target_platform }}/mkl-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl-include
   {% if 'conda-forge' not in my_channel_targets %}
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
   {% endif %}
-  - url: https://anaconda.org/intel/daal/{{ daal_version }}/download/{{ target_platform }}/daal-{{ daal_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/daal/{{ version }}/download/{{ target_platform }}/daal-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal
-  - url: https://anaconda.org/intel/daal-include/{{ daal_version }}/download/{{ target_platform }}/daal-include-{{ daal_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/daal-include/{{ version }}/download/{{ target_platform }}/daal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal-include
-  - url: https://anaconda.org/intel/daal-static/{{ daal_version }}/download/{{ target_platform }}/daal-static-{{ daal_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/daal-static/{{ version }}/download/{{ target_platform }}/daal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal-static
-  - url: https://anaconda.org/intel/daal-devel/{{ daal_version }}/download/{{ target_platform }}/daal-devel-{{ daal_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/daal-devel/{{ version }}/download/{{ target_platform }}/daal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal-devel
 
 build:
@@ -215,6 +215,8 @@ outputs:
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
+      host:
+        - tbb {{ version.split('.')[0] }}.*
       run:
         - tbb {{ version.split('.')[0] }}.*
     about:
