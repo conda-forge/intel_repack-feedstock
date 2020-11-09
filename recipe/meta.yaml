@@ -27,6 +27,7 @@ source:
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
   {% endif %}
+  {% if target_platform != 'osx-64' %}
   - url: https://anaconda.org/intel/daal/{{ version }}/download/{{ target_platform }}/daal-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal
   - url: https://anaconda.org/intel/daal-include/{{ version }}/download/{{ target_platform }}/daal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
@@ -35,6 +36,7 @@ source:
     folder: daal-static
   - url: https://anaconda.org/intel/daal-devel/{{ version }}/download/{{ target_platform }}/daal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal-devel
+    {% endif %}
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
@@ -182,7 +184,7 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
-
+  {% if target_platform != 'osx-64' %}
   - name: daal
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
@@ -215,8 +217,10 @@ outputs:
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
+      host:
+        - tbb {{ version.split('.')[0] }}.*
       run:
-        - tbb {{ version }}
+        - tbb {{ version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
       summary: DAAL runtime libraries
@@ -252,7 +256,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('daal-include', exact=True) }}
-        - tbb {{ version }}
+        - tbb {{ version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
       summary: Static libraries for DAAL
@@ -286,7 +290,7 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
-
+  {% endif %}
 # please the linter
 about:
   home: https://github.com/conda-forge/intel-repack-feedstock
