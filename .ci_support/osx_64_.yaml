@@ -6,7 +6,10 @@ channel_targets:
 - conda-forge main
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
+mkl:
+- '2019'
+pin_run_as_build:
+  mkl:
+    max_pin: x
 target_platform:
 - osx-64
