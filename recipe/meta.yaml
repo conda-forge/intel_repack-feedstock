@@ -187,8 +187,8 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
-  {% if target_platform != 'osx-64' %}
 
+  {% if target_platform != 'osx-64' %}
   - name: daal
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
