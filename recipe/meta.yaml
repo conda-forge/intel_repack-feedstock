@@ -36,7 +36,7 @@ source:
     folder: daal-static
   - url: https://anaconda.org/intel/daal-devel/{{ version }}/download/{{ target_platform }}/daal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal-devel
-    {% endif %}
+  {% endif %}
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
@@ -70,6 +70,7 @@ build:
 
 outputs:
   - name: mkl
+    version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     requirements:
@@ -100,6 +101,7 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix]
 
   - name: mkl-include
+    version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     about:
@@ -154,6 +156,7 @@ outputs:
   {% endif %}
 
   - name: mkl-devel
+    version: {{ mkl_version }}
     script: install-devel.sh   # [unix]
     script: install-devel.bat  # [win]
     build:
@@ -185,6 +188,7 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
   {% if target_platform != 'osx-64' %}
+
   - name: daal
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
@@ -291,6 +295,7 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
   {% endif %}
+
 # please the linter
 about:
   home: https://github.com/conda-forge/intel-repack-feedstock
