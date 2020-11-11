@@ -23,7 +23,7 @@ source:
     folder: mkl-devel
   - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl-include
-  {% if 'conda-forge' not in my_channel_targets %}
+  {% if win or 'conda-forge' not in my_channel_targets %}
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
   {% endif %}
@@ -43,7 +43,7 @@ build:
   number: {{ buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  skip: True                                  # [win or not x86]
+  skip: True                                  # [not x86]
   missing_dso_whitelist:
     # just ignore tbb on mac.  We could add it as a dep when we have it.
     - libtbb.dylib                   # [osx]
@@ -74,7 +74,7 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     requirements:
-      {% if 'conda-forge' not in my_channel_targets %}
+      {% if win or 'conda-forge' not in my_channel_targets %}
       host:
         - intel-openmp
       run:
@@ -89,8 +89,9 @@ outputs:
       home: https://software.intel.com/en-us/mkl
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
       summary: Math library for Intel and compatible processors
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -108,8 +109,9 @@ outputs:
       home: https://software.intel.com/en-us/mkl
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
       summary: MKL headers for developing software that uses MKL
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -119,7 +121,7 @@ outputs:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
 
-  {% if 'conda-forge' not in my_channel_targets %}
+  {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
@@ -129,8 +131,9 @@ outputs:
       home: https://software.intel.com/en-us/node/522690
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
       summary: Math library for Intel and compatible processors
       description: |
         Intel openmp runtime implementation
@@ -139,7 +142,9 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
+  {% endif %}
 
+  {% if 'conda-forge' not in my_channel_targets %}
   # mutex package to keep only one blas implementation in a given env
   - name: blas
     version: 1.0
@@ -181,8 +186,9 @@ outputs:
       summary: Metapackage of MKL headers and libraries for developing software that uses MKL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -230,8 +236,9 @@ outputs:
       summary: DAAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -246,8 +253,9 @@ outputs:
       summary: Headers for building against DAAL libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
@@ -266,8 +274,9 @@ outputs:
       summary: Static libraries for DAAL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -288,8 +297,9 @@ outputs:
       summary: Devel package for building things linked against DAAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
-      license_file: mkl/info/LICENSE.txt  # [win]
-      license_file: mkl/info/licenses/license.txt  # [unix]
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
