@@ -5,12 +5,13 @@
 jobs:
 - job: osx
   pool:
-    vmImage: macOS-10.15
+    vmImage: macOS-10.14
   strategy:
     matrix:
-      osx_64_:
-        CONFIG: osx_64_
+      osx_:
+        CONFIG: osx_
         UPLOAD_PACKAGES: 'True'
+    maxParallel: 8
   timeoutInMinutes: 360
 
   steps:
