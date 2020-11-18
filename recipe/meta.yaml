@@ -86,8 +86,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
       summary: Math library for Intel and compatible processors
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -105,8 +104,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
       summary: MKL headers for developing software that uses MKL
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -127,8 +125,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
       summary: Math library for Intel and compatible processors
       description: |
         Intel openmp runtime implementation
@@ -181,8 +178,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -231,8 +227,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -269,8 +264,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -292,8 +286,7 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/LICENSE.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
