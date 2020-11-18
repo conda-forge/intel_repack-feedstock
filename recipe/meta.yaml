@@ -1,30 +1,27 @@
-{% set mkl_version = "2020.4" %}
-{% set version = "2020.3" %}
-{% set buildnum = "304" %}  # [linux]
-{% set buildnum = "301" %}  # [osx]
-{% set buildnum = "311" %}  # [win]
+{% set version = "2020.2" %}
+{% set buildnum = "254" %}  # [not osx]
+{% set buildnum = "258" %}  # [osx]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '0' %}
+{% set dstbuildnum = '2' %}
 {% set openmp_version = version %}
-# 117 was intel's base build number.  We're up 1 after making the license file not read-only
-{% set openmp_buildnum = buildnum|int + dstbuildnum|int %}
+{% set openmp_buildnum = buildnum %}
 
 package:
   name: intel_repack
   version: {{ version }}
 
 source:
-  - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl/{{ version }}/download/{{ target_platform }}/mkl-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl
-  - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl-devel/{{ version }}/download/{{ target_platform }}/mkl-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl-devel
-  - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl-include/{{ version }}/download/{{ target_platform }}/mkl-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: mkl-include
   {% if win or 'conda-forge' not in my_channel_targets %}
-  - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ buildnum }}.tar.bz2
     folder: intel-openmp
   {% endif %}
   {% if target_platform != 'osx-64' %}
@@ -70,7 +67,6 @@ build:
 
 outputs:
   - name: mkl
-    version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     requirements:
@@ -90,8 +86,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
       summary: Math library for Intel and compatible processors
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -102,7 +98,6 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix]
 
   - name: mkl-include
-    version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     about:
@@ -110,8 +105,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
       summary: MKL headers for developing software that uses MKL
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -132,8 +127,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
       summary: Math library for Intel and compatible processors
       description: |
         Intel openmp runtime implementation
@@ -161,7 +156,6 @@ outputs:
   {% endif %}
 
   - name: mkl-devel
-    version: {{ mkl_version }}
     script: install-devel.sh   # [unix]
     script: install-devel.bat  # [win]
     build:
@@ -187,8 +181,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -237,8 +231,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -254,8 +248,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
@@ -275,8 +269,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -298,8 +292,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl/info/licenses/license.txt  # [not win]
+         - mkl/info/LICENSE.txt           # [win]
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]

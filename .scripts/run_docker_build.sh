@@ -74,8 +74,6 @@ docker run ${DOCKER_RUN_ARGS} \
            -e CI \
            -e FEEDSTOCK_NAME \
            -e CPU_COUNT \
-           -e BUILD_WITH_CONDA_DEBUG \
-           -e BUILD_OUTPUT_ID \
            -e BINSTAR_TOKEN \
            -e FEEDSTOCK_TOKEN \
            -e STAGING_BINSTAR_TOKEN \
