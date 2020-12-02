@@ -1,8 +1,8 @@
-{% set mkl_version = "2020.4" %}
-{% set version = "2020.3" %}
-{% set buildnum = "304" %}  # [linux]
-{% set buildnum = "301" %}  # [osx]
-{% set buildnum = "311" %}  # [win]
+{% set mkl_version = "2021.1" %}
+{% set version = "2021.1" %}
+{% set buildnum = "079" %}  # [linux]
+{% set buildnum = "069" %}  # [osx]
+{% set buildnum = "071" %}  # [win]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
@@ -27,14 +27,14 @@ source:
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
   {% endif %}
-  - url: https://anaconda.org/intel/daal/{{ version }}/download/{{ target_platform }}/daal-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal
-  - url: https://anaconda.org/intel/daal-include/{{ version }}/download/{{ target_platform }}/daal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal-include
-  - url: https://anaconda.org/intel/daal-static/{{ version }}/download/{{ target_platform }}/daal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal-static
-  - url: https://anaconda.org/intel/daal-devel/{{ version }}/download/{{ target_platform }}/daal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal-devel
+  - url: https://anaconda.org/intel/dal/{{ version }}/download/{{ target_platform }}/dal-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal
+  - url: https://anaconda.org/intel/dal-include/{{ version }}/download/{{ target_platform }}/dal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal-include
+  - url: https://anaconda.org/intel/dal-static/{{ version }}/download/{{ target_platform }}/dal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal-static
+  - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal-devel
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
@@ -192,7 +192,7 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
 
-  - name: daal
+  - name: dal
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
@@ -230,7 +230,7 @@ outputs:
         - tbb {{ version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
-      summary: DAAL runtime libraries
+      summary: oneDAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -239,68 +239,116 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]
+
+  - name: dal-include
+    script: repack.sh   # [unix or osx]
+    script: repack.bat  # [win]
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: Headers for building against oneDAL libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
+    test:
+      commands:
+        - ls -A $PREFIX/include/*  # [unix or osx]
+
+  - name: dal-static
+    script: repack.sh   # [unix or osx]
+    script: repack.bat  # [win]
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal-include', exact=True) }}
+        - tbb {{ version.split('.')[0] }}.*
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: Static libraries for oneDAL
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix or osx]
+
+  - name: dal-devel
+    script: repack.sh   # [unix or osx]
+    script: repack.bat  # [win]
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+      run_exports:
+        - {{ pin_subpackage('dal') }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal-include', exact=True) }}
+        - {{ pin_subpackage('dal', exact=True) }}
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: Devel package for building things linked against oneDAL shared libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - ls -A $PREFIX/include/*  # [unix or osx]
+  
+  - name: daal
+    script: repack.sh   # [unix or osx]
+    script: repack.bat  # [win]
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+      run_exports:
+        - {{ pin_subpackage('dal') }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal', exact=True) }}
 
   - name: daal-include
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
-    about:
-      home: https://software.intel.com/en-us/daal
-      summary: Headers for building against DAAL libraries
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
-    test:
-      commands:
-        - ls -A $PREFIX/include/*  # [unix or osx]
-
+      run_exports:
+        - {{ pin_subpackage('dal-include') }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal-include', exact=True) }}
+  
   - name: daal-static
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
+      run_exports:
+        - {{ pin_subpackage('dal-static') }}
     requirements:
       run:
+        - {{ pin_subpackage('dal-static', exact=True) }}
         - {{ pin_subpackage('daal-include', exact=True) }}
-        - tbb {{ version.split('.')[0] }}.*
-    about:
-      home: https://software.intel.com/en-us/daal
-      summary: Static libraries for DAAL
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
-    test:
-      commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-
+  
   - name: daal-devel
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
+        - {{ pin_subpackage('dal-devel') }}
         - {{ pin_subpackage('daal') }}
     requirements:
       run:
+        - {{ pin_subpackage('dal-devel', exact=True) }}
         - {{ pin_subpackage('daal-include', exact=True) }}
         - {{ pin_subpackage('daal', exact=True) }}
-    about:
-      home: https://software.intel.com/en-us/daal
-      summary: Devel package for building things linked against DAAL shared libraries
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
-    test:
-      commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-        - ls -A $PREFIX/include/*  # [unix or osx]
 
 # please the linter
 about:
