@@ -303,8 +303,6 @@ outputs:
         - ls -A $PREFIX/include/*  # [unix or osx]
   
   - name: daal
-    script: repack.sh   # [unix or osx]
-    script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
@@ -322,8 +320,6 @@ outputs:
          - mkl/info/licenses/tpp.txt
 
   - name: daal-include
-    script: repack.sh   # [unix or osx]
-    script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
@@ -341,8 +337,6 @@ outputs:
          - mkl/info/licenses/tpp.txt
   
   - name: daal-static
-    script: repack.sh   # [unix or osx]
-    script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
@@ -361,8 +355,6 @@ outputs:
          - mkl/info/licenses/tpp.txt
   
   - name: daal-devel
-    script: repack.sh   # [unix or osx]
-    script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
