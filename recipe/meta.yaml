@@ -312,6 +312,14 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('dal', exact=True) }}
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: oneDAL runtime libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
 
   - name: daal-include
     script: repack.sh   # [unix or osx]
@@ -323,6 +331,14 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: Headers for building against oneDAL libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
   
   - name: daal-static
     script: repack.sh   # [unix or osx]
@@ -335,6 +351,14 @@ outputs:
       run:
         - {{ pin_subpackage('dal-static', exact=True) }}
         - {{ pin_subpackage('daal-include', exact=True) }}
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: Static libraries for oneDAL
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
   
   - name: daal-devel
     script: repack.sh   # [unix or osx]
@@ -349,6 +373,14 @@ outputs:
         - {{ pin_subpackage('dal-devel', exact=True) }}
         - {{ pin_subpackage('daal-include', exact=True) }}
         - {{ pin_subpackage('daal', exact=True) }}
+    about:
+      home: https://software.intel.com/en-us/daal
+      summary: Devel package for building things linked against oneDAL shared libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - mkl/info/licenses/license.txt
+         - mkl/info/licenses/tpp.txt
 
 # please the linter
 about:
