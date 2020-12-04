@@ -307,9 +307,6 @@ outputs:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
         - {{ pin_subpackage('dal') }}
-    requirements:
-      run:
-        - {{ pin_subpackage('dal', exact=True) }}
     about:
       home: https://software.intel.com/en-us/daal
       summary: oneDAL runtime libraries
@@ -324,9 +321,6 @@ outputs:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
         - {{ pin_subpackage('dal-include') }}
-    requirements:
-      run:
-        - {{ pin_subpackage('dal-include', exact=True) }}
     about:
       home: https://software.intel.com/en-us/daal
       summary: Headers for building against oneDAL libraries
@@ -343,7 +337,6 @@ outputs:
         - {{ pin_subpackage('dal-static') }}
     requirements:
       run:
-        - {{ pin_subpackage('dal-static', exact=True) }}
         - {{ pin_subpackage('daal-include', exact=True) }}
     about:
       home: https://software.intel.com/en-us/daal
@@ -362,7 +355,6 @@ outputs:
         - {{ pin_subpackage('daal') }}
     requirements:
       run:
-        - {{ pin_subpackage('dal-devel', exact=True) }}
         - {{ pin_subpackage('daal-include', exact=True) }}
         - {{ pin_subpackage('daal', exact=True) }}
     about:
