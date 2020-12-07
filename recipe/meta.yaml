@@ -1,5 +1,5 @@
-{% set mkl_version = "2021.1" %}
-{% set version = "2021.1" %}
+{% set mkl_version = "2021.1.1" %}
+{% set version = "2021.1.1" %}
 {% set buildnum = "79" %}  # [linux]
 {% set buildnum = "69" %}  # [osx]
 {% set buildnum = "71" %}  # [win]
