@@ -27,7 +27,6 @@ source:
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
   {% endif %}
-  {% if target_platform != 'osx-64' %}
   - url: https://anaconda.org/intel/daal/{{ version }}/download/{{ target_platform }}/daal-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal
   - url: https://anaconda.org/intel/daal-include/{{ version }}/download/{{ target_platform }}/daal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
@@ -36,7 +35,6 @@ source:
     folder: daal-static
   - url: https://anaconda.org/intel/daal-devel/{{ version }}/download/{{ target_platform }}/daal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: daal-devel
-  {% endif %}
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
@@ -194,9 +192,8 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
 
-  {% if target_platform != 'osx-64' %}
   - name: daal
-    script: repack.sh   # [unix]
+    script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
@@ -241,10 +238,10 @@ outputs:
          - mkl/info/licenses/tpp.txt
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [unix or osx]
 
   - name: daal-include
-    script: repack.sh   # [unix]
+    script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
@@ -258,10 +255,10 @@ outputs:
          - mkl/info/licenses/tpp.txt
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix]
+        - ls -A $PREFIX/include/*  # [unix or osx]
 
   - name: daal-static
-    script: repack.sh   # [unix]
+    script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
@@ -279,10 +276,10 @@ outputs:
          - mkl/info/licenses/tpp.txt
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [unix or osx]
 
   - name: daal-devel
-    script: repack.sh   # [unix]
+    script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
@@ -302,9 +299,8 @@ outputs:
          - mkl/info/licenses/tpp.txt
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
-        - ls -A $PREFIX/include/*  # [unix]
-  {% endif %}
+        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - ls -A $PREFIX/include/*  # [unix or osx]
 
 # please the linter
 about:
