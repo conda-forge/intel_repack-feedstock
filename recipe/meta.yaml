@@ -1,4 +1,5 @@
 {% set mkl_version = "2021.1.1" %}
+{% set tbb_version = "2020.3" %}
 {% set version = "2021.1.1" %}
 {% set buildnum = "79" %}  # [linux]
 {% set buildnum = "69" %}  # [osx]
@@ -225,9 +226,9 @@ outputs:
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
       host:
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
       run:
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
       summary: oneDAL runtime libraries
@@ -265,7 +266,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
     about:
       home: https://software.intel.com/en-us/daal
       summary: Static libraries for oneDAL
