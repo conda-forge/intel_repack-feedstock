@@ -1,13 +1,21 @@
 About intel_repack
 ==================
 
-Home: https://software.intel.com/en-us/daal
+Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock/blob/master/LICENSE.txt)
 
-Summary: oneDAL runtime libraries
+Summary: Intel® oneDAL runtime libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
 
 Current build status
 ====================
