@@ -114,8 +114,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl-include/info/licenses/license.txt
+         - mkl-include/info/licenses/tpp.txt
       summary: MKL headers for developing software that uses MKL
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -136,8 +136,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - intel-openmp/info/licenses/license.txt
+         - intel-openmp/info/licenses/tpp.txt
       summary: Math library for Intel and compatible processors
       description: |
         Intel openmp runtime implementation
@@ -191,8 +191,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl-devel/info/licenses/license.txt
+         - mkl-devel/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -240,8 +240,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal/info/licenses/license.txt
+         - dal/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -263,8 +263,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-include/info/licenses/license.txt
+         - dal-include/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -290,8 +290,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-static/info/licenses/license.txt
+         - dal-static/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -319,8 +319,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-devel/info/licenses/license.txt
+         - dal-devel/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -344,8 +344,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal/info/licenses/license.txt
+         - dal/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -368,8 +368,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-include/info/licenses/license.txt
+         - dal-include/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -393,8 +393,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-static/info/licenses/license.txt
+         - dal-static/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
@@ -419,8 +419,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-devel/info/licenses/license.txt
+         - dal-devel/info/licenses/tpp.txt
       description: |
         Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
