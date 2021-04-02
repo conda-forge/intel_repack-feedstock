@@ -89,13 +89,17 @@ outputs:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
         - intel-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       run:
         - intel-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       {% else %}
       host:
         - llvm-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       run:
         - llvm-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       {% endif %}
     about:
       home: https://software.intel.com/en-us/mkl
@@ -214,9 +218,6 @@ outputs:
       binary_relocation: false
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
-        # just ignore tbb on mac.  We could add it as a dep when we have it.
-        - libtbb.dylib                   # [osx]
-        - "$RPATH/libtbb.dylib"          # [osx]
         # this one should be here, probably needs fixup of RUNPATH/RPATH
         - libiomp5.dylib                   # [osx]
         - "$RPATH/libiomp5.dylib"          # [osx]
