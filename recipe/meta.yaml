@@ -25,22 +25,30 @@ package:
 source:
   - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl
+    no_hoist: true
   - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-devel
+    no_hoist: true
   - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-include
+    no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
+    no_hoist: true
   {% endif %}
   - url: https://anaconda.org/intel/dal/{{ version }}/download/{{ target_platform }}/dal-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal
+    no_hoist: true
   - url: https://anaconda.org/intel/dal-include/{{ version }}/download/{{ target_platform }}/dal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal-include
+    no_hoist: true
   - url: https://anaconda.org/intel/dal-static/{{ version }}/download/{{ target_platform }}/dal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal-static
+    no_hoist: true
   - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal-devel
+    no_hoist: true
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
@@ -48,7 +56,6 @@ build:
   binary_relocation: false
   detect_binary_files_with_prefix: false
   skip: True                                  # [not x86]
-  no_hoist: True
   missing_dso_whitelist:
     # just ignore tbb on mac.  We could add it as a dep when we have it.
     - libtbb.dylib                   # [osx]
