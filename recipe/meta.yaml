@@ -1,40 +1,54 @@
-{% set mkl_version = "2020.4" %}
-{% set version = "2020.3" %}
-{% set buildnum = "304" %}  # [linux]
-{% set buildnum = "301" %}  # [osx]
-{% set buildnum = "311" %}  # [win]
+{% set mkl_version = "2021.1.1" %}
+{% set tbb_version = "2021.1.1" %}
+{% set version = "2021.1.1" %}
+{% set mkl_buildnum = "52" %}  # [linux]
+{% set mkl_buildnum = "50" %}  # [osx]
+{% set mkl_buildnum = "52" %}  # [win]
+{% set buildnum = "79" %}  # [linux]
+{% set buildnum = "69" %}  # [osx]
+{% set buildnum = "71" %}  # [win]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '0' %}
-{% set openmp_version = version %}
-# 117 was intel's base build number.  We're up 1 after making the license file not read-only
-{% set openmp_buildnum = buildnum|int + dstbuildnum|int %}
+{% set openmp_version = "2021.1.2" %}
+
+{% set openmp_buildnum = "266" %}  # [linux]
+{% set openmp_buildnum = "267" %}  # [osx]
+{% set openmp_buildnum = "265" %}  # [win]
 
 package:
   name: intel_repack
   version: {{ version }}
 
 source:
-  - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl
-  - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
+    no_hoist: true
+  - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-devel
-  - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ buildnum }}.tar.bz2
+    no_hoist: true
+  - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-include
+    no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
+    no_hoist: true
   {% endif %}
-  - url: https://anaconda.org/intel/daal/{{ version }}/download/{{ target_platform }}/daal-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal
-  - url: https://anaconda.org/intel/daal-include/{{ version }}/download/{{ target_platform }}/daal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal-include
-  - url: https://anaconda.org/intel/daal-static/{{ version }}/download/{{ target_platform }}/daal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal-static
-  - url: https://anaconda.org/intel/daal-devel/{{ version }}/download/{{ target_platform }}/daal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
-    folder: daal-devel
+  - url: https://anaconda.org/intel/dal/{{ version }}/download/{{ target_platform }}/dal-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal
+    no_hoist: true
+  - url: https://anaconda.org/intel/dal-include/{{ version }}/download/{{ target_platform }}/dal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal-include
+    no_hoist: true
+  - url: https://anaconda.org/intel/dal-static/{{ version }}/download/{{ target_platform }}/dal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal-static
+    no_hoist: true
+  - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
+    folder: dal-devel
+    no_hoist: true
 
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
@@ -75,13 +89,17 @@ outputs:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
         - intel-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       run:
         - intel-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       {% else %}
       host:
         - llvm-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       run:
         - llvm-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
       {% endif %}
     about:
       home: https://software.intel.com/en-us/mkl
@@ -108,8 +126,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl-include/info/licenses/license.txt
+         - mkl-include/info/licenses/tpp.txt
       summary: MKL headers for developing software that uses MKL
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
@@ -130,8 +148,8 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - intel-openmp/info/licenses/license.txt
+         - intel-openmp/info/licenses/tpp.txt
       summary: Math library for Intel and compatible processors
       description: |
         Intel openmp runtime implementation
@@ -185,14 +203,14 @@ outputs:
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - mkl-devel/info/licenses/license.txt
+         - mkl-devel/info/licenses/tpp.txt
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
 
-  - name: daal
+  - name: dal
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
@@ -200,9 +218,6 @@ outputs:
       binary_relocation: false
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
-        # just ignore tbb on mac.  We could add it as a dep when we have it.
-        - libtbb.dylib                   # [osx]
-        - "$RPATH/libtbb.dylib"          # [osx]
         # this one should be here, probably needs fixup of RUNPATH/RPATH
         - libiomp5.dylib                   # [osx]
         - "$RPATH/libiomp5.dylib"          # [osx]
@@ -225,78 +240,202 @@ outputs:
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
       host:
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
       run:
-        - tbb {{ version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
     about:
-      home: https://software.intel.com/en-us/daal
-      summary: DAAL runtime libraries
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Intel® oneDAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal/info/licenses/license.txt
+         - dal/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]
 
-  - name: daal-include
+  - name: dal-include
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
     about:
-      home: https://software.intel.com/en-us/daal
-      summary: Headers for building against DAAL libraries
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Headers for building against Intel® oneDAL libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-include/info/licenses/license.txt
+         - dal-include/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix or osx]
 
-  - name: daal-static
+  - name: dal-static
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
     requirements:
       run:
-        - {{ pin_subpackage('daal-include', exact=True) }}
-        - tbb {{ version.split('.')[0] }}.*
+        - {{ pin_subpackage('dal-include', exact=True) }}
+        - tbb {{ tbb_version.split('.')[0] }}.*
     about:
-      home: https://software.intel.com/en-us/daal
-      summary: Static libraries for DAAL
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Static libraries for Intel® oneDAL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-static/info/licenses/license.txt
+         - dal-static/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]
 
-  - name: daal-devel
+  - name: dal-devel
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     build:
       number: {{ buildnum|int + dstbuildnum|int }}
       run_exports:
-        - {{ pin_subpackage('daal') }}
+        - {{ pin_subpackage('dal') }}
     requirements:
       run:
-        - {{ pin_subpackage('daal-include', exact=True) }}
-        - {{ pin_subpackage('daal', exact=True) }}
+        - {{ pin_subpackage('dal-include', exact=True) }}
+        - {{ pin_subpackage('dal', exact=True) }}
     about:
-      home: https://software.intel.com/en-us/daal
-      summary: Devel package for building things linked against DAAL shared libraries
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Devel package for building things linked against Intel® oneDAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
-         - mkl/info/licenses/license.txt
-         - mkl/info/licenses/tpp.txt
+         - dal-devel/info/licenses/license.txt
+         - dal-devel/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - ls -A $PREFIX/include/*  # [unix or osx]
+  
+  - name: daal
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal', exact=True) }}
+    about:
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Intel® oneDAL runtime libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - dal/info/licenses/license.txt
+         - dal/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix or osx]
+
+  - name: daal-include
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal-include', exact=True) }}
+    about:
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Headers for building against Intel® oneDAL libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - dal-include/info/licenses/license.txt
+         - dal-include/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
+    test:
+      commands:
+        - ls -A $PREFIX/include/*  # [unix or osx]
+  
+  - name: daal-static
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal-static') }}
+        - {{ pin_subpackage('daal-include', exact=True) }}
+    about:
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Static libraries for Intel® oneDAL
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - dal-static/info/licenses/license.txt
+         - dal-static/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix or osx]
+  
+  - name: daal-devel
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('dal-devel', exact=True) }}
+        - {{ pin_subpackage('daal-include', exact=True) }}
+        - {{ pin_subpackage('daal', exact=True) }}
+    about:
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      summary: Devel package for building things linked against Intel® oneDAL shared libraries
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - dal-devel/info/licenses/license.txt
+         - dal-devel/info/licenses/tpp.txt
+      description: |
+        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        optimized building blocks covering all stages of data analytics: data acquisition from a data
+        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]

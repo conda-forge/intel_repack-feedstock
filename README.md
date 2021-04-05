@@ -1,13 +1,21 @@
 About intel_repack
 ==================
 
-Home: https://software.intel.com/en-us/daal
+Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock/blob/master/LICENSE.txt)
 
-Summary: DAAL runtime libraries
+Summary: Intel® oneDAL runtime libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
 
 Current build status
 ====================
@@ -64,6 +72,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-daal--devel-green.svg)](https://anaconda.org/conda-forge/daal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal-devel.svg)](https://anaconda.org/conda-forge/daal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal-devel.svg)](https://anaconda.org/conda-forge/daal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal-devel.svg)](https://anaconda.org/conda-forge/daal-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-daal--include-green.svg)](https://anaconda.org/conda-forge/daal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal-include.svg)](https://anaconda.org/conda-forge/daal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal-include.svg)](https://anaconda.org/conda-forge/daal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal-include.svg)](https://anaconda.org/conda-forge/daal-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-daal--static-green.svg)](https://anaconda.org/conda-forge/daal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal-static.svg)](https://anaconda.org/conda-forge/daal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal-static.svg)](https://anaconda.org/conda-forge/daal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal-static.svg)](https://anaconda.org/conda-forge/daal-static) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-dal-green.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--devel-green.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--include-green.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) |
@@ -77,10 +89,10 @@ Installing `intel_repack` from the `conda-forge` channel can be achieved by addi
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `daal, daal-devel, daal-include, daal-static, mkl, mkl-devel, mkl-include` can be installed with:
+Once the `conda-forge` channel has been enabled, `daal, daal-devel, daal-include, daal-static, dal, dal-devel, dal-include, dal-static, mkl, mkl-devel, mkl-include` can be installed with:
 
 ```
-conda install daal daal-devel daal-include daal-static mkl mkl-devel mkl-include
+conda install daal daal-devel daal-include daal-static dal dal-devel dal-include dal-static mkl mkl-devel mkl-include
 ```
 
 It is possible to list all of the versions of `daal` available on your platform with:
@@ -145,9 +157,9 @@ build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
 
 Feedstock Maintainers
