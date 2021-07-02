@@ -87,6 +87,7 @@ Installing `intel_repack` from the `conda-forge` channel can be achieved by addi
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `daal, daal-devel, daal-include, daal-static, dal, dal-devel, dal-include, dal-static, mkl, mkl-devel, mkl-include` can be installed with:
