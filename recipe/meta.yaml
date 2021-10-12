@@ -4,9 +4,9 @@
 {% set mkl_buildnum = "640" %}  # [linux]
 {% set mkl_buildnum = "637" %}  # [osx]
 {% set mkl_buildnum = "640" %}  # [win]
-{% set buildnum = "792" %}  # [linux]
+{% set buildnum = "729" %}  # [linux]
 {% set buildnum = "689" %}  # [osx]
-{% set buildnum = "792" %}  # [win]
+{% set buildnum = "729" %}  # [win]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
