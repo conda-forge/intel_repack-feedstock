@@ -3,6 +3,6 @@ channel_sources:
 channel_targets:
 - conda-forge main
 mkl:
-- '2021'
+- '2022'
 target_platform:
 - win-64

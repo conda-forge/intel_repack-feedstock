@@ -5,10 +5,10 @@ channel_sources:
 channel_targets:
 - conda-forge main
 llvm_openmp:
-- '11'
+- '13'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 mkl:
-- '2021'
+- '2022'
 target_platform:
 - osx-64
