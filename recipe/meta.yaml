@@ -1,5 +1,6 @@
 {% set mkl_version = "2022.1.0" %}
 {% set tbb_version = "2021.6.0" %}
+# this variable defines oneDAL specific version
 {% set version = "2021.6.0" %}
 {% set mkl_buildnum = "223" %}  # [linux]
 {% set mkl_buildnum = "208" %}  # [osx]
