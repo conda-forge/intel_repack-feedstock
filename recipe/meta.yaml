@@ -5,6 +5,7 @@
 {% set mkl_buildnum = "223" %}  # [linux]
 {% set mkl_buildnum = "208" %}  # [osx]
 {% set mkl_buildnum = "192" %}  # [win]
+# this variable defines oneDAL specific buildnum
 {% set buildnum = "915" %}  # [linux]
 {% set buildnum = "928" %}  # [osx]
 {% set buildnum = "874" %}  # [win]
