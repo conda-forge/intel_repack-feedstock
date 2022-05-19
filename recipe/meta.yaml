@@ -1,25 +1,24 @@
-{% set mkl_version = "2022.0.1" %}  # [linux]
-{% set mkl_version = "2022.0.0" %}  # [win or osx]
-{% set tbb_version = "2021.4.0" %}
-{% set version = "2021.5.1" %}  # [linux]
-{% set version = "2021.5.0" %}  # [win or osx]
-{% set mkl_buildnum = "117" %}  # [linux]
-{% set mkl_buildnum = "105" %}  # [osx]
-{% set mkl_buildnum = "115" %}  # [win]
-{% set buildnum = "803" %}  # [linux]
-{% set buildnum = "782" %}  # [osx]
-{% set buildnum = "796" %}  # [win]
+{% set mkl_version = "2022.1.0" %}
+{% set tbb_version = "2021.6.0" %}
+# this variable defines oneDAL specific version
+{% set version = "2021.6.0" %}
+{% set mkl_buildnum = "223" %}  # [linux]
+{% set mkl_buildnum = "208" %}  # [osx]
+{% set mkl_buildnum = "192" %}  # [win]
+# this variable defines oneDAL specific buildnum
+{% set buildnum = "915" %}  # [linux]
+{% set buildnum = "928" %}  # [osx]
+{% set buildnum = "874" %}  # [win]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '0' %}
-{% set openmp_version = "2022.0.1" %}  # [linux]
-{% set openmp_version = "2022.0.0" %}  # [win or osx]
+{% set openmp_version = "2022.1.0" %}
 
-{% set openmp_buildnum = "3633" %}  # [linux]
-{% set openmp_buildnum = "3615" %}  # [osx]
-{% set openmp_buildnum = "3663" %}  # [win]
+{% set openmp_buildnum = "3768" %}  # [linux]
+{% set openmp_buildnum = "3718" %}  # [osx]
+{% set openmp_buildnum = "3787" %}  # [win]
 
 package:
   name: intel_repack
