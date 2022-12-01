@@ -6,7 +6,7 @@ set -ex
 
 src="$SRC_DIR/$PKG_NAME"
 
-cp -rv "$src"/* "$PREFIX/"
+cp -av "$src"/* "$PREFIX/"
 
 # replace old info folder with our new regenerated one
 rm -rf "$PREFIX/info"
