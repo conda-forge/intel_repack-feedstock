@@ -10,9 +10,9 @@ cp -av "$src"/* "$PREFIX/"
 
 echo "Comparing directories content and size"
 echo "$src"
-du -hs "$src"/*
+du -hs "$src"/lib
 echo "$PREFIX"
-du -hs "$PREFIX"/*
+du -hs "$PREFIX"/lib
 
 # replace old info folder with our new regenerated one
 rm -rf "$PREFIX/info"
