@@ -1,22 +1,22 @@
-{% set tbb_version = "2021.6.0" %}
+{% set tbb_version = "2021.7.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2022.2.1" %}
+{% set mkl_version = "2023.0.0" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "16993" %}  # [linux]
-{% set mkl_buildnum = "15346" %}  # [osx]
-{% set mkl_buildnum = "19754" %}  # [win]
+{% set mkl_buildnum = "25398" %}  # [linux]
+{% set mkl_buildnum = "25376" %}  # [osx]
+{% set mkl_buildnum = "25930" %}  # [win]
 # this variable defines oneDAL specific version
-{% set version = "2021.7.1" %}
+{% set version = "2023.0.0" %}
 # this variable defines oneDAL specific buildnum
-{% set buildnum = "16996" %}  # [linux]
-{% set buildnum = "16951" %}  # [osx]
-{% set buildnum = "19750" %}  # [win]
+{% set buildnum = "25395" %}  # [linux]
+{% set buildnum = "25368" %}  # [osx]
+{% set buildnum = "25934" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2022.2.1" %}
+{% set openmp_version = "2023.0.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "16953" %}  # [linux]
-{% set openmp_buildnum = "15340" %}  # [osx]
-{% set openmp_buildnum = "19741" %}  # [win]
+{% set openmp_buildnum = "25370" %}  # [linux]
+{% set openmp_buildnum = "25369" %}  # [osx]
+{% set openmp_buildnum = "25922" %}  # [win]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
