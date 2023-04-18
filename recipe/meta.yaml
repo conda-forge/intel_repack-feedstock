@@ -6,11 +6,11 @@
 {% set mkl_buildnum = "43558" %}  # [osx]
 {% set mkl_buildnum = "46356" %}  # [win]
 # this variable defines oneDAL specific version
-{% set version = "2023.1.0" %}
+{% set version = "2023.1.1" %}
 # this variable defines oneDAL specific buildnum
-{% set buildnum = "46349" %}  # [linux]
-{% set buildnum = "43546" %}  # [osx]
-{% set buildnum = "46352" %}  # [win]
+{% set buildnum = "48679" %}  # [linux]
+{% set buildnum = "48680" %}  # [osx]
+{% set buildnum = "48681" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2023.1.0" %}
 # this variable defines openmp specific buildnum
