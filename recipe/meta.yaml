@@ -1,26 +1,26 @@
-{% set tbb_version = "2021.7.0" %}
+{% set tbb_version = "2021.9.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2023.0.0" %}
+{% set mkl_version = "2023.1.0" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "25398" %}  # [linux]
-{% set mkl_buildnum = "25376" %}  # [osx]
-{% set mkl_buildnum = "25930" %}  # [win]
+{% set mkl_buildnum = "46342" %}  # [linux]
+{% set mkl_buildnum = "43558" %}  # [osx]
+{% set mkl_buildnum = "46356" %}  # [win]
 # this variable defines oneDAL specific version
-{% set version = "2023.0.1" %}
+{% set version = "2023.1.0" %}
 # this variable defines oneDAL specific buildnum
-{% set buildnum = "26646" %}  # [linux]
-{% set buildnum = "31029" %}  # [osx]
-{% set buildnum = "26645" %}  # [win]
+{% set buildnum = "46349" %}  # [linux]
+{% set buildnum = "43546" %}  # [osx]
+{% set buildnum = "46352" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2023.0.0" %}
+{% set openmp_version = "2023.1.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "25370" %}  # [linux]
-{% set openmp_buildnum = "25369" %}  # [osx]
-{% set openmp_buildnum = "25922" %}  # [win]
+{% set openmp_buildnum = "46305" %}  # [linux]
+{% set openmp_buildnum = "43547" %}  # [osx]
+{% set openmp_buildnum = "46319" %}  # [win]
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '2' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
@@ -344,106 +344,6 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]
         - ls -A $PREFIX/include/*  # [unix or osx]
-  
-  - name: daal
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
-    requirements:
-      run:
-        - {{ pin_subpackage('dal', exact=True) }}
-    about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
-      summary: Intel® oneDAL runtime libraries
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - dal/info/licenses/license.txt
-         - dal/info/licenses/tpp.txt
-      description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
-    test:
-      commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-
-  - name: daal-include
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
-    requirements:
-      run:
-        - {{ pin_subpackage('dal-include', exact=True) }}
-    about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
-      summary: Headers for building against Intel® oneDAL libraries
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - dal-include/info/licenses/license.txt
-         - dal-include/info/licenses/tpp.txt
-      description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
-    test:
-      commands:
-        - ls -A $PREFIX/include/*  # [unix or osx]
-  
-  - name: daal-static
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
-    requirements:
-      run:
-        - {{ pin_subpackage('dal-static') }}
-        - {{ pin_subpackage('daal-include', exact=True) }}
-    about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
-      summary: Static libraries for Intel® oneDAL
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - dal-static/info/licenses/license.txt
-         - dal-static/info/licenses/tpp.txt
-      description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
-    test:
-      commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-  
-  - name: daal-devel
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
-    requirements:
-      run:
-        - {{ pin_subpackage('dal-devel', exact=True) }}
-        - {{ pin_subpackage('daal-include', exact=True) }}
-        - {{ pin_subpackage('daal', exact=True) }}
-    about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
-      summary: Devel package for building things linked against Intel® oneDAL shared libraries
-      license: LicenseRef-ProprietaryIntel
-      license_family: Proprietary
-      license_file:
-         - dal-devel/info/licenses/license.txt
-         - dal-devel/info/licenses/tpp.txt
-      description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
-    test:
-      commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-        - ls -A $PREFIX/include/*  # [unix or osx]
 
 # please the linter
 about:
@@ -457,3 +357,4 @@ extra:
     - beckermr
     - napetrov
     - oleksandr-pavlyk 
+    - alexsandruss

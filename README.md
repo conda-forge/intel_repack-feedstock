@@ -1,11 +1,22 @@
+About intel_repack-feedstock
+============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock/blob/main/LICENSE.txt)
+
 About intel_repack
-==================
+------------------
+
+Home: https://github.com/conda-forge/intel-repack-feedstock
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: repackaged intel libraries
+About dal
+---------
 
 Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock/blob/main/LICENSE.txt)
 
 Summary: Intel® oneDAL runtime libraries
 
@@ -14,6 +25,104 @@ Documentation: http://oneapi-src.github.io/oneDAL/
 Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
 optimized building blocks covering all stages of data analytics: data acquisition from a data
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+About dal-include
+-----------------
+
+Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Headers for building against Intel® oneDAL libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+About mkl
+---------
+
+Home: https://software.intel.com/en-us/mkl
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Math library for Intel and compatible processors
+
+Documentation: https://software.intel.com/en-us/mkl/documentation
+
+Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+About mkl-include
+-----------------
+
+Home: https://software.intel.com/en-us/mkl
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: MKL headers for developing software that uses MKL
+
+Documentation: https://software.intel.com/en-us/mkl/documentation
+
+Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+About dal-devel
+---------------
+
+Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Devel package for building things linked against Intel® oneDAL shared libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+About dal-static
+----------------
+
+Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Static libraries for Intel® oneDAL
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+About mkl-devel
+---------------
+
+Home: https://software.intel.com/en-us/mkl
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Metapackage of MKL headers and libraries for developing software that uses MKL
+About intel-openmp
+------------------
+
+Home: https://software.intel.com/en-us/node/522690
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Math library for Intel and compatible processors
+
+Documentation: https://software.intel.com/en-us/node/522690
+
+Intel openmp runtime implementation
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
@@ -68,10 +177,6 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-daal-green.svg)](https://anaconda.org/conda-forge/daal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal.svg)](https://anaconda.org/conda-forge/daal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal.svg)](https://anaconda.org/conda-forge/daal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal.svg)](https://anaconda.org/conda-forge/daal) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-daal--devel-green.svg)](https://anaconda.org/conda-forge/daal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal-devel.svg)](https://anaconda.org/conda-forge/daal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal-devel.svg)](https://anaconda.org/conda-forge/daal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal-devel.svg)](https://anaconda.org/conda-forge/daal-devel) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-daal--include-green.svg)](https://anaconda.org/conda-forge/daal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal-include.svg)](https://anaconda.org/conda-forge/daal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal-include.svg)](https://anaconda.org/conda-forge/daal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal-include.svg)](https://anaconda.org/conda-forge/daal-include) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-daal--static-green.svg)](https://anaconda.org/conda-forge/daal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/daal-static.svg)](https://anaconda.org/conda-forge/daal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/daal-static.svg)](https://anaconda.org/conda-forge/daal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/daal-static.svg)](https://anaconda.org/conda-forge/daal-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal-green.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--devel-green.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
@@ -91,41 +196,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `daal, daal-devel, daal-include, daal-static, dal, dal-devel, dal-include, dal-static, intel-openmp, mkl, mkl-devel, mkl-include` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, intel-openmp, mkl, mkl-devel, mkl-include` can be installed with `conda`:
 
 ```
-conda install daal daal-devel daal-include daal-static dal dal-devel dal-include dal-static intel-openmp mkl mkl-devel mkl-include
-```
-
-or with `mamba`:
-
-```
-mamba install daal daal-devel daal-include daal-static dal dal-devel dal-include dal-static intel-openmp mkl mkl-devel mkl-include
-```
-
-It is possible to list all of the versions of `daal` available on your platform with `conda`:
-
-```
-conda search daal --channel conda-forge
+conda install dal dal-devel dal-include dal-static intel-openmp mkl mkl-devel mkl-include
 ```
 
 or with `mamba`:
 
 ```
-mamba search daal --channel conda-forge
+mamba install dal dal-devel dal-include dal-static intel-openmp mkl mkl-devel mkl-include
+```
+
+It is possible to list all of the versions of `dal` available on your platform with `conda`:
+
+```
+conda search dal --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search dal --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search daal --channel conda-forge
+mamba repoquery search dal --channel conda-forge
 
-# List packages depending on `daal`:
-mamba repoquery whoneeds daal --channel conda-forge
+# List packages depending on `dal`:
+mamba repoquery whoneeds dal --channel conda-forge
 
-# List dependencies of `daal`:
-mamba repoquery depends daal --channel conda-forge
+# List dependencies of `dal`:
+mamba repoquery depends dal --channel conda-forge
 ```
 
 
@@ -195,6 +300,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@alexsandruss](https://github.com/alexsandruss/)
 * [@beckermr](https://github.com/beckermr/)
 * [@isuruf](https://github.com/isuruf/)
 * [@napetrov](https://github.com/napetrov/)
