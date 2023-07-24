@@ -3,6 +3,7 @@ About intel_repack-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock/blob/main/LICENSE.txt)
 
+
 About intel_repack
 ------------------
 
@@ -11,6 +12,7 @@ Home: https://github.com/conda-forge/intel-repack-feedstock
 Package license: LicenseRef-ProprietaryIntel
 
 Summary: repackaged intel libraries
+
 About dal
 ---------
 
@@ -26,6 +28,7 @@ Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of I
 optimized building blocks covering all stages of data analytics: data acquisition from a data
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
 
 About dal-include
 -----------------
@@ -43,6 +46,7 @@ optimized building blocks covering all stages of data analytics: data acquisitio
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
+
 About mkl
 ---------
 
@@ -57,6 +61,7 @@ Documentation: https://software.intel.com/en-us/mkl/documentation
 Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
+
 About mkl-include
 -----------------
 
@@ -70,6 +75,7 @@ Documentation: https://software.intel.com/en-us/mkl/documentation
 
 Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
 
 About dal-devel
 ---------------
@@ -87,6 +93,7 @@ optimized building blocks covering all stages of data analytics: data acquisitio
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
+
 About dal-static
 ----------------
 
@@ -103,6 +110,7 @@ optimized building blocks covering all stages of data analytics: data acquisitio
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
+
 About mkl-devel
 ---------------
 
@@ -111,6 +119,7 @@ Home: https://software.intel.com/en-us/mkl
 Package license: LicenseRef-ProprietaryIntel
 
 Summary: Metapackage of MKL headers and libraries for developing software that uses MKL
+
 About intel-openmp
 ------------------
 
