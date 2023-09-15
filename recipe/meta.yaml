@@ -363,6 +363,7 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
+      skip: True  # [osx]
       number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
     about:
@@ -387,6 +388,7 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
+      skip: True  # [osx]
       number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
       run_exports:
