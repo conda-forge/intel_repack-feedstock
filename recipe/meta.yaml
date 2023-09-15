@@ -60,13 +60,14 @@ source:
   - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
+  {% if not osx %}
   - url: https://anaconda.org/intel/impi_rt/{{ impi_version }}/download/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi_rt
     no_hoist: true
   - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
     no_hoist: true
-
+  {% endif %}
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
   number: {{ buildnum|int + dstbuildnum|int }}
