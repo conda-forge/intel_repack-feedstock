@@ -1,7 +1,7 @@
 About intel_repack-feedstock
 ============================
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock/blob/main/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-feedstock-1-feedstock/blob/main/LICENSE.txt)
 
 
 About intel_repack
@@ -45,6 +45,23 @@ Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of I
 optimized building blocks covering all stages of data analytics: data acquisition from a data
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About impi_rt
+-------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Intel® MPI Library
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Intel® MPI Library is a multifabric message-passing library that implements the open
+source MPICH specification. Use the library to create, maintain, and test advanced,
+complex applications that perform better on HPC clusters based on Intel® and
+compatible processors.
 
 
 About mkl
@@ -111,6 +128,23 @@ source, preprocessing, transformation, data mining, modeling, validation, and de
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
+About impi-devel
+----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Intel® MPI Library
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Intel® MPI Library is a multifabric message-passing library that implements the open
+source MPICH specification. Use the library to create, maintain, and test advanced,
+complex applications that perform better on HPC clusters based on Intel® and
+compatible processors.
+
+
 About mkl-devel
 ---------------
 
@@ -146,8 +180,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock-1-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -155,22 +189,22 @@ Current build status
           <tbody><tr>
               <td>linux_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock-1-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock-1-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock-1-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -190,6 +224,8 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--devel-green.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-impi_rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-intel--openmp-green.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |
@@ -205,16 +241,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, intel-openmp, mkl, mkl-devel, mkl-include` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-include` can be installed with `conda`:
 
 ```
-conda install dal dal-devel dal-include dal-static intel-openmp mkl mkl-devel mkl-include
+conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include
 ```
 
 or with `mamba`:
 
 ```
-mamba install dal dal-devel dal-include dal-static intel-openmp mkl mkl-devel mkl-include
+mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include
 ```
 
 It is possible to list all of the versions of `dal` available on your platform with `conda`:
