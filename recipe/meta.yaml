@@ -18,9 +18,16 @@
 {% set openmp_buildnum = "49499" %}  # [osx]
 {% set openmp_buildnum = "49496" %}  # [win]
 
+# this variable defines openmp specific version
+{% set impi_version = "2021.10.0" %}
+# this variable defines openmp specific buildnum
+{% set impi_buildnum = "49371" %}  # [linux]
+{% set impi_buildnum = "49372" %}  # [win]
+
+
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '2' %}
 
 package:
   name: intel_repack
@@ -52,6 +59,12 @@ source:
     no_hoist: true
   - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal-devel
+    no_hoist: true
+  - url: https://anaconda.org/intel/impi_rt{{ impi_version }}/download/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+    folder: impi_rt
+    no_hoist: true
+  - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+    folder: impi-devel
     no_hoist: true
 
 build:
@@ -344,6 +357,61 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]
         - ls -A $PREFIX/include/*  # [unix or osx]
+
+  - name: impi_rt
+    script: repack.sh   # [unix]
+    script: repack.bat  # [win]
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+      binary_relocation: false
+      detect_binary_files_with_prefix: false
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+      summary: Intel® MPI Library
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - impi_rt/info/licenses/license.txt
+         - impi_rt/info/licenses/tpp.txt
+      description: |
+        Intel® MPI Library is a multifabric message-passing library that implements the open 
+        source MPICH specification. Use the library to create, maintain, and test advanced, 
+        complex applications that perform better on HPC clusters based on Intel® and 
+        compatible processors.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix]
+
+  - name: impi-devel
+    script: repack.sh   # [unix]
+    script: repack.bat  # [win]
+    build:
+      number: {{ buildnum|int + dstbuildnum|int }}
+      binary_relocation: false
+      detect_binary_files_with_prefix: false
+      run_exports:
+        - {{ pin_subpackage('impi_rt') }}
+    requirements:
+      run:
+        - {{ pin_subpackage('impi_rt', exact=True) }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+      summary: Intel® MPI Library
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - impi-devel/info/licenses/license.txt
+         - impi-devel/info/licenses/tpp.txt
+      description: |
+        Intel® MPI Library is a multifabric message-passing library that implements the open 
+        source MPICH specification. Use the library to create, maintain, and test advanced, 
+        complex applications that perform better on HPC clusters based on Intel® and 
+        compatible processors.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [unix]
 
 # please the linter
 about:
