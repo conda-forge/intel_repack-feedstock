@@ -18,9 +18,9 @@
 {% set openmp_buildnum = "49499" %}  # [osx]
 {% set openmp_buildnum = "49496" %}  # [win]
 
-# this variable defines openmp specific version
+# this variable defines impi specific version
 {% set impi_version = "2021.10.0" %}
-# this variable defines openmp specific buildnum
+# this variable defines impi specific buildnum
 {% set impi_buildnum = "49371" %}  # [linux]
 {% set impi_buildnum = "49372" %}  # [win]
 
