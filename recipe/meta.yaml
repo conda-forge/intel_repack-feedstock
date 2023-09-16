@@ -382,7 +382,12 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/bin/mpiexec  # [unix]
+        - test -f $PREFIX/bin/impi_info  # [unix]
+        - test -f $PREFIX/lib/libmpi.so  # [unix]
+        - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\impi_info.exe exit 1  # [win]
+        - if not exist %LIBRARY_bin%\\impi.dll exit 1  # [win]
 
   - name: impi-devel
     script: repack.sh   # [unix]
