@@ -366,6 +366,27 @@ outputs:
       skip: True  # [osx]
       number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
+      missing_dso_whitelist:
+        # this one should be here, probably needs fixup of RUNPATH/RPATH
+        - libiomp5.dylib                   # [osx]
+        - "$RPATH/libiomp5.dylib"          # [osx]
+        # normal linux stuff that would go away if we had libgcc-ng in the run deps
+        - /lib*/ld-linux.so.2
+        - /lib64/ld-linux-x86-64.so.2
+        - /lib*/libpthread.so.0
+        - /lib*/libdl.so.2
+        - /lib*/libgcc_s.so.1
+        - /lib*/libc.so.6
+        - /lib*/libm.so.6
+        - lib/libgcc_s.so.1
+        # these two really shouldn't be here.  See mkl_repack_and_patchelf.sh
+        - libiomp5.so
+        - libcoi_device.so.0
+        - /usr/lib/libstdc++.so.6       # [linux]
+        - /usr/lib64/libstdc++.so.6     # [linux]
+        - /usr/lib/libc++.1.dylib       # [osx]
+        # hooray, windows
+        - "C:\\Windows\\System32\\WINTRUST.dll"
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
       summary: Intel® MPI Library
