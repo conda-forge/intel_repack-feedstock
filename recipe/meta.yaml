@@ -412,7 +412,16 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/bin/mpicc  # [unix]
+        - test -f $PREFIX/bin/mpifc  # [unix]
+        - test -f $PREFIX/bin/mpicxx  # [unix]
+        - test -f $PREFIX/include/mpi.h  # [unix]
+        - if not exist %LIBRARY_BIN%\\mpicc.bat exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\mpicl.bat exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\mpifc.bat exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
+        - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
 
 # please the linter
 about:
