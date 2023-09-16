@@ -408,7 +408,7 @@ outputs:
         - test -f $PREFIX/lib/libmpi.so  # [unix]
         - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\impi_info.exe exit 1  # [win]
-        - if not exist %LIBRARY_bin%\\impi.dll exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\impi.dll exit 1  # [win]
 
   - name: impi-devel
     script: repack.sh   # [unix]
