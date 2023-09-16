@@ -18,9 +18,16 @@
 {% set openmp_buildnum = "49499" %}  # [osx]
 {% set openmp_buildnum = "49496" %}  # [win]
 
+# this variable defines impi specific version
+{% set impi_version = "2021.10.0" %}
+# this variable defines impi specific buildnum
+{% set impi_buildnum = "49371" %}  # [linux]
+{% set impi_buildnum = "49372" %}  # [win]
+
+
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '2' %}
 
 package:
   name: intel_repack
@@ -53,7 +60,14 @@ source:
   - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
-
+  {% if not osx %}
+  - url: https://anaconda.org/intel/impi_rt/{{ impi_version }}/download/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+    folder: impi_rt
+    no_hoist: true
+  - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+    folder: impi-devel
+    no_hoist: true
+  {% endif %}
 build:
   # 117 was intel's base build number.  We're up 1 after making the license file not read-only
   number: {{ buildnum|int + dstbuildnum|int }}
@@ -344,6 +358,96 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix or osx]
         - ls -A $PREFIX/include/*  # [unix or osx]
+
+  - name: impi_rt
+    script: repack.sh   # [unix]
+    script: repack.bat  # [win]
+    build:
+      skip: True  # [osx]
+      number: {{ buildnum|int + dstbuildnum|int }}
+      detect_binary_files_with_prefix: false
+      missing_dso_whitelist:
+        # this one should be here, probably needs fixup of RUNPATH/RPATH
+        - libiomp5.dylib                   # [osx]
+        - "$RPATH/libiomp5.dylib"          # [osx]
+        # normal linux stuff that would go away if we had libgcc-ng in the run deps
+        - /lib*/ld-linux.so.2
+        - /lib64/ld-linux-x86-64.so.2
+        - /lib*/libpthread.so.0
+        - /lib*/libdl.so.2
+        - /lib*/libgcc_s.so.1
+        - /lib*/libc.so.6
+        - /lib*/libm.so.6
+        - lib/libgcc_s.so.1
+        # these two really shouldn't be here.  See mkl_repack_and_patchelf.sh
+        - libiomp5.so
+        - libcoi_device.so.0
+        - /usr/lib/libstdc++.so.6       # [linux]
+        - /usr/lib64/libstdc++.so.6     # [linux]
+        - /usr/lib/libc++.1.dylib       # [osx]
+        # hooray, windows
+        - "C:\\Windows\\System32\\WINTRUST.dll"
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+      summary: Intel® MPI Library
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - impi_rt/info/licenses/license.txt
+         - impi_rt/info/licenses/tpp.txt
+      description: |
+        Intel® MPI Library is a multifabric message-passing library that implements the open 
+        source MPICH specification. Use the library to create, maintain, and test advanced, 
+        complex applications that perform better on HPC clusters based on Intel® and 
+        compatible processors.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+    test:
+      commands:
+        - test -f $PREFIX/bin/mpiexec  # [unix]
+        - test -f $PREFIX/bin/impi_info  # [unix]
+        - test -f $PREFIX/lib/libmpi.so  # [unix]
+        - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\impi_info.exe exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\impi.dll exit 1  # [win]
+
+  - name: impi-devel
+    script: repack.sh   # [unix]
+    script: repack.bat  # [win]
+    build:
+      skip: True  # [osx]
+      number: {{ buildnum|int + dstbuildnum|int }}
+      detect_binary_files_with_prefix: false
+      run_exports:
+        - {{ pin_subpackage('impi_rt') }}
+    requirements:
+      run:
+        - {{ pin_subpackage('impi_rt', exact=True) }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+      summary: Intel® MPI Library
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - impi-devel/info/licenses/license.txt
+         - impi-devel/info/licenses/tpp.txt
+      description: |
+        Intel® MPI Library is a multifabric message-passing library that implements the open 
+        source MPICH specification. Use the library to create, maintain, and test advanced, 
+        complex applications that perform better on HPC clusters based on Intel® and 
+        compatible processors.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+    test:
+      commands:
+        - test -f $PREFIX/bin/mpicc  # [unix]
+        - test -f $PREFIX/bin/mpifc  # [unix]
+        - test -f $PREFIX/bin/mpicxx  # [unix]
+        - test -f $PREFIX/include/mpi.h  # [unix]
+        - if not exist %LIBRARY_BIN%\\mpicc.bat exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\mpicl.bat exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\mpifc.bat exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
+        - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
 
 # please the linter
 about:
