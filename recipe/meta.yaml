@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '4' %}
+{% set dstbuildnum = '5' %}
 
 package:
   name: intel_repack
@@ -227,6 +227,8 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
+        - ls -A $PREFIX/lib/pkgconfig/* # [unix]
+        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
 
   - name: dal
     script: repack.sh   # [unix or osx]
