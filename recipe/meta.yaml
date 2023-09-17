@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '3' %}
+{% set dstbuildnum = '4' %}
 
 package:
   name: intel_repack
@@ -106,10 +106,10 @@ outputs:
     requirements:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
-        - intel-openmp
+        - intel-openmp {{ openmp_version.split('.')[0] }}.*
         - tbb {{ tbb_version.split('.')[0] }}.*
       run:
-        - intel-openmp
+        - intel-openmp {{ openmp_version.split('.')[0] }}.*
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% else %}
       host:
