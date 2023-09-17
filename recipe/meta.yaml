@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '2' %}
+{% set dstbuildnum = '3' %}
 
 package:
   name: intel_repack
@@ -360,6 +360,7 @@ outputs:
         - ls -A $PREFIX/include/*  # [unix or osx]
 
   - name: impi_rt
+    version: {{ impi_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
@@ -411,6 +412,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\impi.dll exit 1  # [win]
 
   - name: impi-devel
+    version: {{ impi_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     build:
