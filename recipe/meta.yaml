@@ -342,7 +342,7 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - test -f $PREFIX/lib/libonedal.a  # [unix]
-	      - test -f $PREFIX/lib/libonedal_core.a  # [unix]
+        - test -f $PREFIX/lib/libonedal_core.a  # [unix]
         - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_core.lib exit 1  # [win]
 
