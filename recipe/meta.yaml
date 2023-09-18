@@ -226,6 +226,8 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
+        - ls -A $PREFIX/lib/pkgconfig/* # [unix]
+        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
 
   - name: dal
     version: {{ dal_version }}
