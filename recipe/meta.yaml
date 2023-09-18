@@ -135,6 +135,8 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/lib/libmkl_core.so.2  # [unix]
+        - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
 
   - name: mkl-include
     version: {{ mkl_version }}
@@ -156,6 +158,8 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
+        - test -f $PREFIX/include/mkl.h  # [unix]
+        - if not exist %LIBRARY_INC%\\mkl.h exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
@@ -178,6 +182,9 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/lib/libomp5.so  # [unix]
+        - if not exist %LIBRARY_BIN%\\omptarget.dll exit 1  # [win]
+
   {% endif %}
 
   {% if 'conda-forge' not in my_channel_targets %}
@@ -228,6 +235,7 @@ outputs:
         - ls -A $PREFIX/include/*  # [unix]
         - ls -A $PREFIX/lib/pkgconfig/* # [unix]
         - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
   - name: dal
     version: {{ dal_version }}
@@ -303,6 +311,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
+        - ls -A $PREFIX/include/*  # [unix]
         - test -f $PREFIX/include/daal.h  # [unix]
         - if not exist %LIBRARY_INC%\\daal.h exit 1  # [win]
 
@@ -331,6 +340,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
+        - ls -A $PREFIX/lib/*  # [unix]
         - test -f $PREFIX/lib/libonedal.a  # [unix]
 	      - test -f $PREFIX/lib/libonedal_core.a  # [unix]
         - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
@@ -363,6 +373,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
+        - ls -A $PREFIX/lib/*  # [unix]
         - test -f $PREFIX/lib/libonedal_sycl.a  # [unix]
         - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
@@ -414,6 +425,8 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
+        - ls -A $PREFIX/bin/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [unix]
         - test -f $PREFIX/bin/mpiexec  # [unix]
         - test -f $PREFIX/bin/impi_info  # [unix]
         - test -f $PREFIX/lib/libmpi.so  # [unix]
@@ -450,6 +463,7 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
+        - ls -A $PREFIX/bin/*  # [unix]
         - test -f $PREFIX/bin/mpicc  # [unix]
         - test -f $PREFIX/bin/mpifc  # [unix]
         - test -f $PREFIX/bin/mpicxx  # [unix]
