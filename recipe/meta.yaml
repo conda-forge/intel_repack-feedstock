@@ -6,11 +6,11 @@
 {% set mkl_buildnum = "49499" %}  # [osx]
 {% set mkl_buildnum = "49496" %}  # [win]
 # this variable defines oneDAL specific version
-{% set version = "2023.2.1" %}
+{% set dal_version = "2023.2.1" %}
 # this variable defines oneDAL specific buildnum
-{% set buildnum = "32" %}  # [linux]
-{% set buildnum = "33" %}  # [osx]
-{% set buildnum = "38" %}  # [win]
+{% set dal_buildnum = "32" %}  # [linux]
+{% set dal_buildnum = "33" %}  # [osx]
+{% set dal_buildnum = "38" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2023.2.0" %}
 # this variable defines openmp specific buildnum
@@ -27,11 +27,11 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '4' %}
+{% set dstbuildnum = '6' %}
 
 package:
   name: intel_repack
-  version: {{ version }}
+  version: {{ mkl_version }}
 
 source:
   - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
@@ -48,16 +48,16 @@ source:
     folder: intel-openmp
     no_hoist: true
   {% endif %}
-  - url: https://anaconda.org/intel/dal/{{ version }}/download/{{ target_platform }}/dal-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal/{{ dal_version }}/download/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-include/{{ version }}/download/{{ target_platform }}/dal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal-include/{{ dal_version }}/download/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-include
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-static/{{ version }}/download/{{ target_platform }}/dal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal-static/{{ dal_version }}/download/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-static
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal-devel/{{ dal_version }}/download/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
   {% if not osx %}
@@ -69,8 +69,7 @@ source:
     no_hoist: true
   {% endif %}
 build:
-  # 117 was intel's base build number.  We're up 1 after making the license file not read-only
-  number: {{ buildnum|int + dstbuildnum|int }}
+  number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
   skip: True                                  # [not x86]
@@ -103,6 +102,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
@@ -139,6 +139,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
       home: https://software.intel.com/en-us/mkl
       license: LicenseRef-ProprietaryIntel
@@ -159,7 +160,7 @@ outputs:
   - name: intel-openmp
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
-    number: {{ openmp_buildnum }}
+    number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
     about:
       home: https://software.intel.com/en-us/node/522690
@@ -198,11 +199,8 @@ outputs:
     version: {{ mkl_version }}
     script: install-devel.sh   # [unix]
     script: install-devel.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
-      # we had to fix site.cfg in 2019.1.  We're off by one.
-      number: {{ buildnum|int + dstbuildnum|int + 1 }}
-      # when stuff is built with MKL, ensure that constraint makes mkl runtime libs as new or
-      #     newer than build version
       run_exports:
         - {{ pin_subpackage('mkl') }}
         {% if 'conda-forge' not in my_channel_targets %}
@@ -229,10 +227,11 @@ outputs:
         - ls -A $PREFIX/include/*  # [unix]
 
   - name: dal
+    version: {{ dal_version }}
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
     build:
-      number: {{ buildnum|int + dstbuildnum|int }}
       binary_relocation: false
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
@@ -280,10 +279,10 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix or osx]
 
   - name: dal-include
+    version: {{ dal_version }}
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
       home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
       summary: Headers for building against Intel® oneDAL libraries
@@ -303,10 +302,10 @@ outputs:
         - ls -A $PREFIX/include/*  # [unix or osx]
 
   - name: dal-static
+    version: {{ dal_version }}
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
@@ -330,10 +329,10 @@ outputs:
         - ls -A $PREFIX/lib/*  # [unix or osx]
 
   - name: dal-devel
+    version: {{ dal_version }}
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
       run_exports:
         - {{ pin_subpackage('dal') }}
     requirements:
@@ -363,9 +362,9 @@ outputs:
     version: {{ impi_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ impi_buildnum|int + dstbuildnum|int }}
     build:
       skip: True  # [osx]
-      number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
         # this one should be here, probably needs fixup of RUNPATH/RPATH
@@ -415,9 +414,9 @@ outputs:
     version: {{ impi_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ impi_buildnum|int + dstbuildnum|int }}
     build:
       skip: True  # [osx]
-      number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
       run_exports:
         - {{ pin_subpackage('impi_rt') }}
