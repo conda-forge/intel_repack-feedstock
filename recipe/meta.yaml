@@ -233,7 +233,7 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
-        - ls -A $PREFIX/lib/pkgconfig/* # [unix]
+        - ls -A $PREFIX/lib/pkgconfig/*  # [unix]
         - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
@@ -351,7 +351,7 @@ outputs:
     script: repack.sh   # [unix or osx]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
-      run_exports:
+    run_exports:
         - {{ pin_subpackage('dal') }}
     requirements:
       run:
