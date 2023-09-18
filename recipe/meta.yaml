@@ -31,6 +31,7 @@
 
 package:
   name: intel_repack
+  # Use oneDAL as overall repack package version
   version: {{ dal_version }}
 
 source:
@@ -120,7 +121,7 @@ outputs:
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% endif %}
     about:
-      home: https://software.intel.com/en-us/mkl
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -130,7 +131,7 @@ outputs:
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: https://software.intel.com/en-us/mkl/documentation
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -141,7 +142,7 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
-      home: https://software.intel.com/en-us/mkl
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -151,7 +152,7 @@ outputs:
       description: |
         Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: https://software.intel.com/en-us/mkl/documentation
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
@@ -163,7 +164,7 @@ outputs:
     number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
     about:
-      home: https://software.intel.com/en-us/node/522690
+      home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -173,7 +174,7 @@ outputs:
       description: |
         Intel openmp runtime implementation
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: https://software.intel.com/en-us/node/522690
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/overview.html
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
@@ -189,7 +190,7 @@ outputs:
       commands:
         - echo 'works!'
     about:
-      home: https://github.com/conda-forge/intel-repack-feedstock
+      home: https://github.com/conda-forge/intel_repack-feedstock
       license: BSD-3-Clause
       license_file: ANACONDA_LICENSE
       summary: 'BLAS mutex for MKL'
@@ -214,7 +215,7 @@ outputs:
         - blas * mkl
         {% endif %}
     about:
-      home: https://software.intel.com/en-us/mkl
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       summary: Metapackage of MKL headers and libraries for developing software that uses MKL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -261,7 +262,7 @@ outputs:
       run:
         - tbb {{ tbb_version.split('.')[0] }}.*
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Intel® oneDAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -284,7 +285,7 @@ outputs:
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Headers for building against Intel® oneDAL libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -311,7 +312,7 @@ outputs:
         - {{ pin_subpackage('dal-include', exact=True) }}
         - tbb {{ tbb_version.split('.')[0] }}.*
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Static libraries for Intel® oneDAL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -340,7 +341,7 @@ outputs:
         - {{ pin_subpackage('dal-include', exact=True) }}
         - {{ pin_subpackage('dal', exact=True) }}
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Devel package for building things linked against Intel® oneDAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -452,9 +453,9 @@ outputs:
 
 # please the linter
 about:
-  home: https://github.com/conda-forge/intel-repack-feedstock
+  home: https://github.com/conda-forge/intel_repack-feedstock
   license: LicenseRef-ProprietaryIntel
-  summary: 'repackaged intel libraries'
+  summary: 'Repackaged Intel libraries'
 
 extra:
   recipe-maintainers:
