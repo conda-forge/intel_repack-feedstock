@@ -277,7 +277,8 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - test -f $PREFIX/lib/libonedal.so.1  # [unix]
+        - if not exist %LIBRARY_BIN%\\onedal.1.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
@@ -300,7 +301,8 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix or osx]
+        - test -f $PREFIX/include/daal.h  # [unix]
+        - if not exist %LIBRARY_INC%\\daal.h exit 1  # [win]
 
   - name: dal-static
     version: {{ dal_version }}
@@ -327,7 +329,10 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - test -f $PREFIX/lib/libonedal.a  # [unix]
+	      - test -f $PREFIX/lib/libonedal_core.a  # [unix]
+        - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_core.lib exit 1  # [win]
 
   - name: dal-devel
     version: {{ dal_version }}
@@ -356,8 +361,11 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-        - ls -A $PREFIX/include/*  # [unix or osx]
+        - test -f $PREFIX/lib/libonedal_sycl.a  # [unix]
+        - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_dll.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_core_dll.lib exit 1  # [win]
 
   - name: impi_rt
     version: {{ impi_version }}
