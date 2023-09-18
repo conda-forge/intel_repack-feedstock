@@ -31,7 +31,7 @@
 
 package:
   name: intel_repack
-  version: {{ mkl_version }}
+  version: {{ dal_version }}
 
 source:
   - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
