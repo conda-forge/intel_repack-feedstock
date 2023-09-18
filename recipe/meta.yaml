@@ -384,7 +384,7 @@ outputs:
     version: {{ impi_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
-    number: {{ impi_buildnum|int + dstbuildnum|int }}  # [unix or win]
+    number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       skip: True  # [osx]
       detect_binary_files_with_prefix: false
