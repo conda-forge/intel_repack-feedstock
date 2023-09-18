@@ -7,16 +7,16 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/intel_repack-fe
 About intel_repack
 ------------------
 
-Home: https://github.com/conda-forge/intel-repack-feedstock
+Home: https://github.com/conda-forge/intel_repack-feedstock
 
 Package license: LicenseRef-ProprietaryIntel
 
-Summary: repackaged intel libraries
+Summary: Repackaged Intel libraries
 
 About dal
 ---------
 
-Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
 
@@ -33,7 +33,7 @@ This package is a repackaged set of binaries obtained directly from Intel\'s ana
 About dal-include
 -----------------
 
-Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
 
@@ -67,13 +67,13 @@ compatible processors.
 About mkl
 ---------
 
-Home: https://software.intel.com/en-us/mkl
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-ProprietaryIntel
 
 Summary: Math library for Intel and compatible processors
 
-Documentation: https://software.intel.com/en-us/mkl/documentation
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -82,13 +82,13 @@ This package is a repackaged set of binaries obtained directly from Intel\'s ana
 About mkl-include
 -----------------
 
-Home: https://software.intel.com/en-us/mkl
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-ProprietaryIntel
 
 Summary: MKL headers for developing software that uses MKL
 
-Documentation: https://software.intel.com/en-us/mkl/documentation
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -97,7 +97,7 @@ This package is a repackaged set of binaries obtained directly from Intel\'s ana
 About dal-devel
 ---------------
 
-Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
 
@@ -114,7 +114,7 @@ This package is a repackaged set of binaries obtained directly from Intel\'s ana
 About dal-static
 ----------------
 
-Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
 Package license: LicenseRef-ProprietaryIntel
 
@@ -148,7 +148,7 @@ compatible processors.
 About mkl-devel
 ---------------
 
-Home: https://software.intel.com/en-us/mkl
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-ProprietaryIntel
 
@@ -157,13 +157,13 @@ Summary: Metapackage of MKL headers and libraries for developing software that u
 About intel-openmp
 ------------------
 
-Home: https://software.intel.com/en-us/node/522690
+Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
 
 Package license: LicenseRef-ProprietaryIntel
 
 Summary: Math library for Intel and compatible processors
 
-Documentation: https://software.intel.com/en-us/node/522690
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/overview.html
 
 Intel openmp runtime implementation
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
