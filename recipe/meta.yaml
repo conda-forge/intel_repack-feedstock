@@ -6,11 +6,11 @@
 {% set mkl_buildnum = "49499" %}  # [osx]
 {% set mkl_buildnum = "49496" %}  # [win]
 # this variable defines oneDAL specific version
-{% set version = "2023.2.1" %}
+{% set dal_version = "2023.2.1" %}
 # this variable defines oneDAL specific buildnum
-{% set buildnum = "32" %}  # [linux]
-{% set buildnum = "33" %}  # [osx]
-{% set buildnum = "38" %}  # [win]
+{% set dal_buildnum = "32" %}  # [linux]
+{% set dal_buildnum = "33" %}  # [osx]
+{% set dal_buildnum = "38" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2023.2.0" %}
 # this variable defines openmp specific buildnum
@@ -27,11 +27,12 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '5' %}
+{% set dstbuildnum = '6' %}
 
 package:
   name: intel_repack
-  version: {{ version }}
+  # Use oneDAL as overall repack package version
+  version: {{ dal_version }}
 
 source:
   - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
@@ -48,16 +49,16 @@ source:
     folder: intel-openmp
     no_hoist: true
   {% endif %}
-  - url: https://anaconda.org/intel/dal/{{ version }}/download/{{ target_platform }}/dal-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal/{{ dal_version }}/download/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-include/{{ version }}/download/{{ target_platform }}/dal-include-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal-include/{{ dal_version }}/download/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-include
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-static/{{ version }}/download/{{ target_platform }}/dal-static-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal-static/{{ dal_version }}/download/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-static
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-devel/{{ version }}/download/{{ target_platform }}/dal-devel-{{ version }}-intel_{{ buildnum }}.tar.bz2
+  - url: https://anaconda.org/intel/dal-devel/{{ dal_version }}/download/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
   {% if not osx %}
@@ -69,8 +70,7 @@ source:
     no_hoist: true
   {% endif %}
 build:
-  # 117 was intel's base build number.  We're up 1 after making the license file not read-only
-  number: {{ buildnum|int + dstbuildnum|int }}
+  number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
   skip: True                                  # [not x86]
@@ -103,6 +103,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
@@ -120,62 +121,70 @@ outputs:
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% endif %}
     about:
-      home: https://software.intel.com/en-us/mkl
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - mkl/info/licenses/license.txt
          - mkl/info/licenses/tpp.txt
-      summary: Math library for Intel and compatible processors
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
-        Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: https://software.intel.com/en-us/mkl/documentation
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/lib/libmkl_core.so.2  # [linux]
+        - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
 
   - name: mkl-include
     version: {{ mkl_version }}
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
-      home: https://software.intel.com/en-us/mkl
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - mkl-include/info/licenses/license.txt
          - mkl-include/info/licenses/tpp.txt
-      summary: MKL headers for developing software that uses MKL
+      summary: Headers for building against Intel® oneMKL libraries
       description: |
-        Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
+        Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: https://software.intel.com/en-us/mkl/documentation
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
+        - test -f $PREFIX/include/mkl.h  # [unix]
+        - if not exist %LIBRARY_INC%\\mkl.h exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
-    number: {{ openmp_buildnum }}
+    number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
     about:
-      home: https://software.intel.com/en-us/node/522690
+      home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - intel-openmp/info/licenses/license.txt
          - intel-openmp/info/licenses/tpp.txt
-      summary: Math library for Intel and compatible processors
+      summary: Intel® oneAPI Compiler OpenMP runtime
       description: |
-        Intel openmp runtime implementation
+        Intel® oneAPI Compiler OpenMP runtime implementation
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      doc_url: https://software.intel.com/en-us/node/522690
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/overview.html
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/lib/libomp5.so  # [unix]
+        - if not exist %LIBRARY_BIN%\\omptarget.dll exit 1  # [win]
+
   {% endif %}
 
   {% if 'conda-forge' not in my_channel_targets %}
@@ -188,7 +197,7 @@ outputs:
       commands:
         - echo 'works!'
     about:
-      home: https://github.com/conda-forge/intel-repack-feedstock
+      home: https://github.com/conda-forge/intel_repack-feedstock
       license: BSD-3-Clause
       license_file: ANACONDA_LICENSE
       summary: 'BLAS mutex for MKL'
@@ -198,11 +207,8 @@ outputs:
     version: {{ mkl_version }}
     script: install-devel.sh   # [unix]
     script: install-devel.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
-      # we had to fix site.cfg in 2019.1.  We're off by one.
-      number: {{ buildnum|int + dstbuildnum|int + 1 }}
-      # when stuff is built with MKL, ensure that constraint makes mkl runtime libs as new or
-      #     newer than build version
       run_exports:
         - {{ pin_subpackage('mkl') }}
         {% if 'conda-forge' not in my_channel_targets %}
@@ -216,8 +222,11 @@ outputs:
         - blas * mkl
         {% endif %}
     about:
-      home: https://software.intel.com/en-us/mkl
-      summary: Metapackage of MKL headers and libraries for developing software that uses MKL
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      summary: Devel package for building against Intel® oneMKL libraries
+      description: |
+        Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -227,14 +236,16 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
         - ls -A $PREFIX/include/*  # [unix]
-        - ls -A $PREFIX/lib/pkgconfig/* # [unix]
+        - ls -A $PREFIX/lib/pkgconfig/*  # [unix]
         - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
   - name: dal
-    script: repack.sh   # [unix or osx]
+    version: {{ dal_version }}
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
     build:
-      number: {{ buildnum|int + dstbuildnum|int }}
       binary_relocation: false
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
@@ -264,7 +275,7 @@ outputs:
       run:
         - tbb {{ tbb_version.split('.')[0] }}.*
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Intel® oneDAL runtime libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -272,22 +283,23 @@ outputs:
          - dal/info/licenses/license.txt
          - dal/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - test -f $PREFIX/lib/libonedal.so.1  # [linux]
+        - if not exist %LIBRARY_BIN%\\onedal.1.dll exit 1  # [win]
 
   - name: dal-include
-    script: repack.sh   # [unix or osx]
+    version: {{ dal_version }}
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Headers for building against Intel® oneDAL libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -295,26 +307,27 @@ outputs:
          - dal-include/info/licenses/license.txt
          - dal-include/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix or osx]
+        - ls -A $PREFIX/include/*  # [unix]
+        - test -f $PREFIX/include/daal.h  # [unix]
 
   - name: dal-static
-    script: repack.sh   # [unix or osx]
+    version: {{ dal_version }}
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
         - tbb {{ tbb_version.split('.')[0] }}.*
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Static libraries for Intel® oneDAL
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
@@ -322,57 +335,62 @@ outputs:
          - dal-static/info/licenses/license.txt
          - dal-static/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
+        - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/lib/libonedal.a  # [linux]
+        - test -f $PREFIX/lib/libonedal_core.a  # [linux]
+        - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_core.lib exit 1  # [win]
 
   - name: dal-devel
-    script: repack.sh   # [unix or osx]
+    version: {{ dal_version }}
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
-    build:
-      number: {{ buildnum|int + dstbuildnum|int }}
-      run_exports:
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
+    run_exports:
         - {{ pin_subpackage('dal') }}
     requirements:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
         - {{ pin_subpackage('dal', exact=True) }}
     about:
-      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onedal.html
-      summary: Devel package for building things linked against Intel® oneDAL shared libraries
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+      summary: Devel package for building against Intel® oneDAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - dal-devel/info/licenses/license.txt
          - dal-devel/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix or osx]
-        - ls -A $PREFIX/include/*  # [unix or osx]
+        - ls -A $PREFIX/lib/*  # [unix]
+        - test -f $PREFIX/lib/libonedal_sycl.a  # [linux]
+        - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_dll.lib exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\onedal_core_dll.lib exit 1  # [win]
 
   - name: impi_rt
     version: {{ impi_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
+    number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       skip: True  # [osx]
-      number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
-        # this one should be here, probably needs fixup of RUNPATH/RPATH
-        - libiomp5.dylib                   # [osx]
-        - "$RPATH/libiomp5.dylib"          # [osx]
         # normal linux stuff that would go away if we had libgcc-ng in the run deps
         - /lib*/ld-linux.so.2
         - /lib64/ld-linux-x86-64.so.2
@@ -387,7 +405,6 @@ outputs:
         - libcoi_device.so.0
         - /usr/lib/libstdc++.so.6       # [linux]
         - /usr/lib64/libstdc++.so.6     # [linux]
-        - /usr/lib/libc++.1.dylib       # [osx]
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     about:
@@ -403,23 +420,26 @@ outputs:
         source MPICH specification. Use the library to create, maintain, and test advanced, 
         complex applications that perform better on HPC clusters based on Intel® and 
         compatible processors.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
-        - test -f $PREFIX/bin/mpiexec  # [unix]
-        - test -f $PREFIX/bin/impi_info  # [unix]
-        - test -f $PREFIX/lib/libmpi.so  # [unix]
+        - ls -A $PREFIX/bin/*  # [linux]
+        - ls -A $PREFIX/lib/*  # [linux]
+        - test -f $PREFIX/bin/mpiexec  # [linux]
+        - test -f $PREFIX/bin/impi_info  # [linux]
+        - test -f $PREFIX/lib/libmpi.so  # [linux]
         - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\impi_info.exe exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\impi.dll exit 1  # [win]
 
   - name: impi-devel
     version: {{ impi_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
+    number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       skip: True  # [osx]
-      number: {{ buildnum|int + dstbuildnum|int }}
       detect_binary_files_with_prefix: false
       run_exports:
         - {{ pin_subpackage('impi_rt') }}
@@ -428,7 +448,7 @@ outputs:
         - {{ pin_subpackage('impi_rt', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-      summary: Intel® MPI Library
+      summary: Devel package for building against Intel® MPI libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -439,13 +459,15 @@ outputs:
         source MPICH specification. Use the library to create, maintain, and test advanced, 
         complex applications that perform better on HPC clusters based on Intel® and 
         compatible processors.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
-        - test -f $PREFIX/bin/mpicc  # [unix]
-        - test -f $PREFIX/bin/mpifc  # [unix]
-        - test -f $PREFIX/bin/mpicxx  # [unix]
-        - test -f $PREFIX/include/mpi.h  # [unix]
+        - ls -A $PREFIX/bin/*  # [linux]
+        - test -f $PREFIX/bin/mpicc  # [linux]
+        - test -f $PREFIX/bin/mpifc  # [linux]
+        - test -f $PREFIX/bin/mpicxx  # [linux]
+        - test -f $PREFIX/include/mpi.h  # [linux]
         - if not exist %LIBRARY_BIN%\\mpicc.bat exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\mpicl.bat exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\mpifc.bat exit 1  # [win]
@@ -455,9 +477,9 @@ outputs:
 
 # please the linter
 about:
-  home: https://github.com/conda-forge/intel-repack-feedstock
+  home: https://github.com/conda-forge/intel_repack-feedstock
   license: LicenseRef-ProprietaryIntel
-  summary: 'repackaged intel libraries'
+  summary: 'Repackaged Intel libraries'
 
 extra:
   recipe-maintainers:
