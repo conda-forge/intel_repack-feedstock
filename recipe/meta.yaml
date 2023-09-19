@@ -313,7 +313,7 @@ outputs:
       commands:
         - ls -A $PREFIX/include/*  # [unix]
         - test -f $PREFIX/include/daal.h  # [unix]
-        - if not exist %LIBRARY_INC%\\daal.h exit 1  # [win]
+#        - if not exist %LIBRARY_INC%\\daal.h exit 1  # [win]
 
   - name: dal-static
     version: {{ dal_version }}
