@@ -135,7 +135,7 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
-        - test -f $PREFIX/lib/libmkl_core.so.2  # [unix]
+        - test -f $PREFIX/lib/libmkl_core.so.2  # [linux]
         - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
 
   - name: mkl-include
@@ -239,7 +239,7 @@ outputs:
 
   - name: dal
     version: {{ dal_version }}
-    script: repack.sh   # [unix or osx]
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     build:
@@ -287,12 +287,12 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - test -f $PREFIX/lib/libonedal.so.1  # [unix]
+        - test -f $PREFIX/lib/libonedal.so.1  # [linux]
         - if not exist %LIBRARY_BIN%\\onedal.1.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
-    script: repack.sh   # [unix or osx]
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
@@ -317,7 +317,7 @@ outputs:
 
   - name: dal-static
     version: {{ dal_version }}
-    script: repack.sh   # [unix or osx]
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -341,14 +341,14 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
-        - test -f $PREFIX/lib/libonedal.a  # [unix]
-        - test -f $PREFIX/lib/libonedal_core.a  # [unix]
+        - test -f $PREFIX/lib/libonedal.a  # [linux]
+        - test -f $PREFIX/lib/libonedal_core.a  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_core.lib exit 1  # [win]
 
   - name: dal-devel
     version: {{ dal_version }}
-    script: repack.sh   # [unix or osx]
+    script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     run_exports:
@@ -374,7 +374,7 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [unix]
-        - test -f $PREFIX/lib/libonedal_sycl.a  # [unix]
+        - test -f $PREFIX/lib/libonedal_sycl.a  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dll.lib exit 1  # [win]
@@ -382,16 +382,13 @@ outputs:
 
   - name: impi_rt
     version: {{ impi_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       skip: True  # [osx]
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
-        # this one should be here, probably needs fixup of RUNPATH/RPATH
-        - libiomp5.dylib                   # [osx]
-        - "$RPATH/libiomp5.dylib"          # [osx]
         # normal linux stuff that would go away if we had libgcc-ng in the run deps
         - /lib*/ld-linux.so.2
         - /lib64/ld-linux-x86-64.so.2
@@ -406,7 +403,6 @@ outputs:
         - libcoi_device.so.0
         - /usr/lib/libstdc++.so.6       # [linux]
         - /usr/lib64/libstdc++.so.6     # [linux]
-        - /usr/lib/libc++.1.dylib       # [osx]
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     about:
@@ -425,18 +421,18 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
-        - ls -A $PREFIX/bin/*  # [unix]
-        - ls -A $PREFIX/lib/*  # [unix]
-        - test -f $PREFIX/bin/mpiexec  # [unix]
-        - test -f $PREFIX/bin/impi_info  # [unix]
-        - test -f $PREFIX/lib/libmpi.so  # [unix]
+        - ls -A $PREFIX/bin/*  # [linux]
+        - ls -A $PREFIX/lib/*  # [linux]
+        - test -f $PREFIX/bin/mpiexec  # [linux]
+        - test -f $PREFIX/bin/impi_info  # [linux]
+        - test -f $PREFIX/lib/libmpi.so  # [linux]
         - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\impi_info.exe exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\impi.dll exit 1  # [win]
 
   - name: impi-devel
     version: {{ impi_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
@@ -463,11 +459,11 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
-        - ls -A $PREFIX/bin/*  # [unix]
-        - test -f $PREFIX/bin/mpicc  # [unix]
-        - test -f $PREFIX/bin/mpifc  # [unix]
-        - test -f $PREFIX/bin/mpicxx  # [unix]
-        - test -f $PREFIX/include/mpi.h  # [unix]
+        - ls -A $PREFIX/bin/*  # [linux]
+        - test -f $PREFIX/bin/mpicc  # [linux]
+        - test -f $PREFIX/bin/mpifc  # [linux]
+        - test -f $PREFIX/bin/mpicxx  # [linux]
+        - test -f $PREFIX/include/mpi.h  # [linux]
         - if not exist %LIBRARY_BIN%\\mpicc.bat exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\mpicl.bat exit 1  # [win]
         - if not exist %LIBRARY_BIN%\\mpifc.bat exit 1  # [win]
