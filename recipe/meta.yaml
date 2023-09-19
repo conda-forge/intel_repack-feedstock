@@ -127,9 +127,9 @@ outputs:
       license_file:
          - mkl/info/licenses/license.txt
          - mkl/info/licenses/tpp.txt
-      summary: Math library for Intel and compatible processors
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
-        Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
@@ -150,9 +150,9 @@ outputs:
       license_file:
          - mkl-include/info/licenses/license.txt
          - mkl-include/info/licenses/tpp.txt
-      summary: MKL headers for developing software that uses MKL
+      summary: Headers for building against Intel® oneMKL libraries
       description: |
-        Intel Math Kernel Library is a BLAS implementation tuned for high performance on Intel CPUs.
+        Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
@@ -174,9 +174,9 @@ outputs:
       license_file:
          - intel-openmp/info/licenses/license.txt
          - intel-openmp/info/licenses/tpp.txt
-      summary: Math library for Intel and compatible processors
+      summary: Intel® oneAPI Compiler OpenMP runtime
       description: |
-        Intel openmp runtime implementation
+        Intel® oneAPI Compiler OpenMP runtime implementation
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/overview.html
     test:
@@ -223,7 +223,10 @@ outputs:
         {% endif %}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      summary: Metapackage of MKL headers and libraries for developing software that uses MKL
+      summary: Devel package for building against Intel® oneMKL libraries
+      description: |
+        Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -280,7 +283,7 @@ outputs:
          - dal/info/licenses/license.txt
          - dal/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -304,7 +307,7 @@ outputs:
          - dal-include/info/licenses/license.txt
          - dal-include/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -332,7 +335,7 @@ outputs:
          - dal-static/info/licenses/license.txt
          - dal-static/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -358,14 +361,14 @@ outputs:
         - {{ pin_subpackage('dal', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-      summary: Devel package for building things linked against Intel® oneDAL shared libraries
+      summary: Devel package for building against Intel® oneDAL shared libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
          - dal-devel/info/licenses/license.txt
          - dal-devel/info/licenses/tpp.txt
       description: |
-        Intel® Data Analytics Acceleration Library (Intel® oneDAL) is the library of Intel® architecture
+        Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -417,6 +420,7 @@ outputs:
         source MPICH specification. Use the library to create, maintain, and test advanced, 
         complex applications that perform better on HPC clusters based on Intel® and 
         compatible processors.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
@@ -444,7 +448,7 @@ outputs:
         - {{ pin_subpackage('impi_rt', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-      summary: Intel® MPI Library
+      summary: Devel package for building against Intel® MPI libraries
       license: LicenseRef-ProprietaryIntel
       license_family: Proprietary
       license_file:
@@ -455,6 +459,7 @@ outputs:
         source MPICH specification. Use the library to create, maintain, and test advanced, 
         complex applications that perform better on HPC clusters based on Intel® and 
         compatible processors.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
