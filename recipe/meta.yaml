@@ -445,7 +445,7 @@ outputs:
       skip: True  # [osx]
       detect_binary_files_with_prefix: false
       run_exports:
-        - {{ pin_subpackage('impi_rt', exact=True) }}
+        - {{ pin_subpackage('impi_rt', min_pin="x.x.x", max_pin="x.x") }}
     requirements:
       run:
         - {{ pin_subpackage('impi_rt', exact=True) }}
