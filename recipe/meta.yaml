@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1000' %}
+{% set dstbuildnum = '1001' %}
 
 package:
   name: intel_repack
@@ -407,6 +407,9 @@ outputs:
         - /usr/lib64/libstdc++.so.6     # [linux]
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
+    requirements:
+      run:
+        - mpi 1.0 impi
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
       summary: Intel® MPI Library
@@ -442,7 +445,7 @@ outputs:
       skip: True  # [osx]
       detect_binary_files_with_prefix: false
       run_exports:
-        - {{ pin_subpackage('impi_rt') }}
+        - {{ pin_subpackage('impi_rt', min_pin="x.x.x", max_pin="x.x.x") }}
     requirements:
       run:
         - {{ pin_subpackage('impi_rt', exact=True) }}
