@@ -24,7 +24,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1002' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
@@ -92,7 +92,7 @@ build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  skip: True                                  # [not x86]
+  skip: True                                  # [not x86 and not (linux64 or win)]
   missing_dso_whitelist:
     # normal linux stuff that would go away if we had libgcc-ng in the run deps
     - /lib*/ld-linux.so.2
