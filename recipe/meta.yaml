@@ -181,8 +181,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
@@ -209,8 +209,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
@@ -237,8 +237,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
@@ -265,8 +265,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
@@ -294,8 +294,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
@@ -322,8 +322,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
@@ -351,8 +351,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
@@ -379,8 +379,8 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
-        - {{ pin_subpackage('dpcpp-cpp-rt', exact=True) }}
-        - {{ pin_subpackage('intel-opencl-rt', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
