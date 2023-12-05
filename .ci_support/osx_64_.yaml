@@ -9,6 +9,6 @@ llvm_openmp:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 mkl:
-- '2022'
+- '2023'
 target_platform:
 - osx-64
