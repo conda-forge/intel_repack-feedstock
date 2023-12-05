@@ -31,8 +31,8 @@ package:
   # Use oneDAL as overall repack package version
   version: {{ dal_version }}
 
-source:
 {% if not osx %}
+source:
   - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl
     no_hoist: true
@@ -89,7 +89,6 @@ source:
   - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
     no_hoist: true
-{% endif %}
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
@@ -113,7 +112,6 @@ build:
     - "C:\\Windows\\System32\\WINTRUST.dll"
 
 outputs:
-{% if not osx %}
   - name: mkl
     version: {{ mkl_version }}
     script: repack.sh   # [unix]
