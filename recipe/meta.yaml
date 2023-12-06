@@ -114,6 +114,7 @@ build:
     - "C:\\Windows\\System32\\WINTRUST.dll"
 {% endif %}
 outputs:
+{% if not osx %}
   - name: mkl
     version: {{ mkl_version }}
     script: repack.sh   # [unix]
@@ -712,7 +713,7 @@ outputs:
         - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
         - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
-
+{% endif %}
 # please the linter
 about:
   home: https://github.com/conda-forge/intel_repack-feedstock
