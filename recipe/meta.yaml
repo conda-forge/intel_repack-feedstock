@@ -91,7 +91,6 @@ source:
     no_hoist: true
 {% endif %}
 build:
-{% if not osx %}
   number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -112,7 +111,7 @@ build:
     - /usr/lib64/libstdc++.so.6     # [linux]
     # hooray, windows
     - "C:\\Windows\\System32\\WINTRUST.dll"
-{% endif %}
+
 outputs:
 {% if not osx %}
   - name: mkl
