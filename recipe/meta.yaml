@@ -201,7 +201,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_blas.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_blas.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
@@ -229,7 +229,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
@@ -257,7 +257,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_dft.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_dft.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
@@ -286,7 +286,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_lapack.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
@@ -314,7 +314,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_rng.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_rng.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
@@ -343,7 +343,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_sparse.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
@@ -371,7 +371,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_stats.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_stats.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
@@ -399,7 +399,7 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_vm.so  # [unix]
+          - test -f $PREFIX/lib/libmkl_sycl_vm.so.4  # [unix]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.4.dll exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
