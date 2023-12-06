@@ -203,7 +203,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_blas.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_blas.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
     version: {{ mkl_version }}
@@ -230,8 +230,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_datafitting.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_datafitting.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so  # [unix]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
     version: {{ mkl_version }}
@@ -259,7 +259,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_dft.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_dft.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
     version: {{ mkl_version }}
@@ -288,7 +288,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_lapack.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_lapack.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
     version: {{ mkl_version }}
@@ -316,7 +316,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_rng.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_rng.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
     version: {{ mkl_version }}
@@ -345,7 +345,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_sparse.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_sparse.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
     version: {{ mkl_version }}
@@ -373,7 +373,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_stats.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_stats.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
     version: {{ mkl_version }}
@@ -401,7 +401,7 @@ outputs:
       commands:
           - ls -A $PREFIX/lib/*  # [unix]
           - test -f $PREFIX/lib/libmkl_sycl_vm.so  # [unix]
-          - if not exist %LIBRARY_BIN%\\libmkl_sycl_vm.4.dll exit 1  # [win]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.4.dll exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
