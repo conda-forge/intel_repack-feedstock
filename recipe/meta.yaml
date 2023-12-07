@@ -2,23 +2,23 @@
 # this variable defines oneMKL specific version
 {% set mkl_version = "2024.0.0" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "49656" %}  # [unix]
+{% set mkl_buildnum = "49656" %}  # [linux]
 {% set mkl_buildnum = "49657" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2024.0.1" %}
 # this variable defines oneDAL specific buildnum
-{% set dal_buildnum = "25" %}  # [unix]
+{% set dal_buildnum = "25" %}  # [linux]
 {% set dal_buildnum = "26" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2024.0.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "49819" %}  # [unix]
+{% set openmp_buildnum = "49819" %}  # [linux]
 {% set openmp_buildnum = "49840" %}  # [win]
 
 # this variable defines impi specific version
 {% set impi_version = "2021.11.0" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "49493" %}  # [unix]
+{% set impi_buildnum = "49493" %}  # [linux]
 {% set impi_buildnum = "49499" %}  # [win]
 
 
@@ -32,7 +32,6 @@ package:
   version: {{ dal_version }}
 
 source:
-{% if not osx %}
   - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl
     no_hoist: true
@@ -89,7 +88,6 @@ source:
   - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
     no_hoist: true
-{% endif %}
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
@@ -113,10 +111,9 @@ build:
     - "C:\\Windows\\System32\\WINTRUST.dll"
 
 outputs:
-{% if not osx %}
   - name: mkl
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -149,13 +146,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libmkl_core.so.2  # [linux]
         - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
 
   - name: mkl-include
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
@@ -172,13 +169,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix]
-        - test -f $PREFIX/include/mkl.h  # [unix]
+        - ls -A $PREFIX/include/*  # [linux]
+        - test -f $PREFIX/include/mkl.h  # [linux]
         - if not exist %LIBRARY_INC%\\mkl.h exit 1  # [win]
 
   - name: onemkl-sycl-blas
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -200,13 +197,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_blas.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_blas.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -228,13 +225,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -256,13 +253,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_dft.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_dft.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -285,13 +282,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -313,13 +310,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_rng.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_rng.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -342,13 +339,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -370,13 +367,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_stats.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_stats.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.4.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -398,13 +395,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-          - ls -A $PREFIX/lib/*  # [unix]
-          - test -f $PREFIX/lib/libmkl_sycl_vm.so.4  # [unix]
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_vm.so.4  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.4.dll exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
@@ -422,8 +419,8 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/overview.html
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
-        - test -f $PREFIX/lib/libomp5.so  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
+        - test -f $PREFIX/lib/libomp5.so  # [linux]
         - if not exist %LIBRARY_BIN%\\omptarget.dll exit 1  # [win]
 
   {% endif %}
@@ -446,7 +443,7 @@ outputs:
 
   - name: mkl-devel
     version: {{ mkl_version }}
-    script: install-devel.sh   # [unix]
+    script: install-devel.sh   # [linux]
     script: install-devel.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
@@ -475,15 +472,15 @@ outputs:
          - mkl-devel/info/licenses/tpp.txt
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
-        - ls -A $PREFIX/include/*  # [unix]
-        - ls -A $PREFIX/lib/pkgconfig/*  # [unix]
-        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
+        - ls -A $PREFIX/include/*  # [linux]
+        - ls -A $PREFIX/lib/pkgconfig/*  # [linux]
+        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
   - name: dal
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     build:
@@ -532,7 +529,7 @@ outputs:
 
   - name: dal-include
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
@@ -551,12 +548,12 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix]
-        - test -f $PREFIX/include/daal.h  # [unix]
+        - ls -A $PREFIX/include/*  # [linux]
+        - test -f $PREFIX/include/daal.h  # [linux]
 
   - name: dal-static
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -579,7 +576,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libonedal.a  # [linux]
         - test -f $PREFIX/lib/libonedal_core.a  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
@@ -587,7 +584,7 @@ outputs:
 
   - name: dal-devel
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     run_exports:
@@ -612,7 +609,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libonedal_sycl.a  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
@@ -712,7 +709,6 @@ outputs:
         - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
         - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
-{% endif %}
 # please the linter
 about:
   home: https://github.com/conda-forge/intel_repack-feedstock
