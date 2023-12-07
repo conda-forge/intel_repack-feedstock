@@ -92,7 +92,7 @@ build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  skip: True                                  # [not x86 and not (linux64 or win)]
+  skip: True                                  # [not (linux64 or win)]
   missing_dso_whitelist:
     # normal linux stuff that would go away if we had libgcc-ng in the run deps
     - /lib*/ld-linux.so.2
