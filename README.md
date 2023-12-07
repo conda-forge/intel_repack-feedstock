@@ -353,7 +353,6 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi_rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-intel--openmp-green.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-intel_repack-green.svg)](https://anaconda.org/conda-forge/intel_repack) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel_repack.svg)](https://anaconda.org/conda-forge/intel_repack) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel_repack.svg)](https://anaconda.org/conda-forge/intel_repack) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel_repack.svg)](https://anaconda.org/conda-forge/intel_repack) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--include-green.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) |
@@ -376,16 +375,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, intel_repack, mkl, mkl-devel, mkl-include, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-include, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
 
 ```
-conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp intel_repack mkl mkl-devel mkl-include onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 or with `mamba`:
 
 ```
-mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp intel_repack mkl mkl-devel mkl-include onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 It is possible to list all of the versions of `dal` available on your platform with `conda`:
