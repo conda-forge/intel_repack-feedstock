@@ -1,33 +1,30 @@
-{% set tbb_version = "2021.10.0" %}
+{% set tbb_version = "2021.11.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2023.2.0" %}
+{% set mkl_version = "2024.0.0" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "49495" %}  # [linux]
-{% set mkl_buildnum = "49499" %}  # [osx]
-{% set mkl_buildnum = "49496" %}  # [win]
+{% set mkl_buildnum = "49656" %}  # [linux]
+{% set mkl_buildnum = "49657" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2023.2.1" %}
+{% set dal_version = "2024.0.1" %}
 # this variable defines oneDAL specific buildnum
-{% set dal_buildnum = "32" %}  # [linux]
-{% set dal_buildnum = "33" %}  # [osx]
-{% set dal_buildnum = "38" %}  # [win]
+{% set dal_buildnum = "25" %}  # [linux]
+{% set dal_buildnum = "26" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2023.2.0" %}
+{% set openmp_version = "2024.0.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "49495" %}  # [linux]
-{% set openmp_buildnum = "49499" %}  # [osx]
-{% set openmp_buildnum = "49496" %}  # [win]
+{% set openmp_buildnum = "49819" %}  # [linux]
+{% set openmp_buildnum = "49840" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.10.0" %}
+{% set impi_version = "2021.11.0" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "49371" %}  # [linux]
-{% set impi_buildnum = "49372" %}  # [win]
+{% set impi_buildnum = "49493" %}  # [linux]
+{% set impi_buildnum = "49499" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1001' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
@@ -43,6 +40,30 @@ source:
     no_hoist: true
   - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-include
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-blas/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-blas
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-datafitting/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-datafitting
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-dft/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-dft
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-lapack/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-lapack
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-rng/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-rng
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-sparse/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-sparse
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-stats/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-stats
+    no_hoist: true
+  - url: https://anaconda.org/intel/onemkl-sycl-vm/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: onemkl-sycl-vm
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
   - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
@@ -61,26 +82,18 @@ source:
   - url: https://anaconda.org/intel/dal-devel/{{ dal_version }}/download/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
-  {% if not osx %}
   - url: https://anaconda.org/intel/impi_rt/{{ impi_version }}/download/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi_rt
     no_hoist: true
   - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
     no_hoist: true
-  {% endif %}
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  skip: True                                  # [not x86]
+  skip: True                                  # [not (linux64 or win)]
   missing_dso_whitelist:
-    # just ignore tbb on mac.  We could add it as a dep when we have it.
-    - libtbb.dylib                   # [osx]
-    - "$RPATH/libtbb.dylib"          # [osx]
-    # this one should be here, probably needs fixup of RUNPATH/RPATH
-    - libiomp5.dylib                   # [osx]
-    - "$RPATH/libiomp5.dylib"          # [osx]
     # normal linux stuff that would go away if we had libgcc-ng in the run deps
     - /lib*/ld-linux.so.2
     - /lib64/ld-linux-x86-64.so.2
@@ -94,14 +107,13 @@ build:
     - libcoi_device.so.0
     - /usr/lib/libstdc++.so.6       # [linux]
     - /usr/lib64/libstdc++.so.6     # [linux]
-    - /usr/lib/libc++.1.dylib       # [osx]
     # hooray, windows
     - "C:\\Windows\\System32\\WINTRUST.dll"
 
 outputs:
   - name: mkl
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -134,13 +146,13 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libmkl_core.so.2  # [linux]
         - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
 
   - name: mkl-include
     version: {{ mkl_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
@@ -157,13 +169,239 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix]
-        - test -f $PREFIX/include/mkl.h  # [unix]
+        - ls -A $PREFIX/include/*  # [linux]
+        - test -f $PREFIX/include/mkl.h  # [linux]
         - if not exist %LIBRARY_INC%\\mkl.h exit 1  # [win]
+
+  - name: onemkl-sycl-blas
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-blas/info/licenses/license.txt
+         - onemkl-sycl-blas/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_blas.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-datafitting
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-datafitting/info/licenses/license.txt
+         - onemkl-sycl-datafitting/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-dft
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-dft/info/licenses/license.txt
+         - onemkl-sycl-dft/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_dft.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-lapack
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-lapack/info/licenses/license.txt
+         - onemkl-sycl-lapack/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-rng
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-rng/info/licenses/license.txt
+         - onemkl-sycl-rng/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_rng.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-sparse
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-sparse/info/licenses/license.txt
+         - onemkl-sycl-sparse/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-stats
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-stats/info/licenses/license.txt
+         - onemkl-sycl-stats/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_stats.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.4.dll exit 1  # [win]
+
+  - name: onemkl-sycl-vm
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-ProprietaryIntel
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-vm/info/licenses/license.txt
+         - onemkl-sycl-vm/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library runtime libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
+          - test -f $PREFIX/lib/libmkl_sycl_vm.so.4  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.4.dll exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
@@ -181,8 +419,8 @@ outputs:
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/overview.html
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
-        - test -f $PREFIX/lib/libomp5.so  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
+        - test -f $PREFIX/lib/libomp5.so  # [linux]
         - if not exist %LIBRARY_BIN%\\omptarget.dll exit 1  # [win]
 
   {% endif %}
@@ -205,7 +443,7 @@ outputs:
 
   - name: mkl-devel
     version: {{ mkl_version }}
-    script: install-devel.sh   # [unix]
+    script: install-devel.sh   # [linux]
     script: install-devel.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
@@ -234,24 +472,21 @@ outputs:
          - mkl-devel/info/licenses/tpp.txt
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
-        - ls -A $PREFIX/include/*  # [unix]
-        - ls -A $PREFIX/lib/pkgconfig/*  # [unix]
-        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
+        - ls -A $PREFIX/include/*  # [linux]
+        - ls -A $PREFIX/lib/pkgconfig/*  # [linux]
+        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
   - name: dal
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     build:
       binary_relocation: false
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
-        # this one should be here, probably needs fixup of RUNPATH/RPATH
-        - libiomp5.dylib                   # [osx]
-        - "$RPATH/libiomp5.dylib"          # [osx]
         # normal linux stuff that would go away if we had libgcc-ng in the run deps
         - /lib*/ld-linux.so.2
         - /lib64/ld-linux-x86-64.so.2
@@ -266,7 +501,6 @@ outputs:
         - libcoi_device.so.0
         - /usr/lib/libstdc++.so.6       # [linux]
         - /usr/lib64/libstdc++.so.6     # [linux]
-        - /usr/lib/libc++.1.dylib       # [osx]
         # hooray, windows
         - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
@@ -290,12 +524,12 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - test -f $PREFIX/lib/libonedal.so.1  # [linux]
-        - if not exist %LIBRARY_BIN%\\onedal.1.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libonedal.so.2  # [linux]
+        - if not exist %LIBRARY_BIN%\\onedal.2.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
@@ -314,12 +548,12 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/include/*  # [unix]
-        - test -f $PREFIX/include/daal.h  # [unix]
+        - ls -A $PREFIX/include/*  # [linux]
+        - test -f $PREFIX/include/daal.h  # [linux]
 
   - name: dal-static
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     requirements:
@@ -342,7 +576,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libonedal.a  # [linux]
         - test -f $PREFIX/lib/libonedal_core.a  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
@@ -350,7 +584,7 @@ outputs:
 
   - name: dal-devel
     version: {{ dal_version }}
-    script: repack.sh   # [unix]
+    script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     run_exports:
@@ -375,7 +609,7 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - ls -A $PREFIX/lib/*  # [unix]
+        - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libonedal_sycl.a  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
@@ -388,7 +622,6 @@ outputs:
     script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
-      skip: True  # [osx]
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
         # normal linux stuff that would go away if we had libgcc-ng in the run deps
@@ -442,7 +675,6 @@ outputs:
     script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
-      skip: True  # [osx]
       detect_binary_files_with_prefix: false
       run_exports:
         - {{ pin_subpackage('impi_rt', min_pin="x.x.x", max_pin="x.x.x") }}
@@ -477,7 +709,6 @@ outputs:
         - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
         - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
-
 # please the linter
 about:
   home: https://github.com/conda-forge/intel_repack-feedstock
