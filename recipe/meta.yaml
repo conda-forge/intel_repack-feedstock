@@ -1,30 +1,30 @@
-{% set tbb_version = "2021.11.0" %}
+{% set tbb_version = "2021.12.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2024.0.0" %}
+{% set mkl_version = "2024.1.0" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "49656" %}  # [linux]
-{% set mkl_buildnum = "49657" %}  # [win]
+{% set mkl_buildnum = "691" %}  # [linux]
+{% set mkl_buildnum = "692" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2024.1.0" %}
+{% set dal_version = "2024.2.0" %}
 # this variable defines oneDAL specific buildnum
-{% set dal_buildnum = "299" %}  # [linux]
-{% set dal_buildnum = "300" %}  # [win]
+{% set dal_buildnum = "276" %}  # [linux]
+{% set dal_buildnum = "277" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2024.0.0" %}
+{% set openmp_version = "2024.1.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "49819" %}  # [linux]
-{% set openmp_buildnum = "49840" %}  # [win]
+{% set openmp_buildnum = "963" %}  # [linux]
+{% set openmp_buildnum = "964" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.11.0" %}
+{% set impi_version = "2021.12.0" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "49493" %}  # [linux]
-{% set impi_buildnum = "49499" %}  # [win]
+{% set impi_buildnum = "534" %}  # [linux]
+{% set impi_buildnum = "535" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
