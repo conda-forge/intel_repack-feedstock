@@ -9,7 +9,7 @@ About intel_repack
 
 Home: https://github.com/conda-forge/intel_repack-feedstock
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Repackaged Intel libraries
 
@@ -18,7 +18,7 @@ About dal
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneDAL runtime libraries
 
@@ -35,7 +35,7 @@ About dal-include
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Headers for building against Intel® oneDAL libraries
 
@@ -52,7 +52,7 @@ About impi_rt
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® MPI Library
 
@@ -70,7 +70,7 @@ About mkl
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -85,7 +85,7 @@ About mkl-include
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Headers for building against Intel® oneMKL libraries
 
@@ -100,7 +100,7 @@ About dal-devel
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Devel package for building against Intel® oneDAL shared libraries
 
@@ -117,7 +117,7 @@ About dal-static
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Static libraries for Intel® oneDAL
 
@@ -134,7 +134,7 @@ About impi-devel
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Devel package for building against Intel® MPI libraries
 
@@ -152,7 +152,7 @@ About mkl-devel
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Devel package for building against Intel® oneMKL libraries
 
@@ -165,7 +165,7 @@ About onemkl-sycl-blas
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -180,7 +180,7 @@ About onemkl-sycl-datafitting
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -195,7 +195,7 @@ About onemkl-sycl-dft
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -210,7 +210,7 @@ About onemkl-sycl-rng
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -225,7 +225,7 @@ About onemkl-sycl-stats
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -240,7 +240,7 @@ About onemkl-sycl-vm
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -255,7 +255,7 @@ About onemkl-sycl-lapack
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -270,7 +270,7 @@ About onemkl-sycl-sparse
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
@@ -285,7 +285,7 @@ About intel-openmp
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
 
-Package license: LicenseRef-ProprietaryIntel
+Package license: LicenseRef-IntelSimplifiedSoftware
 
 Summary: Intel® oneAPI Compiler OpenMP runtime
 
