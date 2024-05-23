@@ -24,7 +24,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
