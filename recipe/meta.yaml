@@ -24,7 +24,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '2' %}
 
 package:
   name: intel_repack
@@ -134,7 +134,7 @@ outputs:
       {% endif %}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - mkl/info/licenses/license.txt
@@ -157,7 +157,7 @@ outputs:
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - mkl-include/info/licenses/license.txt
@@ -185,7 +185,7 @@ outputs:
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-blas/info/licenses/license.txt
@@ -213,7 +213,7 @@ outputs:
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-datafitting/info/licenses/license.txt
@@ -241,7 +241,7 @@ outputs:
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-dft/info/licenses/license.txt
@@ -270,7 +270,7 @@ outputs:
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-lapack/info/licenses/license.txt
@@ -298,7 +298,7 @@ outputs:
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-rng/info/licenses/license.txt
@@ -327,7 +327,7 @@ outputs:
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-sparse/info/licenses/license.txt
@@ -355,7 +355,7 @@ outputs:
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-stats/info/licenses/license.txt
@@ -383,7 +383,7 @@ outputs:
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - onemkl-sycl-vm/info/licenses/license.txt
@@ -407,7 +407,7 @@ outputs:
     version: {{ openmp_version }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - intel-openmp/info/licenses/license.txt
@@ -465,7 +465,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - mkl-devel/info/licenses/license.txt
@@ -511,7 +511,7 @@ outputs:
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Intel® oneDAL runtime libraries
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - dal/info/licenses/license.txt
@@ -535,7 +535,7 @@ outputs:
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Headers for building against Intel® oneDAL libraries
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - dal-include/info/licenses/license.txt
@@ -563,7 +563,7 @@ outputs:
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Static libraries for Intel® oneDAL
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - dal-static/info/licenses/license.txt
@@ -596,7 +596,7 @@ outputs:
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Devel package for building against Intel® oneDAL shared libraries
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - dal-devel/info/licenses/license.txt
@@ -646,7 +646,7 @@ outputs:
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
       summary: Intel® MPI Library
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - impi_rt/info/licenses/license.txt
@@ -684,7 +684,7 @@ outputs:
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
       summary: Devel package for building against Intel® MPI libraries
-      license: LicenseRef-ProprietaryIntel
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
          - impi-devel/info/licenses/license.txt
@@ -712,7 +712,7 @@ outputs:
 # please the linter
 about:
   home: https://github.com/conda-forge/intel_repack-feedstock
-  license: LicenseRef-ProprietaryIntel
+  license: LicenseRef-IntelSimplifiedSoftwareOct2022
   summary: 'Repackaged Intel libraries'
 
 extra:
