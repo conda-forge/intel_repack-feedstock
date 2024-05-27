@@ -5,10 +5,10 @@
 {% set mkl_buildnum = "691" %}  # [linux]
 {% set mkl_buildnum = "692" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2024.3.0" %}
+{% set dal_version = "2024.4.0" %}
 # this variable defines oneDAL specific buildnum
-{% set dal_buildnum = "39" %}  # [linux]
-{% set dal_buildnum = "40" %}  # [win]
+{% set dal_buildnum = "5" %}  # [linux]
+{% set dal_buildnum = "6" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2024.1.0" %}
 # this variable defines openmp specific buildnum
@@ -24,7 +24,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '2' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
