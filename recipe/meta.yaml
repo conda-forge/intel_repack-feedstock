@@ -18,7 +18,7 @@
 # this variable defines impi specific version
 {% set impi_version = "2021.13.0" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "781" %}  # [linux]
+{% set impi_buildnum = "718" %}  # [linux]
 {% set impi_buildnum = "716" %}  # [win]
 
 
