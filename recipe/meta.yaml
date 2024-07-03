@@ -481,6 +481,36 @@ outputs:
         - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
+  - name: mkl-static
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl-include', exact=True) }}
+        - intel-openmp {{ openmp_version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
+        {% if 'conda-forge' not in my_channel_targets %}
+        - blas * mkl
+        {% endif %}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      summary: Static libraries for Intel® oneMKL libraries
+      description: |
+        Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - mkl-static/info/licenses/license.txt
+         - mkl-static/info/licenses/tpp.txt
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [linux]
+        - test -f $PREFIX/lib/libmkl_core.a  # [linux]
+        - if not exist %LIBRARY_LIB%\\mkl_core.lib exit 1  # [win]
+
   - name: dal
     version: {{ dal_version }}
     script: repack.sh   # [linux]
