@@ -1,25 +1,25 @@
-{% set tbb_version = "2021.12.0" %}
+{% set tbb_version = "2021.13.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2024.1.0" %}
+{% set mkl_version = "2024.2.0" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "691" %}  # [linux]
-{% set mkl_buildnum = "692" %}  # [win]
+{% set mkl_buildnum = "663" %}  # [linux]
+{% set mkl_buildnum = "661" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2024.4.0" %}
+{% set dal_version = "2024.5.0" %}
 # this variable defines oneDAL specific buildnum
-{% set dal_buildnum = "5" %}  # [linux]
-{% set dal_buildnum = "6" %}  # [win]
+{% set dal_buildnum = "281" %}  # [linux]
+{% set dal_buildnum = "276" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2024.1.0" %}
+{% set openmp_version = "2024.2.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "963" %}  # [linux]
-{% set openmp_buildnum = "964" %}  # [win]
+{% set openmp_buildnum = "981" %}  # [linux]
+{% set openmp_buildnum = "978" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.12.0" %}
+{% set impi_version = "2021.13.0" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "534" %}  # [linux]
-{% set impi_buildnum = "535" %}  # [win]
+{% set impi_buildnum = "718" %}  # [linux]
+{% set impi_buildnum = "716" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
@@ -32,60 +32,63 @@ package:
   version: {{ dal_version }}
 
 source:
-  - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl
     no_hoist: true
-  - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-devel
     no_hoist: true
-  - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-include
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-blas/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/mkl-static-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: mkl-static
+    no_hoist: true
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-blas
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-datafitting/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-datafitting
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-dft/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-dft
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-lapack/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-lapack
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-rng/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-rng
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-sparse/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-sparse
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-stats/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-stats
     no_hoist: true
-  - url: https://anaconda.org/intel/onemkl-sycl-vm/{{ mkl_version }}/download/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-vm
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
-  - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
     no_hoist: true
   {% endif %}
-  - url: https://anaconda.org/intel/dal/{{ dal_version }}/download/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-include/{{ dal_version }}/download/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-include
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-static/{{ dal_version }}/download/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-static
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-devel/{{ dal_version }}/download/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
-  - url: https://anaconda.org/intel/impi_rt/{{ impi_version }}/download/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi_rt
     no_hoist: true
-  - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/intel-conda/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
     no_hoist: true
 build:
@@ -478,6 +481,43 @@ outputs:
         - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
+  - name: mkl-static
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+        {% if win or 'conda-forge' not in my_channel_targets %}
+      run:
+        - {{ pin_subpackage('mkl-include', exact=True) }}
+        - intel-openmp {{ openmp_version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
+      {% else %}
+      run:
+        - {{ pin_subpackage('mkl-include', exact=True) }}
+        - llvm-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
+      {% endif %}
+        {% if 'conda-forge' not in my_channel_targets %}
+        - blas * mkl
+        {% endif %}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      summary: Static libraries for Intel® oneMKL libraries
+      description: |
+        Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - mkl-static/info/licenses/license.txt
+         - mkl-static/info/licenses/tpp.txt
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [linux]
+        - test -f $PREFIX/lib/libmkl_core.a  # [linux]
+        - if not exist %LIBRARY_LIB%\\mkl_core.lib exit 1  # [win]
+
   - name: dal
     version: {{ dal_version }}
     script: repack.sh   # [linux]
@@ -722,3 +762,4 @@ extra:
     - napetrov
     - oleksandr-pavlyk 
     - alexsandruss
+    - ZzEeKkAa

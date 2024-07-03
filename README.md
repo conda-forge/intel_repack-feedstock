@@ -160,6 +160,19 @@ Intel® oneAPI Math Kernel Library headers and libraries for developing software
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
+About mkl-static
+----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Static libraries for Intel® oneMKL libraries
+
+Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
 About onemkl-sycl-blas
 ----------------------
 
@@ -349,6 +362,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--include-green.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--static-green.svg)](https://anaconda.org/conda-forge/mkl-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-static.svg)](https://anaconda.org/conda-forge/mkl-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-static.svg)](https://anaconda.org/conda-forge/mkl-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-static.svg)](https://anaconda.org/conda-forge/mkl-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--blas-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-blas.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-blas.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-blas.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--datafitting-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-datafitting.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-datafitting.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-datafitting.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--dft-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-dft.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-dft.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-dft.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) |
@@ -368,16 +382,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-include, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-include, mkl-static, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
 
 ```
-conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include mkl-static onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 or with `mamba`:
 
 ```
-mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include mkl-static onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 It is possible to list all of the versions of `dal` available on your platform with `conda`:
@@ -472,6 +486,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@ZzEeKkAa](https://github.com/ZzEeKkAa/)
 * [@alexsandruss](https://github.com/alexsandruss/)
 * [@beckermr](https://github.com/beckermr/)
 * [@isuruf](https://github.com/isuruf/)
