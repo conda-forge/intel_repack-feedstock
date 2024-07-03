@@ -487,10 +487,17 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
+        {% if win or 'conda-forge' not in my_channel_targets %}
       run:
         - {{ pin_subpackage('mkl-include', exact=True) }}
         - intel-openmp {{ openmp_version.split('.')[0] }}.*
         - tbb {{ tbb_version.split('.')[0] }}.*
+      {% else %}
+      run:
+        - {{ pin_subpackage('mkl-include', exact=True) }}
+        - llvm-openmp
+        - tbb {{ tbb_version.split('.')[0] }}.*
+      {% endif %}
         {% if 'conda-forge' not in my_channel_targets %}
         - blas * mkl
         {% endif %}
