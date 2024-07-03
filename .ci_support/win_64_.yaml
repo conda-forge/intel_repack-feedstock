@@ -6,3 +6,5 @@ mkl:
 - '2023'
 target_platform:
 - win-64
+tbb:
+- '2021'

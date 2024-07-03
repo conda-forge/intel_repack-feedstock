@@ -13,58 +13,6 @@ Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Repackaged Intel libraries
 
-About dal
----------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneDAL runtime libraries
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About dal-include
------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Headers for building against Intel® oneDAL libraries
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About impi_rt
--------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® MPI Library
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Intel® MPI Library is a multifabric message-passing library that implements the open
-source MPICH specification. Use the library to create, maintain, and test advanced,
-complex applications that perform better on HPC clusters based on Intel® and
-compatible processors.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
 About mkl
 ---------
 
@@ -95,58 +43,6 @@ Intel® oneAPI Math Kernel Library headers for developing software that uses one
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
-About dal-devel
----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Devel package for building against Intel® oneDAL shared libraries
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About dal-static
-----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Static libraries for Intel® oneDAL
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About impi-devel
-----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Devel package for building against Intel® MPI libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Intel® MPI Library is a multifabric message-passing library that implements the open
-source MPICH specification. Use the library to create, maintain, and test advanced,
-complex applications that perform better on HPC clusters based on Intel® and
-compatible processors.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
 About mkl-devel
 ---------------
 
@@ -170,141 +66,6 @@ Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 Summary: Static libraries for Intel® oneMKL libraries
 
 Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-blas
-----------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-datafitting
------------------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-dft
----------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-rng
----------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-stats
------------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-vm
---------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-lapack
-------------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-sparse
-------------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About intel-openmp
-------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Compiler OpenMP runtime
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-
-Intel® oneAPI Compiler OpenMP runtime implementation
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
@@ -352,25 +113,10 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-dal-green.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--devel-green.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-impi_rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-intel--openmp-green.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--include-green.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-include.svg)](https://anaconda.org/conda-forge/mkl-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--static-green.svg)](https://anaconda.org/conda-forge/mkl-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-static.svg)](https://anaconda.org/conda-forge/mkl-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-static.svg)](https://anaconda.org/conda-forge/mkl-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-static.svg)](https://anaconda.org/conda-forge/mkl-static) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--blas-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-blas.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-blas.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-blas.svg)](https://anaconda.org/conda-forge/onemkl-sycl-blas) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--datafitting-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-datafitting.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-datafitting.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-datafitting.svg)](https://anaconda.org/conda-forge/onemkl-sycl-datafitting) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--dft-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-dft.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-dft.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-dft.svg)](https://anaconda.org/conda-forge/onemkl-sycl-dft) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--lapack-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-lapack) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-lapack.svg)](https://anaconda.org/conda-forge/onemkl-sycl-lapack) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-lapack.svg)](https://anaconda.org/conda-forge/onemkl-sycl-lapack) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-lapack.svg)](https://anaconda.org/conda-forge/onemkl-sycl-lapack) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--rng-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-rng) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-rng.svg)](https://anaconda.org/conda-forge/onemkl-sycl-rng) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-rng.svg)](https://anaconda.org/conda-forge/onemkl-sycl-rng) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-rng.svg)](https://anaconda.org/conda-forge/onemkl-sycl-rng) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--sparse-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-sparse) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-sparse.svg)](https://anaconda.org/conda-forge/onemkl-sycl-sparse) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-sparse.svg)](https://anaconda.org/conda-forge/onemkl-sycl-sparse) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-sparse.svg)](https://anaconda.org/conda-forge/onemkl-sycl-sparse) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--stats-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-stats) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-stats.svg)](https://anaconda.org/conda-forge/onemkl-sycl-stats) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-stats.svg)](https://anaconda.org/conda-forge/onemkl-sycl-stats) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-stats.svg)](https://anaconda.org/conda-forge/onemkl-sycl-stats) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-onemkl--sycl--vm-green.svg)](https://anaconda.org/conda-forge/onemkl-sycl-vm) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/onemkl-sycl-vm.svg)](https://anaconda.org/conda-forge/onemkl-sycl-vm) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/onemkl-sycl-vm.svg)](https://anaconda.org/conda-forge/onemkl-sycl-vm) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/onemkl-sycl-vm.svg)](https://anaconda.org/conda-forge/onemkl-sycl-vm) |
 
 Installing intel_repack
 =======================
@@ -382,41 +128,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-include, mkl-static, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `mkl, mkl-devel, mkl-include, mkl-static` can be installed with `conda`:
 
 ```
-conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include mkl-static onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
-```
-
-or with `mamba`:
-
-```
-mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-include mkl-static onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
-```
-
-It is possible to list all of the versions of `dal` available on your platform with `conda`:
-
-```
-conda search dal --channel conda-forge
+conda install mkl mkl-devel mkl-include mkl-static
 ```
 
 or with `mamba`:
 
 ```
-mamba search dal --channel conda-forge
+mamba install mkl mkl-devel mkl-include mkl-static
+```
+
+It is possible to list all of the versions of `mkl` available on your platform with `conda`:
+
+```
+conda search mkl --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search mkl --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search dal --channel conda-forge
+mamba repoquery search mkl --channel conda-forge
 
-# List packages depending on `dal`:
-mamba repoquery whoneeds dal --channel conda-forge
+# List packages depending on `mkl`:
+mamba repoquery whoneeds mkl --channel conda-forge
 
-# List dependencies of `dal`:
-mamba repoquery depends dal --channel conda-forge
+# List dependencies of `mkl`:
+mamba repoquery depends mkl --channel conda-forge
 ```
 
 

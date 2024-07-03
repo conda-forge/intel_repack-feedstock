@@ -10,3 +10,5 @@ mkl:
 - '2023'
 target_platform:
 - linux-64
+tbb:
+- '2021'
