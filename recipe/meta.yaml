@@ -144,13 +144,14 @@ outputs:
       license_file:
          - mkl-devel/info/licenses/license.txt
          - mkl-devel/info/licenses/tpp.txt
-    test:
-      commands:
-        - ls -A $PREFIX/lib/*  # [linux]
-        - ls -A $PREFIX/include/*  # [linux]
-        - ls -A $PREFIX/lib/pkgconfig/*  # [linux]
-        - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
-        - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
+    # TODO: at 2022.2.1 it is just a meta package
+    # test:
+    #   commands:
+    #     - ls -A $PREFIX/lib/*  # [linux]
+    #     - ls -A $PREFIX/include/*  # [linux]
+    #     - ls -A $PREFIX/lib/pkgconfig/*  # [linux]
+    #     - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
+    #     - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
 
   - name: mkl-static
     version: {{ mkl_version }}
