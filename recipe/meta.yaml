@@ -11,7 +11,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '5' %}
+{% set dstbuildnum = '6' %}
 
 package:
   name: intel_repack
