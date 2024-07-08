@@ -11,7 +11,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '5' %}
+{% set dstbuildnum = '6' %}
 
 package:
   name: intel_repack
@@ -58,6 +58,10 @@ outputs:
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    build:
+      binary_relocation: False
+      overlinking_ignore_patterns:
+        - "**"
     requirements:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
