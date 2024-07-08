@@ -58,6 +58,10 @@ outputs:
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    build:
+      binary_relocation: False
+      overlinking_ignore_patterns:
+        - "**"
     requirements:
       {% if win or 'conda-forge' not in my_channel_targets %}
       host:
