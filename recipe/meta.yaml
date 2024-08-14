@@ -2,7 +2,7 @@
 # this variable defines oneMKL specific version
 {% set mkl_version = "2024.2.1" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "105" %}  # [linux]
+{% set mkl_buildnum = "103" %}  # [linux]
 {% set mkl_buildnum = "106" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2024.6.0" %}
