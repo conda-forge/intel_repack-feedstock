@@ -5,15 +5,15 @@
 {% set mkl_buildnum = "663" %}  # [linux]
 {% set mkl_buildnum = "661" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2024.5.0" %}
+{% set dal_version = "2024.6.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "281" %}  # [linux]
 {% set dal_buildnum = "276" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2024.2.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "981" %}  # [linux]
-{% set openmp_buildnum = "978" %}  # [win]
+{% set openmp_buildnum = "418" %}  # [linux]
+{% set openmp_buildnum = "418" %}  # [win]
 
 # this variable defines impi specific version
 {% set impi_version = "2021.13.0" %}
@@ -26,7 +26,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '0' %}
 
 package:
   name: intel_repack
