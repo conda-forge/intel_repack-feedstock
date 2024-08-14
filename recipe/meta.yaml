@@ -1,25 +1,25 @@
-{% set tbb_version = "2021.13.0" %}
+{% set tbb_version = "2021.13.1" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2024.2.0" %}
+{% set mkl_version = "2024.2.1" %}
 # this variable defines oneMKL specific buildnum
-{% set mkl_buildnum = "663" %}  # [linux]
-{% set mkl_buildnum = "661" %}  # [win]
+{% set mkl_buildnum = "105" %}  # [linux]
+{% set mkl_buildnum = "106" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2024.6.0" %}
 # this variable defines oneDAL specific buildnum
-{% set dal_buildnum = "281" %}  # [linux]
-{% set dal_buildnum = "276" %}  # [win]
+{% set dal_buildnum = "418" %}  # [linux]
+{% set dal_buildnum = "419" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2024.2.0" %}
 # this variable defines openmp specific buildnum
-{% set openmp_buildnum = "418" %}  # [linux]
-{% set openmp_buildnum = "418" %}  # [win]
+{% set openmp_buildnum = "981" %}  # [linux]
+{% set openmp_buildnum = "978" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.13.0" %}
+{% set impi_version = "2021.13.1" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "718" %}  # [linux]
-{% set impi_buildnum = "716" %}  # [win]
+{% set impi_buildnum = "769" %}  # [linux]
+{% set impi_buildnum = "768" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
