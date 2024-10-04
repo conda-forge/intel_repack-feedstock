@@ -25,12 +25,18 @@
 {% set impi_buildnum = "767" %}  # [linux]
 {% set impi_buildnum = "766" %}  # [win]
 
+# this variable defines onedpl specific version
+{% set onedpl_version = "2022.6.1" %}
+# this variable defines onedpl specific buildnum
+{% set onedpl_buildnum = "12" %}  # [linux]
+{% set onedpl_buildnum = "11" %}  # [win]
+
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '0' %}
+{% set dstbuildnum = '1' %}
 
 package:
   name: intel_repack
@@ -96,6 +102,9 @@ source:
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/onedpl-devel-{{ onedpl_version }}-intel_{{ onedpl_buildnum }}.tar.bz2
+    folder: onedpl-devel
     no_hoist: true
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
@@ -752,6 +761,38 @@ outputs:
         - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
         - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
+
+  - name: onedpl-devel
+    version: {{ onedpl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ onedpl_buildnum|int + dstbuildnum|int }}  # [linux or win]
+    about:
+      home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
+      summary: Intel® oneAPI DPC++ Library
+      license: Apache-2.0
+      license_file: clang/LICENSE.TXT
+      license_file:
+         - onedpl-devel/share/licensing/dpl/license.txt
+         - onedpl-devel/share/licensing/dpl/third-party-programs.txt
+      description: |
+        The Intel® oneAPI DPC++ Library (oneDPL) is a companion to the
+        Intel® oneAPI DPC++/C++ Compiler and provides an alternative for C++ 
+        developers who create heterogeneous applications and solutions. Its APIs
+        are based on familiar standards—C++ STL, Parallel STL (PSTL),
+        Boost.Compute, and SYCL*—to maximize productivity and performance across
+        CPUs, GPUs, and FPGAs.
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
+    test:
+      commands:
+        - ls -A $PREFIX/include/oneapi/*  # [linux]
+        - test -f $PREFIX/include/oneapi/dpl/cmath  # [linux]
+        - test -f $PREFIX/lib/cmake/oneDPL/oneDPLConfig.cmake  # [linux]
+        - test -f $PREFIX/lib/pkgconfig/dpl.pc  # [linux]
+        - if not exist %LIBRARY_INC%\\oneapi\\dpl\\cmath exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\cmake\\oneDPL\\oneDPLConfig.cmake exit 1  # [win]
+        - if not exist %LIBRARY_LIB%\\pkgconfig\\dpl.pc exit 1  # [win]
 # please the linter
 about:
   home: https://github.com/conda-forge/intel_repack-feedstock
