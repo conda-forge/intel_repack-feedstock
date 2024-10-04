@@ -104,7 +104,7 @@ source:
     folder: impi-devel
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onedpl-devel-{{ onedpl_version }}-intel_{{ onedpl_buildnum }}.tar.bz2
-    folder: impi-devel
+    folder: onedpl-devel
     no_hoist: true
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
