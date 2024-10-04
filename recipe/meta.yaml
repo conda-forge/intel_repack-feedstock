@@ -773,8 +773,8 @@ outputs:
       license: Apache-2.0
       license_file: clang/LICENSE.TXT
       license_file:
-         - share/licensing/dpl/license.txt
-         - share/licensing/dpl/third-party-programs.txt
+         - onedpl-devel/share/licensing/dpl/license.txt
+         - onedpl-devel/share/licensing/dpl/third-party-programs.txt
       description: |
         The Intel® oneAPI DPC++ Library (oneDPL) is a companion to the
         Intel® oneAPI DPC++/C++ Compiler and provides an alternative for C++ 
