@@ -1,29 +1,29 @@
-{% set tbb_version = "2021.13.1" %}
+{% set tbb_version = "2022.0.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2024.2.2" %}
+{% set mkl_version = "2025.0.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "15" %}  # [linux]
-{% set mkl_buildnum = "14" %}  # [win]
+{% set mkl_buildnum = "939" %}  # [linux]
+{% set mkl_buildnum = "928" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2024.7.0" %}
+{% set dal_version = "2025.0.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "13" %}  # [linux]
-{% set dal_buildnum = "16" %}  # [win]
+{% set dal_buildnum = "957" %}  # [linux]
+{% set dal_buildnum = "947" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2024.2.0" %}
+{% set openmp_version = "2025.0.0" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "981" %}  # [linux]
-{% set openmp_buildnum = "978" %}  # [win]
+{% set openmp_buildnum = "1169" %}  # [linux]
+{% set openmp_buildnum = "1162" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.13.1" %}
+{% set impi_version = "2021.14.0" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "" %}
-{% set impi_buildnum = "767" %}  # [linux]
-{% set impi_buildnum = "766" %}  # [win]
+{% set impi_buildnum = "790" %}  # [linux]
+{% set impi_buildnum = "784" %}  # [win]
 
 # this variable defines onedpl specific version
 {% set onedpl_version = "2022.6.1" %}
