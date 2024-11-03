@@ -576,8 +576,8 @@ outputs:
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
-        - test -f $PREFIX/lib/libonedal.so.2  # [linux]
-        - if not exist %LIBRARY_BIN%\\onedal.2.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libonedal.so.3  # [linux]
+        - if not exist %LIBRARY_BIN%\\onedal.3.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
