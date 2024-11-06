@@ -115,84 +115,6 @@ CPUs, GPUs, and FPGAs.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
-About dal-devel
----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Devel package for building against Intel® oneDAL shared libraries
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About dal-static
-----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Static libraries for Intel® oneDAL
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About impi-devel
-----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Devel package for building against Intel® MPI libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Intel® MPI Library is a multifabric message-passing library that implements the open
-source MPICH specification. Use the library to create, maintain, and test advanced,
-complex applications that perform better on HPC clusters based on Intel® and
-compatible processors.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About mkl-devel
----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Devel package for building against Intel® oneMKL libraries
-
-Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About mkl-static
-----------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Static libraries for Intel® oneMKL libraries
-
-Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
 About onemkl-sycl-blas
 ----------------------
 
@@ -280,6 +202,84 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About dal-devel
+---------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Devel package for building against Intel® oneDAL shared libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About dal-static
+----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Static libraries for Intel® oneDAL
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About impi-devel
+----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Devel package for building against Intel® MPI libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Intel® MPI Library is a multifabric message-passing library that implements the open
+source MPICH specification. Use the library to create, maintain, and test advanced,
+complex applications that perform better on HPC clusters based on Intel® and
+compatible processors.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About mkl-devel
+---------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Devel package for building against Intel® oneMKL libraries
+
+Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About mkl-static
+----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Static libraries for Intel® oneMKL libraries
+
+Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
