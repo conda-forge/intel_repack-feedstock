@@ -38,6 +38,21 @@
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '1' %}
 
+# We need intel-openmp because it contains VCOMP symbols on windows in order to
+# pytorch work. Those are deprecated symbols and should be removed in the
+# future.
+# https://github.com/conda-forge/intel_repack-feedstock/issues/59#issuecomment-1790007397
+# More info about OpenMP mutex could be found on conda-forge wiki:
+# https://conda-forge.org/docs/maintainer/knowledge_base/#openmp
+{% set openmp_pkg ="llvm-openmp" %}
+{% set openmp_mutex ="_openmp_mutex * *_llvm" %}
+{% if win or 'conda-forge' not in my_channel_targets %}
+{% set openmp_pkg ="intel-openmp " ~ openmp_version.split('.')[0] ~ ".*" %}
+# we don't need openmp, and there is no mutex on windows, so we are
+# forced to use intel-openmp package as dependency
+{% set openmp_mutex ="intel-openmp " ~ openmp_version.split('.')[0] ~ ".*" %}
+{% endif %}
+
 package:
   name: intel_repack
   # Use oneDAL as overall repack package version
@@ -111,22 +126,6 @@ build:
   binary_relocation: false
   detect_binary_files_with_prefix: false
   skip: True                                  # [not (linux64 or win)]
-  missing_dso_whitelist:
-    # normal linux stuff that would go away if we had libgcc-ng in the run deps
-    - /lib*/ld-linux.so.2
-    - /lib64/ld-linux-x86-64.so.2
-    - /lib*/libpthread.so.0
-    - /lib*/libdl.so.2
-    - /lib*/libgcc_s.so.1
-    - /lib*/libc.so.6
-    - /lib*/libm.so.6
-    # these two really shouldn't be here.  See mkl_repack_and_patchelf.sh
-    - libiomp5.so
-    - libcoi_device.so.0
-    - /usr/lib/libstdc++.so.6       # [linux]
-    - /usr/lib64/libstdc++.so.6     # [linux]
-    # hooray, windows
-    - "C:\\Windows\\System32\\WINTRUST.dll"
 
 outputs:
   - name: mkl
@@ -135,21 +134,15 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      {% if win or 'conda-forge' not in my_channel_targets %}
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+        - {{ openmp_mutex }}
       host:
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      run:
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      {% else %}
-      host:
-        - llvm-openmp
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      run:
-        - llvm-openmp
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      {% endif %}
+        - dpcpp-cpp-rt {{ dal_version.split('.')[0] }}.*
+        - tbb-devel {{ tbb_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -197,10 +190,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -216,8 +213,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_blas.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_blas.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
     version: {{ mkl_version }}
@@ -225,10 +222,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -244,8 +245,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
     version: {{ mkl_version }}
@@ -253,10 +254,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -272,8 +277,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_dft.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_dft.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
     version: {{ mkl_version }}
@@ -281,10 +286,16 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
       run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
@@ -301,8 +312,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
     version: {{ mkl_version }}
@@ -310,10 +321,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -329,8 +344,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_rng.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_rng.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
     version: {{ mkl_version }}
@@ -338,10 +353,16 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
       run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
@@ -358,8 +379,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
     version: {{ mkl_version }}
@@ -367,10 +388,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -386,8 +411,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_stats.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_stats.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.5.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
     version: {{ mkl_version }}
@@ -395,10 +420,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      run:
-        - {{ pin_subpackage('mkl', exact=True) }}
-        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+      build:
+        - {{ compiler('c') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -414,8 +443,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_vm.so.4  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.4.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_vm.so.5  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.5.dll exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
@@ -423,6 +452,14 @@ outputs:
     script: repack.bat  # [win]
     number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
+    build:
+      host:
+        - intel-cmplr-lib-ur {{ openmp_version.split('.')[0] }}.*
+      run_constrained:
+        # prevent clobbering if user tries to install llvm's implementation
+        # TODO: use intel mutex or build windows torch in conda-froge
+        # https://github.com/conda-forge/intel-graphics-compiler-feedstock/pull/59
+        - llvm-openmp <0a0
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -538,28 +575,19 @@ outputs:
     build:
       binary_relocation: false
       detect_binary_files_with_prefix: false
-      missing_dso_whitelist:
-        # normal linux stuff that would go away if we had libgcc-ng in the run deps
-        - /lib*/ld-linux.so.2
-        - /lib64/ld-linux-x86-64.so.2
-        - /lib*/libpthread.so.0
-        - /lib*/libdl.so.2
-        - /lib*/libgcc_s.so.1
-        - /lib*/libc.so.6
-        - /lib*/libm.so.6
-        - lib/libgcc_s.so.1
-        # these two really shouldn't be here.  See mkl_repack_and_patchelf.sh
-        - libiomp5.so
-        - libcoi_device.so.0
-        - /usr/lib/libstdc++.so.6       # [linux]
-        - /usr/lib64/libstdc++.so.6     # [linux]
-        # hooray, windows
-        - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
       host:
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      run:
-        - tbb {{ tbb_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
+        - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
+        - tbb-devel {{ tbb_version.split('.')[0] }}.*
+        # - libuuid  # [linux]
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Intel® oneDAL runtime libraries
@@ -609,9 +637,10 @@ outputs:
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     requirements:
+      host:
+        - tbb-devel {{ tbb_version.split('.')[0] }}.*
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
-        - tbb {{ tbb_version.split('.')[0] }}.*
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Static libraries for Intel® oneDAL
@@ -675,24 +704,12 @@ outputs:
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       detect_binary_files_with_prefix: false
-      missing_dso_whitelist:
-        # normal linux stuff that would go away if we had libgcc-ng in the run deps
-        - /lib*/ld-linux.so.2
-        - /lib64/ld-linux-x86-64.so.2
-        - /lib*/libpthread.so.0
-        - /lib*/libdl.so.2
-        - /lib*/libgcc_s.so.1
-        - /lib*/libc.so.6
-        - /lib*/libm.so.6
-        - lib/libgcc_s.so.1
-        # these two really shouldn't be here.  See mkl_repack_and_patchelf.sh
-        - libiomp5.so
-        - libcoi_device.so.0
-        - /usr/lib/libstdc++.so.6       # [linux]
-        - /usr/lib64/libstdc++.so.6     # [linux]
-        # hooray, windows
-        - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
+        - {{ openmp_pkg }}
       run:
         - mpi 1.0 impi
     about:
