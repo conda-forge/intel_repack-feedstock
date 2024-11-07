@@ -141,8 +141,9 @@ outputs:
         - {{ stdlib('c') }}  # [not linux]
         - {{ openmp_mutex }}
       host:
-        - dpcpp-cpp-rt {{ dal_version.split('.')[0] }}.*
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
+      run:
+        - {{ openmp_mutex }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -194,10 +195,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -226,10 +237,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -258,10 +279,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -294,8 +325,18 @@ outputs:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
       run:
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
@@ -325,10 +366,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -362,8 +413,18 @@ outputs:
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
       run:
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -396,6 +457,17 @@ outputs:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
+      run:
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -428,6 +500,17 @@ outputs:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
+      run:
+        # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
+        # not linked directly so you can chose different implementations.
+        # More information could be found at:
+        # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
+        - {{ pin_subpackage('mkl', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
