@@ -45,12 +45,11 @@
 # More info about OpenMP mutex could be found on conda-forge wiki:
 # https://conda-forge.org/docs/maintainer/knowledge_base/#openmp
 {% set openmp_pkg ="llvm-openmp" %}
-{% set openmp_mutex ="_openmp_mutex * *_llvm" %}
+{% set openmp_mutex ="- _openmp_mutex * *_llvm" %}
 {% if win or 'conda-forge' not in my_channel_targets %}
 {% set openmp_pkg ="intel-openmp " ~ openmp_version.split('.')[0] ~ ".*" %}
-# we don't need openmp, and there is no mutex on windows, so we are
-# forced to use intel-openmp package as dependency
-{% set openmp_mutex ="intel-openmp " ~ openmp_version.split('.')[0] ~ ".*" %}
+# There is no mutex for intel-openmp, so we don't need it
+{% set openmp_mutex ="" %}
 {% endif %}
 
 package:
@@ -139,11 +138,10 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        - {{ openmp_mutex }}
+        - {{ openmp_pkg }}
+        {{ openmp_mutex }}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
-      run:
-        - {{ openmp_mutex }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -195,15 +193,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
         # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
         - {{ pin_subpackage('mkl', exact=True) }}
-      host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
-        - ocl-icd  # [linux]
-        - khronos-opencl-icd-loader  # [win]
+      run:
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
@@ -237,15 +240,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
         # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
         - {{ pin_subpackage('mkl', exact=True) }}
-      host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
-        - ocl-icd  # [linux]
-        - khronos-opencl-icd-loader  # [win]
+      run:
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
@@ -279,15 +287,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
         # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
         - {{ pin_subpackage('mkl', exact=True) }}
-      host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
-        - ocl-icd  # [linux]
-        - khronos-opencl-icd-loader  # [win]
+      run:
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
@@ -321,8 +334,12 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -366,15 +383,20 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
+      host:
+        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
         # https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2025-0/layered-model-concept.html
         - {{ pin_subpackage('mkl', exact=True) }}
-      host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
-        - ocl-icd  # [linux]
-        - khronos-opencl-icd-loader  # [win]
+      run:
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
         # not linked directly so you can chose different implementations.
         # More information could be found at:
@@ -408,8 +430,12 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
@@ -453,8 +479,12 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -496,8 +526,12 @@ outputs:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
+        {{ openmp_mutex }}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        # cpu runtime
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
