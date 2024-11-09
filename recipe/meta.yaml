@@ -193,7 +193,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -243,7 +243,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -293,7 +293,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -343,7 +343,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -395,7 +395,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -445,7 +445,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -497,7 +497,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -547,7 +547,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
         {{ openmp_mutex }}
       host:
@@ -719,7 +719,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ c_stdlib }}_{{ target_platform }} >={{ c_stdlib_sycl_version }}  # [linux]
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
       host:
         - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
