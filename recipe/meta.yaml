@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '3' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
@@ -715,19 +715,32 @@ outputs:
     build:
       binary_relocation: false
       detect_binary_files_with_prefix: false
+      ignore_run_exports_from:
+        - intel-sycl-rt
+        - intel-cmplr-lib-rt
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        - intel-opencl-rt
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
-        - {{ stdlib('c') }}  # [not linux]
+        - {{ stdlib('c') }}
       host:
         - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
         - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
-        # - libuuid  # [linux]
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
+        # cpu runtime
+        - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
+      run_constrained:
+        - {{ pin_compatible('intel-sycl-rt') }}
+        - {{ pin_compatible('intel-cmplr-lib-rt') }}
+        - {{ pin_compatible('ocl-icd') }}  # [linux]
+        - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
+        - {{ pin_compatible('intel-opencl-rt') }}
+
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Intel® oneDAL runtime libraries
@@ -810,10 +823,30 @@ outputs:
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     run_exports:
         - {{ pin_subpackage('dal') }}
+    build:
+      ignore_run_exports_from:
+        - intel-sycl-rt
+        - intel-cmplr-lib-rt
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        - intel-opencl-rt
     requirements:
+      host:
+        - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
+        - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        # cpu runtime
+        - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
         - {{ pin_subpackage('dal', exact=True) }}
+      run_constrained:
+        - {{ pin_compatible('intel-sycl-rt', exact=True) }}
+        - {{ pin_compatible('intel-cmplr-lib-rt', exact=True) }}
+        - {{ pin_compatible('ocl-icd') }}  # [linux]
+        - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
+        - {{ pin_compatible('intel-opencl-rt') }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Devel package for building against Intel® oneDAL shared libraries
