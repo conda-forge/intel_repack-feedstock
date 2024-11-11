@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '2' %}
+{% set dstbuildnum = '1' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
@@ -715,28 +715,19 @@ outputs:
     build:
       binary_relocation: false
       detect_binary_files_with_prefix: false
-      missing_dso_whitelist:
-        # normal linux stuff that would go away if we had libgcc-ng in the run deps
-        - /lib*/ld-linux.so.2
-        - /lib64/ld-linux-x86-64.so.2
-        - /lib*/libpthread.so.0
-        - /lib*/libdl.so.2
-        - /lib*/libgcc_s.so.1
-        - /lib*/libc.so.6
-        - /lib*/libm.so.6
-        - lib/libgcc_s.so.1
-        # these two really shouldn't be here.  See mkl_repack_and_patchelf.sh
-        - libiomp5.so
-        - libcoi_device.so.0
-        - /usr/lib/libstdc++.so.6       # [linux]
-        - /usr/lib64/libstdc++.so.6     # [linux]
-        # hooray, windows
-        - "C:\\Windows\\System32\\WINTRUST.dll"
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
+        - {{ stdlib('c') }}  # [not linux]
       host:
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      run:
-        - tbb {{ tbb_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
+        - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
+        - tbb-devel {{ tbb_version.split('.')[0] }}.*
+        # - libuuid  # [linux]
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Intel® oneDAL runtime libraries
