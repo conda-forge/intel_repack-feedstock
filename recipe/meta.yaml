@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '2' %}
+{% set dstbuildnum = '3' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
@@ -93,6 +93,9 @@ source:
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: onemkl-sycl-vm
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+    folder: mkl-dpcpp
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
   - url: {{ intel_ch }}/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
@@ -585,6 +588,40 @@ outputs:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_vm.so.5  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.5.dll exit 1  # [win]
+
+  - name: mkl-dpcpp
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl', exact=True) }}
+        - dpcpp-cpp-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-datafitting', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-dft', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-lapack', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-rng', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-sparse', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-stats', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-vm', exact=True) }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - mkl-dpcpp/info/licenses/license.txt
+         - mkl-dpcpp/info/licenses/tpp.txt
+      summary: Intel® oneAPI Math Kernel Library dpcpp libraries
+      description: |
+        Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+          - ls -A $PREFIX/lib/*  # [linux]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
