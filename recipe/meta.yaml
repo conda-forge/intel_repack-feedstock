@@ -19,11 +19,11 @@
 {% set openmp_buildnum = "1162" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.14.0" %}
+{% set impi_version = "2021.14.1" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "" %}
-{% set impi_buildnum = "790" %}  # [linux]
-{% set impi_buildnum = "784" %}  # [win]
+{% set impi_buildnum = "5" %}  # [linux]
+{% set impi_buildnum = "6" %}  # [win]
 
 # this variable defines onedpl specific version
 {% set onedpl_version = "2022.6.1" %}
