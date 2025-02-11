@@ -1,16 +1,16 @@
 {% set tbb_version = "2022.0.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2025.0.0" %}
+{% set mkl_version = "2025.0.1" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "939" %}  # [linux]
-{% set mkl_buildnum = "928" %}  # [win]
+{% set mkl_buildnum = "14" %}  # [linux]
+{% set mkl_buildnum = "5" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2025.0.0" %}
+{% set dal_version = "2025.1.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "957" %}  # [linux]
-{% set dal_buildnum = "947" %}  # [win]
+{% set dal_buildnum = "119" %}  # [linux]
+{% set dal_buildnum = "121" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2025.0.0" %}
 # this variable defines openmp specific buildnum
@@ -26,10 +26,10 @@
 {% set impi_buildnum = "6" %}  # [win]
 
 # this variable defines onedpl specific version
-{% set onedpl_version = "2022.6.1" %}
+{% set onedpl_version = "2022.7.1" %}
 # this variable defines onedpl specific buildnum
-{% set onedpl_buildnum = "12" %}  # [linux]
-{% set onedpl_buildnum = "11" %}  # [win]
+{% set onedpl_buildnum = "14" %}  # [linux]
+{% set onedpl_buildnum = "13" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
