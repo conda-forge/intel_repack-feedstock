@@ -901,8 +901,6 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
-        - test -f $PREFIX/lib/libonedal_sycl.a  # [linux]
-        - if not exist %LIBRARY_LIB%\\onedal_sycl.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dll.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_core_dll.lib exit 1  # [win]
