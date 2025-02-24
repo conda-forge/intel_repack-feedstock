@@ -6,11 +6,11 @@
 {% set mkl_buildnum = "14" %}  # [linux]
 {% set mkl_buildnum = "5" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2025.1.0" %}
+{% set dal_version = "2025.2.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "119" %}  # [linux]
-{% set dal_buildnum = "121" %}  # [win]
+{% set dal_buildnum = "19" %}  # [linux]
+{% set dal_buildnum = "18" %}  # [win]
 # this variable defines openmp specific version
 {% set openmp_version = "2025.0.0" %}
 # this variable defines openmp specific buildnum
@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '5' %}
+{% set dstbuildnum = '6' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
