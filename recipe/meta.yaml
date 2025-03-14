@@ -12,11 +12,11 @@
 {% set dal_buildnum = "19" %}  # [linux]
 {% set dal_buildnum = "18" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2025.0.0" %}
+{% set openmp_version = "2025.0.4" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "1169" %}  # [linux]
-{% set openmp_buildnum = "1162" %}  # [win]
+{% set openmp_buildnum = "1519" %}  # [linux]
+{% set openmp_buildnum = "1521" %}  # [win]
 
 # this variable defines impi specific version
 {% set impi_version = "2021.14.1" %}
