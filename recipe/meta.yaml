@@ -1,35 +1,35 @@
-{% set tbb_version = "2022.0.0" %}
+{% set tbb_version = "2022.1.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2025.0.1" %}
+{% set mkl_version = "2025.1.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "14" %}  # [linux]
-{% set mkl_buildnum = "5" %}  # [win]
+{% set mkl_buildnum = "801" %}  # [linux]
+{% set mkl_buildnum = "798" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2025.2.0" %}
+{% set dal_version = "2025.4.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "19" %}  # [linux]
-{% set dal_buildnum = "18" %}  # [win]
+{% set dal_buildnum = "641" %}  # [linux]
+{% set dal_buildnum = "642" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2025.0.4" %}
+{% set openmp_version = "2025.1.0" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "1519" %}  # [linux]
-{% set openmp_buildnum = "1521" %}  # [win]
+{% set openmp_buildnum = "973" %}  # [linux]
+{% set openmp_buildnum = "972" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.14.1" %}
+{% set impi_version = "2021.15.0" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "" %}
-{% set impi_buildnum = "5" %}  # [linux]
-{% set impi_buildnum = "6" %}  # [win]
+{% set impi_buildnum = "493" %}  # [linux]
+{% set impi_buildnum = "494" %}  # [win]
 
 # this variable defines onedpl specific version
-{% set onedpl_version = "2022.7.1" %}
+{% set onedpl_version = "2022.8.0" %}
 # this variable defines onedpl specific buildnum
-{% set onedpl_buildnum = "14" %}  # [linux]
-{% set onedpl_buildnum = "13" %}  # [win]
+{% set onedpl_buildnum = "337" %}  # [linux]
+{% set onedpl_buildnum = "338" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
@@ -58,69 +58,69 @@ package:
   version: {{ dal_version }}
 
 source:
-  - url: {{ intel_ch }}/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: mkl
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: mkl-devel
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: mkl-include
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/mkl-static-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-static-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: mkl-static
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-blas
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-datafitting
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-dft
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-lapack
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-rng
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-sparse
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-stats
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-vm
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: mkl-dpcpp
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
-  - url: {{ intel_ch }}/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.conda
     folder: intel-openmp
     no_hoist: true
   {% endif %}
-  - url: {{ intel_ch }}/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
     folder: dal
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
     folder: dal-include
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
     folder: dal-static
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
     folder: dal-devel
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.conda
     folder: impi_rt
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.conda
     folder: impi-devel
     no_hoist: true
-  - url: {{ intel_ch }}/{{ target_platform }}/onedpl-devel-{{ onedpl_version }}-intel_{{ onedpl_buildnum }}.tar.bz2
+  - url: {{ intel_ch }}/{{ target_platform }}/onedpl-devel-{{ onedpl_version }}-intel_{{ onedpl_buildnum }}.conda
     folder: onedpl-devel
     no_hoist: true
 build:
