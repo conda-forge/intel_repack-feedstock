@@ -6,17 +6,17 @@
 {% set mkl_buildnum = "14" %}  # [linux]
 {% set mkl_buildnum = "5" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2025.1.0" %}
+{% set dal_version = "2025.2.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "119" %}  # [linux]
-{% set dal_buildnum = "121" %}  # [win]
+{% set dal_buildnum = "19" %}  # [linux]
+{% set dal_buildnum = "18" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2025.0.0" %}
+{% set openmp_version = "2025.0.4" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "1169" %}  # [linux]
-{% set openmp_buildnum = "1162" %}  # [win]
+{% set openmp_buildnum = "1519" %}  # [linux]
+{% set openmp_buildnum = "1521" %}  # [win]
 
 # this variable defines impi specific version
 {% set impi_version = "2021.14.1" %}
@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '6' %}
+{% set dstbuildnum = '7' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
@@ -154,7 +154,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -177,7 +177,7 @@ outputs:
       summary: Headers for building against Intel® oneMKL libraries
       description: |
         Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -227,7 +227,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -277,7 +277,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -327,7 +327,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -379,7 +379,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -429,7 +429,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -481,7 +481,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -531,7 +531,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -581,7 +581,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library runtime libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -617,7 +617,7 @@ outputs:
       summary: Intel® oneAPI Math Kernel Library dpcpp libraries
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -647,7 +647,7 @@ outputs:
       summary: Intel® oneAPI Compiler OpenMP runtime
       description: |
         Intel® oneAPI Compiler OpenMP runtime implementation
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/overview.html
     test:
       commands:
@@ -696,7 +696,7 @@ outputs:
       summary: Devel package for building against Intel® oneMKL libraries
       description: |
         Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
@@ -747,7 +747,7 @@ outputs:
       summary: Static libraries for Intel® oneMKL libraries
       description: |
         Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
@@ -805,7 +805,7 @@ outputs:
         Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
@@ -829,7 +829,7 @@ outputs:
         Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
@@ -858,7 +858,7 @@ outputs:
         Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
@@ -911,7 +911,7 @@ outputs:
         Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
         optimized building blocks covering all stages of data analytics: data acquisition from a data
         source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: http://oneapi-src.github.io/oneDAL/
     test:
       commands:
@@ -948,7 +948,7 @@ outputs:
         source MPICH specification. Use the library to create, maintain, and test advanced, 
         complex applications that perform better on HPC clusters based on Intel® and 
         compatible processors.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
@@ -986,7 +986,7 @@ outputs:
         source MPICH specification. Use the library to create, maintain, and test advanced, 
         complex applications that perform better on HPC clusters based on Intel® and 
         compatible processors.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
       commands:
@@ -1022,7 +1022,7 @@ outputs:
         are based on familiar standards—C++ STL, Parallel STL (PSTL),
         Boost.Compute, and SYCL*—to maximize productivity and performance across
         CPUs, GPUs, and FPGAs.
-        This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
     test:
       commands:
@@ -1042,8 +1042,8 @@ about:
 extra:
   recipe-maintainers:
     - isuruf
+    - ekomarova
     - beckermr
     - napetrov
-    - oleksandr-pavlyk 
     - alexsandruss
     - ZzEeKkAa
