@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '7' %}
+{% set dstbuildnum = '8' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
@@ -858,9 +858,9 @@ outputs:
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
-    run_exports:
-        - {{ pin_subpackage('dal') }}
     build:
+      run_exports:
+        - {{ pin_subpackage('dal') }}
       ignore_run_exports_from:
         - intel-sycl-rt
         - intel-cmplr-lib-rt
