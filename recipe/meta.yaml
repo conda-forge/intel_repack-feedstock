@@ -1,10 +1,10 @@
-{% set tbb_version = "2022.1.0" %}
+{% set tbb_version = "2022.2.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2025.1.0" %}
+{% set mkl_version = "2025.2.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "801" %}  # [linux]
-{% set mkl_buildnum = "798" %}  # [win]
+{% set mkl_buildnum = "628" %}  # [linux]
+{% set mkl_buildnum = "627" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2025.6.1" %}
 # this variable defines oneDAL specific buildnum
@@ -12,31 +12,31 @@
 {% set dal_buildnum = "13" %}  # [linux]
 {% set dal_buildnum = "14" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2025.1.0" %}
+{% set openmp_version = "2025.2.0" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "973" %}  # [linux]
-{% set openmp_buildnum = "972" %}  # [win]
+{% set openmp_buildnum = "766" %}  # [linux]
+{% set openmp_buildnum = "756" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.15.0" %}
+{% set impi_version = "2021.16.0" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "" %}
-{% set impi_buildnum = "493" %}  # [linux]
-{% set impi_buildnum = "494" %}  # [win]
+{% set impi_buildnum = "442" %}  # [linux]
+{% set impi_buildnum = "438" %}  # [win]
 
 # this variable defines onedpl specific version
-{% set onedpl_version = "2022.8.0" %}
+{% set onedpl_version = "2022.9.0" %}
 # this variable defines onedpl specific buildnum
-{% set onedpl_buildnum = "337" %}  # [linux]
-{% set onedpl_buildnum = "338" %}  # [win]
+{% set onedpl_buildnum = "377" %}  # [linux]
+{% set onedpl_buildnum = "373" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '8' %}
+{% set dstbuildnum = '0' %}
 
 # We need intel-openmp because it contains VCOMP symbols on windows in order to
 # pytorch work. Those are deprecated symbols and should be removed in the
