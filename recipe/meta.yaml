@@ -43,7 +43,9 @@
 # https://conda-forge.org/docs/maintainer/knowledge_base/#openmp
 {% set openmp_pkg = "llvm-openmp" %}
 {% set openmp_mutex = "- _openmp_mutex * *_llvm" %}
-
+{% if win or 'conda-forge' not in my_channel_targets %}
+{% set openmp_mutex = "" %}
+{% endif %}
 
 package:
   name: intel_repack
