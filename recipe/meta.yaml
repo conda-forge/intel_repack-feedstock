@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '7' %}
+{% set dstbuildnum = '8' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
