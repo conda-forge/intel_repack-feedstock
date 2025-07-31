@@ -30,91 +30,6 @@ source, preprocessing, transformation, data mining, modeling, validation, and de
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
-About dal-include
------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Headers for building against Intel® oneDAL libraries
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About impi_rt
--------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® MPI Library
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Intel® MPI Library is a multifabric message-passing library that implements the open
-source MPICH specification. Use the library to create, maintain, and test advanced,
-complex applications that perform better on HPC clusters based on Intel® and
-compatible processors.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About mkl
----------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About mkl-include
------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Headers for building against Intel® oneMKL libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onedpl-devel
-------------------
-
-Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
-
-Package license: Apache-2.0
-
-Summary: Intel® oneAPI DPC++ Library
-
-Documentation: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
-
-The Intel® oneAPI DPC++ Library (oneDPL) is a companion to the
-Intel® oneAPI DPC++/C++ Compiler and provides an alternative for C++
-developers who create heterogeneous applications and solutions. Its APIs
-are based on familiar standards—C++ STL, Parallel STL (PSTL),
-Boost.Compute, and SYCL*—to maximize productivity and performance across
-CPUs, GPUs, and FPGAs.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
 About dal-devel
 ---------------
 
@@ -127,6 +42,23 @@ Summary: Devel package for building against Intel® oneDAL shared libraries
 Documentation: http://oneapi-src.github.io/oneDAL/
 
 Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About dal-include
+-----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Headers for building against Intel® oneDAL libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
 optimized building blocks covering all stages of data analytics: data acquisition from a data
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -167,6 +99,39 @@ compatible processors.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
+About impi_rt
+-------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® MPI Library
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Intel® MPI Library is a multifabric message-passing library that implements the open
+source MPICH specification. Use the library to create, maintain, and test advanced,
+complex applications that perform better on HPC clusters based on Intel® and
+compatible processors.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About mkl
+---------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® oneAPI Math Kernel Library runtime libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
 About mkl-devel
 ---------------
 
@@ -180,6 +145,21 @@ Intel® oneAPI Math Kernel Library headers and libraries for developing software
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
+About mkl-include
+-----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Headers for building against Intel® oneMKL libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
 About mkl-static
 ----------------
 
@@ -190,6 +170,26 @@ Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 Summary: Static libraries for Intel® oneMKL libraries
 
 Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About onedpl-devel
+------------------
+
+Home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
+
+Package license: Apache-2.0
+
+Summary: Intel® oneAPI DPC++ Library
+
+Documentation: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
+
+The Intel® oneAPI DPC++ Library (oneDPL) is a companion to the
+Intel® oneAPI DPC++/C++ Compiler and provides an alternative for C++
+developers who create heterogeneous applications and solutions. Its APIs
+are based on familiar standards—C++ STL, Parallel STL (PSTL),
+Boost.Compute, and SYCL*—to maximize productivity and performance across
+CPUs, GPUs, and FPGAs.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
@@ -238,8 +238,38 @@ Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numeric
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
+About onemkl-sycl-lapack
+------------------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® oneAPI Math Kernel Library runtime libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
 About onemkl-sycl-rng
 ---------------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® oneAPI Math Kernel Library runtime libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About onemkl-sycl-sparse
+------------------------
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
@@ -270,36 +300,6 @@ This package is a repackaged set of binaries obtained directly from Intel\'s ana
 
 About onemkl-sycl-vm
 --------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-lapack
-------------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About onemkl-sycl-sparse
-------------------------
 
 Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
@@ -346,17 +346,59 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64</td>
+              <td>linux_64_python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_python3.11.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_python3.12.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_python3.12.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_python3.9.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_python3.10.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.10.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_python3.11.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.11.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_python3.12.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.12.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr>
@@ -377,7 +419,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-impi_rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-impi__rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-intel--openmp-green.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |

@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1' %}
+{% set dstbuildnum = '2' %}
 
 package:
   name: intel_repack
@@ -135,21 +135,12 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      {% if win or 'conda-forge' not in my_channel_targets %}
-      host:
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      run:
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      {% else %}
       host:
         - llvm-openmp
         - tbb {{ tbb_version.split('.')[0] }}.*
       run:
         - llvm-openmp
         - tbb {{ tbb_version.split('.')[0] }}.*
-      {% endif %}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -505,11 +496,7 @@ outputs:
       run:
         - {{ pin_subpackage('mkl-include', exact=True) }}
         - tbb {{ tbb_version.split('.')[0] }}.*
-        {% if win or 'conda-forge' not in my_channel_targets %}
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        {% else %}
         - llvm-openmp
-        {% endif %}
         {% if 'conda-forge' not in my_channel_targets %}
         - blas * mkl
         {% endif %}
