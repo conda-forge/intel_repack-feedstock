@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1001' %}
+{% set dstbuildnum = '1002' %}
 
 package:
   name: intel_repack
@@ -114,10 +114,12 @@ outputs:
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% else %}
       host:
-        - llvm-openmp
+        # Any impl that support KMP_* symbols. (intel, llvm)
+        - _openmp_mutex * *_kmp_*
         - tbb {{ tbb_version.split('.')[0] }}.*
       run:
-        - llvm-openmp
+        # Any impl that support KMP_* symbols. (intel, llvm)
+        - _openmp_mutex * *_kmp_*
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% endif %}
     about:
