@@ -30,71 +30,6 @@ source, preprocessing, transformation, data mining, modeling, validation, and de
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
-About dal-include
------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
-
-Package license: LicenseRef-ProprietaryIntel
-
-Summary: Headers for building against Intel® oneDAL libraries
-
-Documentation: http://oneapi-src.github.io/oneDAL/
-
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About impi_rt
--------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Package license: LicenseRef-ProprietaryIntel
-
-Summary: Intel® MPI Library
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
-
-Intel® MPI Library is a multifabric message-passing library that implements the open
-source MPICH specification. Use the library to create, maintain, and test advanced,
-complex applications that perform better on HPC clusters based on Intel® and
-compatible processors.
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About mkl
----------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-ProprietaryIntel
-
-Summary: Intel® oneAPI Math Kernel Library runtime libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
-About mkl-include
------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Package license: LicenseRef-ProprietaryIntel
-
-Summary: Headers for building against Intel® oneMKL libraries
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-
-Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
-
-
 About dal-devel
 ---------------
 
@@ -107,6 +42,23 @@ Summary: Devel package for building against Intel® oneDAL shared libraries
 Documentation: http://oneapi-src.github.io/oneDAL/
 
 Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
+optimized building blocks covering all stages of data analytics: data acquisition from a data
+source, preprocessing, transformation, data mining, modeling, validation, and decision making.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About dal-include
+-----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Headers for building against Intel® oneDAL libraries
+
+Documentation: http://oneapi-src.github.io/oneDAL/
+
+Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
 optimized building blocks covering all stages of data analytics: data acquisition from a data
 source, preprocessing, transformation, data mining, modeling, validation, and decision making.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
@@ -147,6 +99,39 @@ compatible processors.
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
+About impi_rt
+-------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Intel® MPI Library
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Intel® MPI Library is a multifabric message-passing library that implements the open
+source MPICH specification. Use the library to create, maintain, and test advanced,
+complex applications that perform better on HPC clusters based on Intel® and
+compatible processors.
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About mkl
+---------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Intel® oneAPI Math Kernel Library runtime libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
 About mkl-devel
 ---------------
 
@@ -157,6 +142,21 @@ Package license: LicenseRef-ProprietaryIntel
 Summary: Devel package for building against Intel® oneMKL libraries
 
 Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
+This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
+
+
+About mkl-include
+-----------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Package license: LicenseRef-ProprietaryIntel
+
+Summary: Headers for building against Intel® oneMKL libraries
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+
+Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
 This package is a repackaged set of binaries obtained directly from Intel\'s anaconda.org channel.
 
 
@@ -231,7 +231,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-impi_rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-impi__rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-intel--openmp-green.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl-green.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl.svg)](https://anaconda.org/conda-forge/mkl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mkl--devel-green.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mkl-devel.svg)](https://anaconda.org/conda-forge/mkl-devel) |
@@ -303,7 +303,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance

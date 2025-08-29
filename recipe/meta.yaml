@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1001' %}
+{% set dstbuildnum = '1002' %}
 
 package:
   name: intel_repack
@@ -35,39 +35,41 @@ package:
   version: {{ dal_version }}
 
 source:
-  - url: https://anaconda.org/intel/mkl/{{ mkl_version }}/download/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl
     no_hoist: true
-  - url: https://anaconda.org/intel/mkl-devel/{{ mkl_version }}/download/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-devel
     no_hoist: true
-  - url: https://anaconda.org/intel/mkl-include/{{ mkl_version }}/download/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.tar.bz2
     folder: mkl-include
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
-  - url: https://anaconda.org/intel/intel-openmp/{{ openmp_version }}/download/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.tar.bz2
     folder: intel-openmp
     no_hoist: true
   {% endif %}
-  - url: https://anaconda.org/intel/dal/{{ dal_version }}/download/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  {% if false %}
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-include/{{ dal_version }}/download/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-include
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-static/{{ dal_version }}/download/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-static
     no_hoist: true
-  - url: https://anaconda.org/intel/dal-devel/{{ dal_version }}/download/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.tar.bz2
     folder: dal-devel
     no_hoist: true
   {% if not osx %}
-  - url: https://anaconda.org/intel/impi_rt/{{ impi_version }}/download/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi_rt
     no_hoist: true
-  - url: https://anaconda.org/intel/impi-devel/{{ impi_version }}/download/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
+  - url: https://software.repos.intel.com/python/conda/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.tar.bz2
     folder: impi-devel
     no_hoist: true
+  {% endif %}
   {% endif %}
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
@@ -114,10 +116,12 @@ outputs:
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% else %}
       host:
-        - llvm-openmp
+        # Any impl that support KMP_* symbols. (intel, llvm)
+        - _openmp_mutex * *_kmp_*
         - tbb {{ tbb_version.split('.')[0] }}.*
       run:
-        - llvm-openmp
+        # Any impl that support KMP_* symbols. (intel, llvm)
+        - _openmp_mutex * *_kmp_*
         - tbb {{ tbb_version.split('.')[0] }}.*
       {% endif %}
     about:
@@ -246,6 +250,7 @@ outputs:
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     build:
+      skip: true
       binary_relocation: false
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
@@ -298,6 +303,8 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
+    build:
+      skip: true
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
       summary: Headers for building against Intel® oneDAL libraries
@@ -322,6 +329,8 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
+    build:
+      skip: true
     requirements:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
@@ -353,6 +362,8 @@ outputs:
     script: repack.sh   # [unix]
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
+    build:
+      skip: true
     run_exports:
         - {{ pin_subpackage('dal') }}
     requirements:
@@ -388,7 +399,7 @@ outputs:
     script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
-      skip: True  # [osx]
+      skip: true
       detect_binary_files_with_prefix: false
       missing_dso_whitelist:
         # normal linux stuff that would go away if we had libgcc-ng in the run deps
@@ -442,7 +453,7 @@ outputs:
     script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
-      skip: True  # [osx]
+      skip: true
       detect_binary_files_with_prefix: false
       run_exports:
         - {{ pin_subpackage('impi_rt', min_pin="x.x.x", max_pin="x.x.x") }}
