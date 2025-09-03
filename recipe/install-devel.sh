@@ -10,7 +10,9 @@ echo include_dirs = $PREFIX/include  >> $PREFIX/site.cfg
 cp -rv $SRC_DIR/$PKG_NAME/* $PREFIX
 
 # correct .pc files that point to intel64 lib dir instead of just lib
-find "$PREFIX/lib/pkgconfig/" -type f -name '*.pc' -exec sed -i -e 's,libdir=\(.*\)/intel64,libdir=\1,g' {} +
+if [ -d "$PREFIX/lib/pkgconfig/" ]; then
+	find "$PREFIX/lib/pkgconfig/" -type f -name '*.pc' -exec sed -i -e 's,libdir=\(.*\)/intel64,libdir=\1,g' {} +
+fi
 
 # replace old info folder with our new regenerated one
 rm -rf $PREFIX/info
