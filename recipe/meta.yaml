@@ -649,8 +649,17 @@ outputs:
 
   - name: mkl-devel-dpcpp
     version: {{ mkl_version }}
-    script: install-devel.sh   # [linux]
-    script: install-devel.bat  # [win]
+    script:  # [linux]
+      - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR
+      - chmod 664 $SRC_DIR/license.txt
+      - cp -rv $SRC_DIR/$PKG_NAME/* $PREFIX
+      - rm -rf $PREFIX/info
+    script:  # [win]
+      - set "src=%SRC_DIR%\%PKG_NAME%"
+      - COPY "%src%\info\LICENSE.txt" "%SRC_DIR%"
+      - robocopy /E "%src%" "%PREFIX%"
+      - if %ERRORLEVEL% GEQ 8 exit 1
+      - rd /s /q %PREFIX%\info
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
       run_exports:
