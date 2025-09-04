@@ -602,9 +602,9 @@ outputs:
       license_file:
          - onemkl-sycl-include/info/licenses/license.txt
          - onemkl-sycl-include/info/licenses/tpp.txt
-      summary: Headers for building against Intel® oneMKL SYCL interface libraries
+      summary: Headers for building against Intel® oneMKL oneAPI interface libraries
       description: |
-        Intel® oneAPI Math Kernel Library SYCL interface headers for developing software that uses oneMKL with SYCL
+        Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
@@ -669,9 +669,9 @@ outputs:
         - {{ pin_subpackage('onemkl-sycl-include', exact=True) }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
-      summary: Devel package for building against Intel® oneMKL DPCPP libraries
+      summary: Devel package for building against Intel® oneMKL SYCL libraries
       description: |
-        Intel® oneAPI Math Kernel Library DPCPP headers and libraries for developing software that uses oneMKL with DPCPP
+        Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with DPCPP
         This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
