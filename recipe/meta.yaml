@@ -649,18 +649,18 @@ outputs:
 
   - name: mkl-devel-dpcpp
     version: {{ mkl_version }}
-    script:
-      - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR  # [linux]
-      - chmod 664 $SRC_DIR/license.txt  # [linux]
-      - cp -rv $SRC_DIR/$PKG_NAME/* $PREFIX  # [linux]
-      - rm -rf $PREFIX/info  # [linux]
-      - set "src=%SRC_DIR%\%PKG_NAME%"  # [win]
-      - COPY "%src%\info\LICENSE.txt" "%SRC_DIR%"  # [win]
-      - robocopy /E "%src%" "%PREFIX%"  # [win]
-      - if %ERRORLEVEL% GEQ 8 exit 1  # [win]
-      - rd /s /q %PREFIX%\info  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
+      script:
+        - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR  # [linux]
+        - chmod 664 $SRC_DIR/license.txt  # [linux]
+        - cp -rv $SRC_DIR/$PKG_NAME/* $PREFIX  # [linux]
+        - rm -rf $PREFIX/info  # [linux]
+        - set "src=%SRC_DIR%\%PKG_NAME%"  # [win]
+        - COPY "%src%\info\LICENSE.txt" "%SRC_DIR%"  # [win]
+        - robocopy /E "%src%" "%PREFIX%"  # [win]
+        - if %ERRORLEVEL% GEQ 8 exit 1  # [win]
+        - rd /s /q %PREFIX%\info  # [win]
       run_exports:
         - {{ pin_subpackage('mkl-dpcpp') }}
     requirements:
