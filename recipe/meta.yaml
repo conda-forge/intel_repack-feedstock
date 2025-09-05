@@ -27,7 +27,7 @@
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '1002' %}
+{% set dstbuildnum = '1003' %}
 
 package:
   name: intel_repack
@@ -107,14 +107,6 @@ outputs:
     script: repack.bat  # [win]
     number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
-      {% if win or 'conda-forge' not in my_channel_targets %}
-      host:
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      run:
-        - intel-openmp {{ openmp_version.split('.')[0] }}.*
-        - tbb {{ tbb_version.split('.')[0] }}.*
-      {% else %}
       host:
         # Any impl that support KMP_* symbols. (intel, llvm)
         - _openmp_mutex * *_kmp_*
@@ -123,7 +115,6 @@ outputs:
         # Any impl that support KMP_* symbols. (intel, llvm)
         - _openmp_mutex * *_kmp_*
         - tbb {{ tbb_version.split('.')[0] }}.*
-      {% endif %}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-ProprietaryIntel
