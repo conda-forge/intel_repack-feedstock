@@ -89,6 +89,12 @@ source:
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: onemkl-sycl-vm
     no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    folder: onemkl-sycl-include
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    folder: mkl-devel-dpcpp
+    no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     folder: mkl-dpcpp
     no_hoist: true
@@ -584,6 +590,29 @@ outputs:
           - test -f $PREFIX/lib/libmkl_sycl_vm.so.5  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.5.dll exit 1  # [win]
 
+  - name: onemkl-sycl-include
+    version: {{ mkl_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - onemkl-sycl-include/info/licenses/license.txt
+         - onemkl-sycl-include/info/licenses/tpp.txt
+      summary: Headers for building against Intel® oneMKL oneAPI interface libraries
+      description: |
+        Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+    test:
+      commands:
+        - ls -A $PREFIX/include/*  # [linux]
+        - test -f $PREFIX/include/oneapi/mkl.hpp  # [linux]
+        - if not exist %LIBRARY_INC%\\oneapi\\mkl.hpp exit 1  # [win]
+
   - name: mkl-dpcpp
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
@@ -617,6 +646,44 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
+
+  - name: mkl-devel-dpcpp
+    version: {{ mkl_version }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    build:
+      script:
+        - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR  # [linux]
+        - chmod 664 $SRC_DIR/license.txt  # [linux]
+        - cp -rv $SRC_DIR/$PKG_NAME/* $PREFIX  # [linux]
+        - rm -rf $PREFIX/info  # [linux]
+        - set "src=%SRC_DIR%\%PKG_NAME%"  # [win]
+        - COPY "%src%\info\LICENSE.txt" "%SRC_DIR%"  # [win]
+        - robocopy /E "%src%" "%PREFIX%"  # [win]
+        - if %ERRORLEVEL% GEQ 8 exit 1  # [win]
+        - rd /s /q %PREFIX%\info  # [win]
+      run_exports:
+        - {{ pin_subpackage('mkl-dpcpp') }}
+    requirements:
+      run:
+        - {{ pin_subpackage('mkl-dpcpp', exact=True) }}
+        - {{ pin_subpackage('onemkl-sycl-include', exact=True) }}
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
+      summary: Devel package for building against Intel® oneMKL SYCL libraries
+      description: |
+        Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with DPCPP
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - mkl-devel-dpcpp/info/licenses/license.txt
+         - mkl-devel-dpcpp/info/licenses/tpp.txt
+    test:
+      commands:
+        - ls -A $PREFIX/lib/*  # [linux]
+        - ls -A $PREFIX/include/*  # [linux]
+        - test -f $PREFIX/lib/libmkl_sycl.a  # [linux]
+        - if not exist %LIBRARY_LIB%\\mkl_sycl.lib exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
