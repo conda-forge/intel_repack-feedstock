@@ -1044,6 +1044,22 @@ outputs:
         - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
 
+  - name: impi
+    version: {{ impi_version }}
+    requirements:
+      - impi-devel
+      - impi_rt
+    about:
+      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+      summary: Intel® MPI libraries and devel package
+      description: |
+        Intel® MPI Library is a multifabric message-passing library that implements the open 
+        source MPICH specification. Use the library to create, maintain, and test advanced, 
+        complex applications that perform better on HPC clusters based on Intel® and 
+        compatible processors.
+        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+      doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
   - name: onedpl-devel
     version: {{ onedpl_version }}
     script: repack.sh   # [linux]
