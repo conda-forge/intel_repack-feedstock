@@ -81,6 +81,24 @@ source, preprocessing, transformation, data mining, modeling, validation, and de
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
+About impi
+----------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Package license: 
+
+Summary: Intel® MPI libraries and devel package
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
+
+Intel® MPI Library is a multifabric message-passing library that implements the open
+source MPICH specification. Use the library to create, maintain, and test advanced,
+complex applications that perform better on HPC clusters based on Intel® and
+compatible processors.
+This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+
+
 About impi-devel
 ----------------
 
@@ -152,9 +170,9 @@ Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
-Summary: Devel package for building against Intel® oneMKL DPCPP libraries
+Summary: Devel package for building against Intel® oneMKL SYCL libraries
 
-Intel® oneAPI Math Kernel Library DPCPP headers and libraries for developing software that uses oneMKL with DPCPP
+Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with DPCPP
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
@@ -273,11 +291,11 @@ Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
-Summary: Headers for building against Intel® oneMKL SYCL interface libraries
+Summary: Headers for building against Intel® oneMKL oneAPI interface libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library SYCL interface headers for developing software that uses oneMKL with SYCL
+Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
@@ -461,6 +479,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--devel-green.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-impi-green.svg)](https://anaconda.org/conda-forge/impi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi.svg)](https://anaconda.org/conda-forge/impi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi.svg)](https://anaconda.org/conda-forge/impi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi.svg)](https://anaconda.org/conda-forge/impi) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi__rt-green.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi_rt.svg)](https://anaconda.org/conda-forge/impi_rt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-intel--openmp-green.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/intel-openmp.svg)](https://anaconda.org/conda-forge/intel-openmp) |
@@ -491,16 +510,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-devel-dpcpp, mkl-dpcpp, mkl-include, mkl-static, onedpl-devel, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-include, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-devel-dpcpp, mkl-dpcpp, mkl-include, mkl-static, onedpl-devel, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-include, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
 
 ```
-conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+conda install dal dal-devel dal-include dal-static impi impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 or with `mamba`:
 
 ```
-mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+mamba install dal dal-devel dal-include dal-static impi impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 It is possible to list all of the versions of `dal` available on your platform with `conda`:
@@ -550,12 +569,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -582,7 +601,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/intel_repack-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
