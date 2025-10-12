@@ -1046,6 +1046,9 @@ outputs:
 
   - name: impi
     version: {{ impi_version }}
+    build:
+      run_exports:
+        - {{ pin_subpackage('impi', min_pin="x.x.x", max_pin="x.x.x") }}
     requirements:
       - impi-devel
       - impi_rt
