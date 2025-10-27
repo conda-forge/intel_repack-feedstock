@@ -836,7 +836,7 @@ outputs:
         - {{ pin_compatible('intel-opencl-rt') }}
 
     about:
-      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+      home: https://github.com/uxlfoundation/oneDAL
       summary: Intel® oneDAL runtime libraries
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
@@ -844,11 +844,18 @@ outputs:
          - dal/info/licenses/license.txt
          - dal/info/licenses/tpp.txt
       description: |
-        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
+        OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+        <a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+        which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+        random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+        <br/><br/>
+        Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+        while GPU acceleration leverages the SYCL framework and the oneMKL library.
+        <br/><br/>
+        OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+        and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+        for the oneDAL component.
+      doc_url: http://uxlfoundation.github.io/oneDAL
     test:
       commands:
         - test -f $PREFIX/lib/libonedal.so.3  # [linux]
@@ -860,7 +867,7 @@ outputs:
     script: repack.bat  # [win]
     number: {{ dal_buildnum|int + dstbuildnum|int }}
     about:
-      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+      home: https://github.com/uxlfoundation/oneDAL
       summary: Headers for building against Intel® oneDAL libraries
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
@@ -868,11 +875,18 @@ outputs:
          - dal-include/info/licenses/license.txt
          - dal-include/info/licenses/tpp.txt
       description: |
-        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
+        OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+        <a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+        which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+        random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+        <br/><br/>
+        Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+        while GPU acceleration leverages the SYCL framework and the oneMKL library.
+        <br/><br/>
+        OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+        and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+        for the oneDAL component.
+      doc_url: http://uxlfoundation.github.io/oneDAL
     test:
       commands:
         - ls -A $PREFIX/include/*  # [linux]
@@ -889,7 +903,7 @@ outputs:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
     about:
-      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+      home: https://github.com/uxlfoundation/oneDAL
       summary: Static libraries for Intel® oneDAL
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
@@ -897,11 +911,18 @@ outputs:
          - dal-static/info/licenses/license.txt
          - dal-static/info/licenses/tpp.txt
       description: |
-        Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
+        OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+        <a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+        which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+        random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+        <br/><br/>
+        Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+        while GPU acceleration leverages the SYCL framework and the oneMKL library.
+        <br/><br/>
+        OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+        and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+        for the oneDAL component.
+      doc_url: http://uxlfoundation.github.io/oneDAL
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
@@ -942,7 +963,7 @@ outputs:
         - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
         - {{ pin_compatible('intel-opencl-rt') }}
     about:
-      home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+      home: https://github.com/uxlfoundation/oneDAL
       summary: Devel package for building against Intel® oneDAL shared libraries
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
@@ -950,11 +971,18 @@ outputs:
          - dal-devel/info/licenses/license.txt
          - dal-devel/info/licenses/tpp.txt
       description: |
-        Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
-        optimized building blocks covering all stages of data analytics: data acquisition from a data
-        source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-        This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
-      doc_url: http://oneapi-src.github.io/oneDAL/
+        OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+        <a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+        which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+        random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+        <br/><br/>
+        Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+        while GPU acceleration leverages the SYCL framework and the oneMKL library.
+        <br/><br/>
+        OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+        and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+        for the oneDAL component.
+      doc_url: http://uxlfoundation.github.io/oneDAL
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
