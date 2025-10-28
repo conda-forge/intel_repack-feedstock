@@ -1,35 +1,35 @@
-{% set tbb_version = "2022.2.0" %}
+{% set tbb_version = "2022.3.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2025.2.0" %}
+{% set mkl_version = "2025.3.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "628" %}  # [linux]
-{% set mkl_buildnum = "627" %}  # [win]
+{% set mkl_buildnum = "461" %}  # [linux]
+{% set mkl_buildnum = "453" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2025.8.0" %}
+{% set dal_version = "2025.9.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "11" %}  # [linux]
-{% set dal_buildnum = "13" %}  # [win]
+{% set dal_buildnum = "51" %}  # [linux]
+{% set dal_buildnum = "50" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2025.2.0" %}
+{% set openmp_version = "2025.3.0" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "766" %}  # [linux]
-{% set openmp_buildnum = "756" %}  # [win]
+{% set openmp_buildnum = "639" %}  # [linux]
+{% set openmp_buildnum = "640" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.16.0" %}
+{% set impi_version = "2021.17.0" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "" %}
-{% set impi_buildnum = "442" %}  # [linux]
-{% set impi_buildnum = "438" %}  # [win]
+{% set impi_buildnum = "376" %}  # [linux]
+{% set impi_buildnum = "372" %}  # [win]
 
 # this variable defines onedpl specific version
-{% set onedpl_version = "2022.9.0" %}
+{% set onedpl_version = "2022.10.0" %}
 # this variable defines onedpl specific buildnum
-{% set onedpl_buildnum = "377" %}  # [linux]
-{% set onedpl_buildnum = "373" %}  # [win]
+{% set onedpl_buildnum = "275" %}  # [linux]
+{% set onedpl_buildnum = "274" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
