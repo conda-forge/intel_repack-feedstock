@@ -16,69 +16,97 @@ Summary: Repackaged Intel libraries
 About dal
 ---------
 
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+Home: https://github.com/uxlfoundation/oneDAL
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Intel® oneDAL runtime libraries
 
-Documentation: http://oneapi-src.github.io/oneDAL/
+Documentation: http://uxlfoundation.github.io/oneDAL
 
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+<a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+<br/><br/>
+Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+while GPU acceleration leverages the SYCL framework and the oneMKL library.
+<br/><br/>
+OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+for the oneDAL component.
 
 
 About dal-devel
 ---------------
 
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+Home: https://github.com/uxlfoundation/oneDAL
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Devel package for building against Intel® oneDAL shared libraries
 
-Documentation: http://oneapi-src.github.io/oneDAL/
+Documentation: http://uxlfoundation.github.io/oneDAL
 
-Intel® oneAPI Data Analytics Library (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+<a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+<br/><br/>
+Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+while GPU acceleration leverages the SYCL framework and the oneMKL library.
+<br/><br/>
+OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+for the oneDAL component.
 
 
 About dal-include
 -----------------
 
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+Home: https://github.com/uxlfoundation/oneDAL
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Headers for building against Intel® oneDAL libraries
 
-Documentation: http://oneapi-src.github.io/oneDAL/
+Documentation: http://uxlfoundation.github.io/oneDAL
 
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+<a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+<br/><br/>
+Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+while GPU acceleration leverages the SYCL framework and the oneMKL library.
+<br/><br/>
+OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+for the oneDAL component.
 
 
 About dal-static
 ----------------
 
-Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onedal.html
+Home: https://github.com/uxlfoundation/oneDAL
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Static libraries for Intel® oneDAL
 
-Documentation: http://oneapi-src.github.io/oneDAL/
+Documentation: http://uxlfoundation.github.io/oneDAL
 
-Intel® oneAPI Data Analytics Library  (Intel® oneDAL) is the library of Intel® architecture
-optimized building blocks covering all stages of data analytics: data acquisition from a data
-source, preprocessing, transformation, data mining, modeling, validation, and decision making.
-This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+<a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+<br/><br/>
+Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+while GPU acceleration leverages the SYCL framework and the oneMKL library.
+<br/><br/>
+OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+for the oneDAL component.
 
 
 About impi-devel
@@ -152,9 +180,9 @@ Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
-Summary: Devel package for building against Intel® oneMKL DPCPP libraries
+Summary: Devel package for building against Intel® oneMKL SYCL libraries
 
-Intel® oneAPI Math Kernel Library DPCPP headers and libraries for developing software that uses oneMKL with DPCPP
+Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with DPCPP
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
@@ -273,11 +301,11 @@ Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
-Summary: Headers for building against Intel® oneMKL SYCL interface libraries
+Summary: Headers for building against Intel® oneMKL oneAPI interface libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library SYCL interface headers for developing software that uses oneMKL with SYCL
+Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
@@ -550,12 +578,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -582,7 +610,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/intel_repack-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
