@@ -141,7 +141,6 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
-        - {{ openmp_pkg }}
         {{ openmp_mutex }}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
@@ -1002,7 +1001,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
-        - {{ openmp_pkg }}
+        {{ openmp_mutex }}
       run:
         - mpi 1.0 impi
     about:
