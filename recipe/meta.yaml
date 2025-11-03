@@ -649,7 +649,7 @@ outputs:
 
   - name: mkl-devel-dpcpp
     version: {{ mkl_version }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int + 1 }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int + 1|int }}
     build:
       script:
         - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR  # [linux]
