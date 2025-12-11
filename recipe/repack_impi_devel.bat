@@ -32,87 +32,75 @@ echo PATCH_DIR=%PATCH_DIR%
 echo LIBRARY_INC=%LIBRARY_INC%
 echo RECIPE_DIR=%RECIPE_DIR%
 
-if exist "%PATCH_DIR%" (
-    echo Patch directory found!
-    echo.
-    echo Listing patch directory contents:
-    dir "%PATCH_DIR%"
-    echo.
-
-    :: Create include directory if it doesn't exist
-    if not exist "%LIBRARY_INC%" (
-        echo Creating %LIBRARY_INC%
-        mkdir "%LIBRARY_INC%"
-    )
-
-    :: Copy header files
-    echo Copying Fortran header files...
-    if exist "%PATCH_DIR%\mpif.h" (
-        copy "%PATCH_DIR%\mpif.h" "%LIBRARY_INC%\" /Y
-        if %ERRORLEVEL% EQU 0 (
-            echo   - mpif.h copied successfully
-        ) else (
-            echo   - ERROR copying mpif.h
-        )
-    ) else (
-        echo   - WARNING: mpif.h not found in patch directory
-    )
-
-    if exist "%PATCH_DIR%\mpiof.h" (
-        copy "%PATCH_DIR%\mpiof.h" "%LIBRARY_INC%\" /Y
-        if %ERRORLEVEL% EQU 0 (
-            echo   - mpiof.h copied successfully
-        ) else (
-            echo   - ERROR copying mpiof.h
-        )
-    ) else (
-        echo   - WARNING: mpiof.h not found in patch directory
-    )
-
-    :: Copy module files
-    echo.
-    echo Copying Fortran module files...
-    if exist "%PATCH_DIR%\mpi" (
-        if not exist "%LIBRARY_INC%\mpi" mkdir "%LIBRARY_INC%\mpi"
-        robocopy "%PATCH_DIR%\mpi" "%LIBRARY_INC%\mpi" /E
-        if %ERRORLEVEL% GEQ 8 (
-            echo ERROR: robocopy failed with error level %ERRORLEVEL%
-            exit 1
-        ) else (
-            echo   - Fortran modules copied successfully (robocopy exit code: %ERRORLEVEL%)
-        )
-    ) else (
-        echo   - WARNING: mpi subdirectory not found in patch directory
-    )
-
-    echo.
-    echo Verifying copied files...
-    if exist "%LIBRARY_INC%\mpif.h" (
-        echo   - mpif.h verified
-    ) else (
-        echo   - ERROR: mpif.h not found after copy!
-    )
-    if exist "%LIBRARY_INC%\mpiof.h" (
-        echo   - mpiof.h verified
-    ) else (
-        echo   - ERROR: mpiof.h not found after copy!
-    )
-    if exist "%LIBRARY_INC%\mpi\mpi.mod" (
-        echo   - mpi.mod verified
-    ) else (
-        echo   - ERROR: mpi.mod not found after copy!
-    )
-    if exist "%LIBRARY_INC%\mpi\mpi_f08.mod" (
-        echo   - mpi_f08.mod verified
-    ) else (
-        echo   - ERROR: mpi_f08.mod not found after copy!
-    )
-
-    echo.
-    echo Successfully injected Fortran files into Windows MPI package
-    echo ========================================
-) else (
+if not exist "%PATCH_DIR%" (
     echo ERROR: Fortran patch directory not found at %PATCH_DIR%
     echo Windows MPI package will be missing Fortran support
     echo ========================================
+    goto :EOF
 )
+
+echo Patch directory found!
+echo.
+echo Listing patch directory contents:
+dir "%PATCH_DIR%"
+echo.
+
+:: Create include directory if it doesn't exist
+if not exist "%LIBRARY_INC%" mkdir "%LIBRARY_INC%"
+
+:: Copy header files
+echo Copying Fortran header files...
+copy "%PATCH_DIR%\mpif.h" "%LIBRARY_INC%\" /Y
+if errorlevel 1 (
+    echo ERROR: Failed to copy mpif.h
+    exit /b 1
+)
+echo   - mpif.h copied successfully
+
+copy "%PATCH_DIR%\mpiof.h" "%LIBRARY_INC%\" /Y
+if errorlevel 1 (
+    echo ERROR: Failed to copy mpiof.h
+    exit /b 1
+)
+echo   - mpiof.h copied successfully
+
+:: Copy module files
+echo.
+echo Copying Fortran module files...
+if not exist "%LIBRARY_INC%\mpi" mkdir "%LIBRARY_INC%\mpi"
+robocopy "%PATCH_DIR%\mpi" "%LIBRARY_INC%\mpi" /E
+if %ERRORLEVEL% GEQ 8 (
+    echo ERROR: robocopy failed with error level %ERRORLEVEL%
+    exit /b 1
+)
+echo   - Fortran modules copied successfully (robocopy exit code: %ERRORLEVEL%)
+
+echo.
+echo Verifying copied files...
+if not exist "%LIBRARY_INC%\mpif.h" (
+    echo ERROR: mpif.h not found after copy!
+    exit /b 1
+)
+echo   - mpif.h verified
+
+if not exist "%LIBRARY_INC%\mpiof.h" (
+    echo ERROR: mpiof.h not found after copy!
+    exit /b 1
+)
+echo   - mpiof.h verified
+
+if not exist "%LIBRARY_INC%\mpi\mpi.mod" (
+    echo ERROR: mpi.mod not found after copy!
+    exit /b 1
+)
+echo   - mpi.mod verified
+
+if not exist "%LIBRARY_INC%\mpi\mpi_f08.mod" (
+    echo ERROR: mpi_f08.mod not found after copy!
+    exit /b 1
+)
+echo   - mpi_f08.mod verified
+
+echo.
+echo Successfully injected Fortran files into Windows MPI package
+echo ========================================
