@@ -22,31 +22,97 @@ if %ERRORLEVEL% GEQ 8 exit 1
 rd /s /q %PREFIX%\info
 
 :: Inject Fortran files from patch directory
-echo "Injecting Fortran files for Windows MPI support..."
+echo.
+echo ========================================
+echo Injecting Fortran files for Windows MPI
+echo ========================================
 
-set "PATCH_DIR=%~dp0patch\mpi"
+set "PATCH_DIR=%RECIPE_DIR%\patch\mpi"
+echo PATCH_DIR=%PATCH_DIR%
+echo LIBRARY_INC=%LIBRARY_INC%
+echo RECIPE_DIR=%RECIPE_DIR%
 
 if exist "%PATCH_DIR%" (
-    echo "Copying Fortran files from patch directory..."
+    echo Patch directory found!
+    echo.
+    echo Listing patch directory contents:
+    dir "%PATCH_DIR%"
+    echo.
 
     :: Create include directory if it doesn't exist
-    if not exist "%LIBRARY_INC%" mkdir "%LIBRARY_INC%"
-
-    :: Copy header files
-    if exist "%PATCH_DIR%\mpif.h" copy "%PATCH_DIR%\mpif.h" "%LIBRARY_INC%\" /Y
-    if exist "%PATCH_DIR%\mpiof.h" copy "%PATCH_DIR%\mpiof.h" "%LIBRARY_INC%\" /Y
-
-    :: Copy module files
-    if exist "%PATCH_DIR%\mpi" (
-        robocopy "%PATCH_DIR%\mpi" "%LIBRARY_INC%\mpi" /E /NFL /NDL
-        if %ERRORLEVEL% GEQ 8 (
-            echo "Error copying Fortran modules"
-            exit 1
-        )
+    if not exist "%LIBRARY_INC%" (
+        echo Creating %LIBRARY_INC%
+        mkdir "%LIBRARY_INC%"
     )
 
-    echo "Successfully injected Fortran files into Windows MPI package"
+    :: Copy header files
+    echo Copying Fortran header files...
+    if exist "%PATCH_DIR%\mpif.h" (
+        copy "%PATCH_DIR%\mpif.h" "%LIBRARY_INC%\" /Y
+        if %ERRORLEVEL% EQU 0 (
+            echo   - mpif.h copied successfully
+        ) else (
+            echo   - ERROR copying mpif.h
+        )
+    ) else (
+        echo   - WARNING: mpif.h not found in patch directory
+    )
+
+    if exist "%PATCH_DIR%\mpiof.h" (
+        copy "%PATCH_DIR%\mpiof.h" "%LIBRARY_INC%\" /Y
+        if %ERRORLEVEL% EQU 0 (
+            echo   - mpiof.h copied successfully
+        ) else (
+            echo   - ERROR copying mpiof.h
+        )
+    ) else (
+        echo   - WARNING: mpiof.h not found in patch directory
+    )
+
+    :: Copy module files
+    echo.
+    echo Copying Fortran module files...
+    if exist "%PATCH_DIR%\mpi" (
+        if not exist "%LIBRARY_INC%\mpi" mkdir "%LIBRARY_INC%\mpi"
+        robocopy "%PATCH_DIR%\mpi" "%LIBRARY_INC%\mpi" /E
+        if %ERRORLEVEL% GEQ 8 (
+            echo ERROR: robocopy failed with error level %ERRORLEVEL%
+            exit 1
+        ) else (
+            echo   - Fortran modules copied successfully (robocopy exit code: %ERRORLEVEL%)
+        )
+    ) else (
+        echo   - WARNING: mpi subdirectory not found in patch directory
+    )
+
+    echo.
+    echo Verifying copied files...
+    if exist "%LIBRARY_INC%\mpif.h" (
+        echo   - mpif.h verified
+    ) else (
+        echo   - ERROR: mpif.h not found after copy!
+    )
+    if exist "%LIBRARY_INC%\mpiof.h" (
+        echo   - mpiof.h verified
+    ) else (
+        echo   - ERROR: mpiof.h not found after copy!
+    )
+    if exist "%LIBRARY_INC%\mpi\mpi.mod" (
+        echo   - mpi.mod verified
+    ) else (
+        echo   - ERROR: mpi.mod not found after copy!
+    )
+    if exist "%LIBRARY_INC%\mpi\mpi_f08.mod" (
+        echo   - mpi_f08.mod verified
+    ) else (
+        echo   - ERROR: mpi_f08.mod not found after copy!
+    )
+
+    echo.
+    echo Successfully injected Fortran files into Windows MPI package
+    echo ========================================
 ) else (
-    echo "Warning: Fortran patch directory not found at %PATCH_DIR%"
-    echo "Windows MPI package will be missing Fortran support"
+    echo ERROR: Fortran patch directory not found at %PATCH_DIR%
+    echo Windows MPI package will be missing Fortran support
+    echo ========================================
 )
