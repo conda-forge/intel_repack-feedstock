@@ -21,7 +21,7 @@
 # this variable defines impi specific version
 {% set impi_version = "2021.17.0" %}
 # this variable defines impi specific buildnum
-{% set impi_buildnum = "" %}
+{% set impi_buildnum = "1" %}
 {% set impi_buildnum = "376" %}  # [linux]
 {% set impi_buildnum = "372" %}  # [win]
 
@@ -1034,7 +1034,7 @@ outputs:
   - name: impi-devel
     version: {{ impi_version }}
     script: repack.sh   # [linux]
-    script: repack.bat  # [win]
+    script: repack_impi_devel.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       detect_binary_files_with_prefix: false
@@ -1071,6 +1071,11 @@ outputs:
         - if not exist %LIBRARY_BIN%\\mpicxx.bat exit 1  # [win]
         - if not exist %LIBRARY_INC%\\mpi.h exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\impi.lib exit 1  # [win]
+        # Test for Fortran support files  # [win]
+        - if not exist %LIBRARY_INC%\\mpif.h exit 1  # [win]
+        - if not exist %LIBRARY_INC%\\mpiof.h exit 1  # [win]
+        - if not exist %LIBRARY_INC%\\mpi\\mpi.mod exit 1  # [win]
+        - if not exist %LIBRARY_INC%\\mpi\\mpi_f08.mod exit 1  # [win]
 
   - name: onedpl-devel
     version: {{ onedpl_version }}
