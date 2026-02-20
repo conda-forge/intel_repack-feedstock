@@ -42,8 +42,8 @@
 # More info about OpenMP mutex could be found on conda-forge wiki:
 # https://conda-forge.org/docs/maintainer/knowledge_base/#openmp
 {% set openmp_pkg = "llvm-openmp" %}
-{% set openmp_mutex = "- _openmp_mutex * *_llvm" %}
-{% if win or 'conda-forge' not in my_channel_targets %}
+{% set openmp_mutex = "- _openmp_mutex * *_kmp_*" %}
+{% if 'conda-forge' not in my_channel_targets %}
 {% set openmp_mutex = "" %}
 {% endif %}
 
@@ -141,7 +141,6 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
-        - {{ openmp_pkg }}
         {{ openmp_mutex }}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
@@ -1018,7 +1017,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
-        - {{ openmp_pkg }}
+        {{ openmp_mutex }}
       run:
         - mpi 1.0 impi
     about:
