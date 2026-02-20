@@ -766,12 +766,27 @@ outputs:
          - mkl-devel/info/licenses/license.txt
          - mkl-devel/info/licenses/tpp.txt
     test:
+      requires:
+        # cmake also needs a compiler to run package detection, see
+        # https://discourse.cmake.org/t/questions-about-find-package-cli-msvc/6194
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - pkg-config
+      files:
+        - cmake_test/
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - ls -A $PREFIX/include/*  # [linux]
         - ls -A $PREFIX/lib/pkgconfig/*  # [linux]
         - test -f $PREFIX/lib/pkgconfig/mkl-sdl.pc  # [linux]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\mkl-sdl.pc exit 1  # [win]
+
+        # test integrity of CMake metadata
+        - cd cmake_test
+        - cmake -GNinja $CMAKE_ARGS .   # [unix]
+        - cmake -GNinja %CMAKE_ARGS% .  # [win]
 
   - name: mkl-static
     version: {{ mkl_version }}
