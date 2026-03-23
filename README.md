@@ -145,6 +145,21 @@ compatible processors.
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
+About intel-openmp
+------------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® oneAPI Compiler OpenMP runtime
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/overview.html
+
+Intel® oneAPI Compiler OpenMP runtime implementation
+This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
+
+
 About mkl
 ---------
 
@@ -381,21 +396,6 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
-
-
-About intel-openmp
-------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Compiler OpenMP runtime
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-
-Intel® oneAPI Compiler OpenMP runtime implementation
 This package is a repackaged set of binaries obtained directly from Intel\'s conda channel.
 
 
