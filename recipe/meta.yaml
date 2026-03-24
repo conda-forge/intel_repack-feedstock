@@ -1050,7 +1050,7 @@ outputs:
   - name: impi-devel
     version: {{ impi_version }}
     script: repack.sh   # [linux]
-    script: repack_impi_devel.bat  # [win]
+    script: repack.bat  # [win]
     number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
     build:
       detect_binary_files_with_prefix: false
