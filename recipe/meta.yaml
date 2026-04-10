@@ -145,14 +145,6 @@ outputs:
         {{ openmp_mutex }}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
-      {% if 'conda-forge' in my_channel_targets %}
-      run_constrained:
-        # If libblas/liblapack are present in the environment they must be backed
-        # by MKL, otherwise BLAS/LAPACK symbol collisions can occur at runtime
-        # (e.g. between MKL and OpenBLAS loaded into the same process).
-        - libblas =*=*mkl
-        - liblapack =*=*mkl
-      {% endif %}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -639,6 +631,16 @@ outputs:
         - {{ pin_subpackage('onemkl-sycl-sparse', exact=True) }}
         - {{ pin_subpackage('onemkl-sycl-stats', exact=True) }}
         - {{ pin_subpackage('onemkl-sycl-vm', exact=True) }}
+      {% if 'conda-forge' in my_channel_targets %}
+      run_constrained:
+        # If libblas/liblapack are present in the environment they must be backed
+        # by MKL, otherwise BLAS/LAPACK symbol collisions can occur at runtime
+        # (e.g. between MKL and OpenBLAS loaded into the same process).
+        - libblas =*=*mkl
+        - libcblas =*=*mkl
+        - liblapack =*=*mkl
+        - liblapacke =*=*mkl
+      {% endif %}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
