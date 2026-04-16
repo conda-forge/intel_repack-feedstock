@@ -182,6 +182,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -208,6 +209,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -258,6 +260,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -308,6 +311,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -358,6 +362,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -410,6 +415,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -460,6 +466,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -512,6 +519,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -562,6 +570,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -612,6 +621,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -635,6 +645,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -671,6 +682,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
       commands:
@@ -703,6 +715,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with DPCPP
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
@@ -789,6 +802,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
@@ -835,6 +849,7 @@ outputs:
       description: |
         Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+        Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
       license_family: Proprietary
       license_file:
