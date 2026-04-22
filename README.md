@@ -628,6 +628,7 @@ Feedstock Maintainers
 * [@david-cortes-intel](https://github.com/david-cortes-intel/)
 * [@ekomarova](https://github.com/ekomarova/)
 * [@isuruf](https://github.com/isuruf/)
+* [@jharlow-intel](https://github.com/jharlow-intel/)
 * [@napetrov](https://github.com/napetrov/)
 * [@xaleryb](https://github.com/xaleryb/)
 
