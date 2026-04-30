@@ -171,9 +171,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About mkl-devel
@@ -185,9 +186,10 @@ Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Devel package for building against Intel® oneMKL libraries
 
-Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library headers and libraries for developing software that uses oneMKL.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About mkl-devel-dpcpp
@@ -199,9 +201,10 @@ Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Devel package for building against Intel® oneMKL SYCL libraries
 
-Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with DPCPP
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library SYCL libraries for developing software that uses oneMKL with SYCL.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About mkl-dpcpp
@@ -211,13 +214,14 @@ Home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
 Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
-Summary: Intel® oneAPI Math Kernel Library dpcpp libraries
+Summary: Intel® oneAPI Math Kernel Library SYCL libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About mkl-include
@@ -231,9 +235,10 @@ Summary: Headers for building against Intel® oneMKL libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library headers for developing software that uses oneMKL.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About mkl-static
@@ -245,9 +250,10 @@ Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
 
 Summary: Static libraries for Intel® oneMKL libraries
 
-Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library static libraries for developing software that uses oneMKL.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onedpl-devel
@@ -296,9 +302,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-datafitting
@@ -312,9 +319,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-dft
@@ -328,9 +336,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-include
@@ -344,9 +353,10 @@ Summary: Headers for building against Intel® oneMKL oneAPI interface libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library oneAPI interface headers for developing software that uses oneMKL.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-lapack
@@ -360,9 +370,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-rng
@@ -376,9 +387,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-sparse
@@ -392,9 +404,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-stats
@@ -408,9 +421,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 About onemkl-sycl-vm
@@ -424,9 +438,10 @@ Summary: Intel® oneAPI Math Kernel Library runtime libraries
 
 Documentation: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
 
-Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html
+Intel® oneAPI Math Kernel Library is Intel®-Optimized Math Library for Numerical Computing on CPUs & GPUs.<br/>
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.<br/>
+Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-in-the-python-ecosystem.html <br/>
+Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
 Current build status
