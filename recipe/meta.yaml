@@ -186,8 +186,8 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
-        - test -f $PREFIX/lib/libmkl_core.so.2  # [linux]
-        - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libmkl_core.so.3  # [linux]
+        - if not exist %LIBRARY_BIN%\\mkl_core.3.dll exit 1  # [win]
 
   - name: mkl-include
     version: {{ mkl_version }}
@@ -262,8 +262,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_blas.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_blas.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
     version: {{ mkl_version }}
@@ -312,8 +312,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
     version: {{ mkl_version }}
@@ -362,8 +362,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_dft.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_dft.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
     version: {{ mkl_version }}
@@ -414,8 +414,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
     version: {{ mkl_version }}
@@ -464,8 +464,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_rng.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_rng.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
     version: {{ mkl_version }}
@@ -516,8 +516,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
     version: {{ mkl_version }}
@@ -566,8 +566,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_stats.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_stats.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
     version: {{ mkl_version }}
@@ -616,8 +616,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_vm.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_vm.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-include
     version: {{ mkl_version }}
@@ -903,8 +903,8 @@ outputs:
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
       commands:
-        - test -f $PREFIX/lib/libonedal.so.3  # [linux]
-        - if not exist %LIBRARY_BIN%\\onedal.3.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libonedal.so.4  # [linux]
+        - if not exist %LIBRARY_BIN%\\onedal.4.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
