@@ -712,8 +712,8 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - ls -A $PREFIX/include/*  # [linux]
-        - test -f $PREFIX/lib/libmkl_sycl.a  # [linux]
-        - if not exist %LIBRARY_LIB%\\mkl_sycl.lib exit 1  # [win]
+        - test -f $PREFIX/lib/libmkl_sycl.so  # [linux]
+        - if not exist %LIBRARY_LIB%\\mkl_sycl_dll.lib exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
