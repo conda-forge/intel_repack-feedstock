@@ -1,35 +1,35 @@
-{% set tbb_version = "2022.3.1" %}
+{% set tbb_version = "2023.0.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2025.3.1" %}
+{% set mkl_version = "2026.0.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "8" %}  # [linux]
-{% set mkl_buildnum = "9" %}  # [win]
+{% set mkl_buildnum = "908" %}  # [linux]
+{% set mkl_buildnum = "901" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2025.11.0" %}
+{% set dal_version = "2026.0.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "14" %}  # [linux]
-{% set dal_buildnum = "13" %}  # [win]
+{% set dal_buildnum = "1010" %}  # [linux]
+{% set dal_buildnum = "990" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2025.3.2" %}
+{% set openmp_version = "2026.0.0" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "832" %}  # [linux]
-{% set openmp_buildnum = "833" %}  # [win]
+{% set openmp_buildnum = "947" %}  # [linux]
+{% set openmp_buildnum = "944" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.17.2" %}
+{% set impi_version = "2021.18.0" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "0" %}
-{% set impi_buildnum = "91" %}  # [linux]
-{% set impi_buildnum = "92" %}  # [win]
+{% set impi_buildnum = "745" %}  # [linux]
+{% set impi_buildnum = "740" %}  # [win]
 
 # this variable defines onedpl specific version
-{% set onedpl_version = "2022.10.0" %}
+{% set onedpl_version = "2022.12.0" %}
 # this variable defines onedpl specific buildnum
-{% set onedpl_buildnum = "275" %}  # [linux]
-{% set onedpl_buildnum = "274" %}  # [win]
+{% set onedpl_buildnum = "345" %}  # [linux]
+{% set onedpl_buildnum = "342" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
@@ -188,8 +188,8 @@ outputs:
     test:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
-        - test -f $PREFIX/lib/libmkl_core.so.2  # [linux]
-        - if not exist %LIBRARY_BIN%\\mkl_core.2.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libmkl_core.so.3  # [linux]
+        - if not exist %LIBRARY_BIN%\\mkl_core.3.dll exit 1  # [win]
 
   - name: mkl-include
     version: {{ mkl_version }}
@@ -268,8 +268,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_blas.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_blas.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
     version: {{ mkl_version }}
@@ -320,8 +320,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
     version: {{ mkl_version }}
@@ -372,8 +372,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_dft.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_dft.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
     version: {{ mkl_version }}
@@ -426,8 +426,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_lapack.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
     version: {{ mkl_version }}
@@ -478,8 +478,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_rng.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_rng.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
     version: {{ mkl_version }}
@@ -532,8 +532,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_sparse.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
     version: {{ mkl_version }}
@@ -584,8 +584,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_stats.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_stats.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
     version: {{ mkl_version }}
@@ -636,8 +636,8 @@ outputs:
     test:
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
-          - test -f $PREFIX/lib/libmkl_sycl_vm.so.5  # [linux]
-          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.5.dll exit 1  # [win]
+          - test -f $PREFIX/lib/libmkl_sycl_vm.so.6  # [linux]
+          - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-include
     version: {{ mkl_version }}
@@ -746,8 +746,8 @@ outputs:
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - ls -A $PREFIX/include/*  # [linux]
-        - test -f $PREFIX/lib/libmkl_sycl.a  # [linux]
-        - if not exist %LIBRARY_LIB%\\mkl_sycl.lib exit 1  # [win]
+        - test -f $PREFIX/lib/libmkl_sycl.so  # [linux]
+        - if not exist %LIBRARY_LIB%\\mkl_sycl_dll.lib exit 1  # [win]
 
   {% if win or 'conda-forge' not in my_channel_targets %}
   - name: intel-openmp
@@ -941,8 +941,8 @@ outputs:
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
       commands:
-        - test -f $PREFIX/lib/libonedal.so.3  # [linux]
-        - if not exist %LIBRARY_BIN%\\onedal.3.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libonedal.so.4  # [linux]
+        - if not exist %LIBRARY_BIN%\\onedal.4.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
