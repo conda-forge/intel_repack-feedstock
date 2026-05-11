@@ -902,12 +902,6 @@ outputs:
         - {{ stdlib('c') }}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
-      run_constrained:
-        - {{ pin_compatible('intel-sycl-rt') }}
-        - {{ pin_compatible('intel-cmplr-lib-rt') }}
-        - {{ pin_compatible('ocl-icd') }}  # [linux]
-        - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
-        - {{ pin_compatible('intel-opencl-rt') }}
 
     about:
       home: https://github.com/uxlfoundation/oneDAL
