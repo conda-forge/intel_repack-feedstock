@@ -896,10 +896,6 @@ outputs:
       binary_relocation: false
       detect_binary_files_with_prefix: false
     requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - {{ stdlib('c') }}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
 
@@ -944,10 +940,6 @@ outputs:
         - khronos-opencl-icd-loader  # [win]
         - intel-opencl-rt
     requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - {{ stdlib('c') }}
       host:
         - dal {{ dal_version }}
         - mkl-dpcpp {{ dal_version.split('.')[0] }}.*
