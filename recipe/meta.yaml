@@ -897,7 +897,7 @@ outputs:
       detect_binary_files_with_prefix: false
     requirements:
       host:
-        - tbb-devel {{ tbb_version.split('.')[0] }}.*
+        - tbb {{ tbb_version.split('.')[0] }}.*
 
     about:
       home: https://github.com/uxlfoundation/oneDAL
