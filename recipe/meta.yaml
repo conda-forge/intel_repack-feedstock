@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '4' %}
+{% set dstbuildnum = '5' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -108,6 +108,9 @@ source:
   {% endif %}
   - url: {{ intel_ch }}/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
     folder: dal
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/dal-gpu-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
+    folder: dal-gpu
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
     folder: dal-include
@@ -892,31 +895,9 @@ outputs:
     build:
       binary_relocation: false
       detect_binary_files_with_prefix: false
-      ignore_run_exports_from:
-        - intel-sycl-rt
-        - intel-cmplr-lib-rt
-        - ocl-icd  # [linux]
-        - khronos-opencl-icd-loader  # [win]
-        - intel-opencl-rt
     requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-        - {{ stdlib('c') }}
       host:
-        - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
-        - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
-        - tbb-devel {{ tbb_version.split('.')[0] }}.*
-        - ocl-icd  # [linux]
-        - khronos-opencl-icd-loader  # [win]
-        # cpu runtime
-        - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
-      run_constrained:
-        - {{ pin_compatible('intel-sycl-rt') }}
-        - {{ pin_compatible('intel-cmplr-lib-rt') }}
-        - {{ pin_compatible('ocl-icd') }}  # [linux]
-        - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
-        - {{ pin_compatible('intel-opencl-rt') }}
+        - tbb {{ tbb_version.split('.')[0] }}.*
 
     about:
       home: https://github.com/uxlfoundation/oneDAL
@@ -943,6 +924,64 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libonedal.so.4  # [linux]
         - if not exist %LIBRARY_BIN%\\onedal.4.dll exit 1  # [win]
+
+  - name: dal-gpu
+    version: {{ dal_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ dal_buildnum|int + dstbuildnum|int }}
+    build:
+      binary_relocation: false
+      detect_binary_files_with_prefix: false
+      ignore_run_exports_from:
+        - intel-sycl-rt
+        - intel-cmplr-lib-rt
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        - intel-opencl-rt
+    requirements:
+      host:
+        - dal {{ dal_version }}
+        - mkl-dpcpp {{ dal_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
+        - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
+        - ocl-icd  # [linux]
+        - khronos-opencl-icd-loader  # [win]
+        # cpu runtime
+        - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
+      run_constrained:
+        - {{ pin_compatible('intel-sycl-rt') }}
+        - {{ pin_compatible('intel-cmplr-lib-rt') }}
+        - {{ pin_compatible('ocl-icd') }}  # [linux]
+        - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
+        - {{ pin_compatible('intel-opencl-rt') }}
+
+    about:
+      home: https://github.com/uxlfoundation/oneDAL
+      summary: Intel® oneDAL runtime libraries
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - dal-gpu/info/licenses/license.txt
+         - dal-gpu/info/licenses/tpp.txt
+      description: |
+        OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+        <a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+        which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+        random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+        <br/><br/>
+        Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+        while GPU acceleration leverages the SYCL framework and the oneMKL library.
+        <br/><br/>
+        OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+        and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+        for the oneDAL component.
+      doc_url: http://uxlfoundation.github.io/oneDAL
+    test:
+      commands:
+        - test -f $PREFIX/lib/libonedal_dpc.so.4  # [linux]
+        - if not exist %LIBRARY_BIN%\\onedal_dpc.4.dll exit 1  # [win]
 
   - name: dal-include
     version: {{ dal_version }}
@@ -1039,6 +1078,7 @@ outputs:
       run:
         - {{ pin_subpackage('dal-include', exact=True) }}
         - {{ pin_subpackage('dal', exact=True) }}
+        - {{ pin_subpackage('dal-gpu', exact=True) }}
       run_constrained:
         - {{ pin_compatible('intel-sycl-rt', exact=True) }}
         - {{ pin_compatible('intel-cmplr-lib-rt', exact=True) }}

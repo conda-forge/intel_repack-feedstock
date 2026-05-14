@@ -61,6 +61,30 @@ and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" 
 for the oneDAL component.
 
 
+About dal-gpu
+-------------
+
+Home: https://github.com/uxlfoundation/oneDAL
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® oneDAL runtime libraries
+
+Documentation: http://uxlfoundation.github.io/oneDAL
+
+OneAPI Data Analytics Library (oneDAL) is a C++ and DPC++ library (powering the
+<a href="https://uxlfoundation.github.io/scikit-learn-intelex" target="_blank">Extension for Scikit-learn in Python</a>)
+which implements accelerated machine learning routines for tabular data (e.g. linear regression, K-means clustering,
+random forests, etc.) for CPUs, GPUs, and multi-node distributed setups.
+<br/><br/>
+Acceleration on CPUs is achieved by leveraging SIMD instructions and exploiting cache structures of modern hardware,
+while GPU acceleration leverages the SYCL framework and the oneMKL library.
+<br/><br/>
+OneDAL is part of the <a href="http://www.uxlfoundation.org" target="_blank">UXL Foundation</a>
+and is an implementation of the <a href="https://oneapi-spec.uxlfoundation.org" target="_blank">oneAPI specification</a>
+for the oneDAL component.
+
+
 About dal-include
 -----------------
 
@@ -532,6 +556,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal-green.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal.svg)](https://anaconda.org/conda-forge/dal) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--devel-green.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-devel.svg)](https://anaconda.org/conda-forge/dal-devel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-dal--gpu-green.svg)](https://anaconda.org/conda-forge/dal-gpu) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-gpu.svg)](https://anaconda.org/conda-forge/dal-gpu) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-gpu.svg)](https://anaconda.org/conda-forge/dal-gpu) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-gpu.svg)](https://anaconda.org/conda-forge/dal-gpu) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--include-green.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-include.svg)](https://anaconda.org/conda-forge/dal-include) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-dal--static-green.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/dal-static.svg)](https://anaconda.org/conda-forge/dal-static) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-impi--devel-green.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/impi-devel.svg)](https://anaconda.org/conda-forge/impi-devel) |
@@ -565,16 +590,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-devel-dpcpp, mkl-dpcpp, mkl-include, mkl-static, onedpl-devel, onemkl-license, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-include, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-gpu, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-devel-dpcpp, mkl-dpcpp, mkl-include, mkl-static, onedpl-devel, onemkl-license, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-include, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
 
 ```
-conda install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-license onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+conda install dal dal-devel dal-gpu dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-license onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 or with `mamba`:
 
 ```
-mamba install dal dal-devel dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-license onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+mamba install dal dal-devel dal-gpu dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-license onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
 It is possible to list all of the versions of `dal` available on your platform with `conda`:
