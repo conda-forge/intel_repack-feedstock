@@ -949,6 +949,7 @@ outputs:
         - khronos-opencl-icd-loader  # [win]
         # cpu runtime
         - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
+        {{ openmp_mutex }}
       run_constrained:
         - {{ pin_compatible('intel-sycl-rt') }}
         - {{ pin_compatible('intel-cmplr-lib-rt') }}
