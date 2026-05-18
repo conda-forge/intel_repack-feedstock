@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '5' %}
+{% set dstbuildnum = '6' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -896,8 +896,12 @@ outputs:
       binary_relocation: false
       detect_binary_files_with_prefix: false
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
-        - tbb {{ tbb_version.split('.')[0] }}.*
+        - tbb-devel {{ tbb_version.split('.')[0] }}.*
 
     about:
       home: https://github.com/uxlfoundation/oneDAL
@@ -940,8 +944,12 @@ outputs:
         - khronos-opencl-icd-loader  # [win]
         - intel-opencl-rt
     requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
       host:
-        - dal {{ dal_version }}
+        - {{ pin_subpackage('dal', exact=True) }}
         - mkl-dpcpp {{ dal_version.split('.')[0] }}.*
         - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
         - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
