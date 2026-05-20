@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '6' %}
+{% set dstbuildnum = '7' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -949,7 +949,6 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
       host:
-        - {{ pin_subpackage('dal', exact=True) }}
         - mkl-dpcpp {{ dal_version.split('.')[0] }}.*
         - intel-sycl-rt {{ dal_version.split('.')[0] }}.*
         - intel-cmplr-lib-rt {{ dal_version.split('.')[0] }}.*
@@ -958,6 +957,9 @@ outputs:
         # cpu runtime
         - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
         {{ openmp_mutex }}
+      run:
+        - {{ pin_subpackage('dal', exact=True) }}
+        - mkl-dpcpp {{ dal_version.split('.')[0] }}.*
       run_constrained:
         - {{ pin_compatible('intel-sycl-rt') }}
         - {{ pin_compatible('intel-cmplr-lib-rt') }}
