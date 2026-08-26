@@ -36,7 +36,7 @@
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '8' %}
+{% set dstbuildnum = '9' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -1061,8 +1061,8 @@ outputs:
         - {{ pin_subpackage('dal', exact=True) }}
         - {{ pin_subpackage('dal-gpu', exact=True) }}
       run_constrained:
-        - {{ pin_compatible('intel-sycl-rt', exact=True) }}
-        - {{ pin_compatible('intel-cmplr-lib-rt', exact=True) }}
+        - {{ pin_compatible('intel-sycl-rt') }}
+        - {{ pin_compatible('intel-cmplr-lib-rt') }}
         - {{ pin_compatible('ocl-icd') }}  # [linux]
         - {{ pin_compatible('khronos-opencl-icd-loader') }}  # [win]
         - {{ pin_compatible('intel-opencl-rt') }}

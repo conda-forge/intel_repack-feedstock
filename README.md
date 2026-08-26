@@ -169,21 +169,6 @@ compatible processors.
 This package is a repackaged set of binaries obtained directly from Intel's conda channel.
 
 
-About intel-openmp
-------------------
-
-Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-
-Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
-
-Summary: Intel® oneAPI Compiler OpenMP runtime
-
-Documentation: https://www.intel.com/content/www/us/en/developer/tools/overview.html
-
-Intel® oneAPI Compiler OpenMP runtime implementation
-This package is a repackaged set of binaries obtained directly from Intel's conda channel.
-
-
 About mkl
 ---------
 
@@ -453,6 +438,21 @@ Using oneMKL in the Python Ecosystem: https://www.intel.com/content/www/us/en/de
 Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
 
 
+About intel-openmp
+------------------
+
+Home: https://www.intel.com/content/www/us/en/developer/tools/overview.html
+
+Package license: LicenseRef-IntelSimplifiedSoftwareOct2022
+
+Summary: Intel® oneAPI Compiler OpenMP runtime
+
+Documentation: https://www.intel.com/content/www/us/en/developer/tools/overview.html
+
+Intel® oneAPI Compiler OpenMP runtime implementation
+This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+
+
 Current build status
 ====================
 
@@ -463,52 +463,6 @@ Current build status
       <a href="https://github.com/conda-forge/intel_repack-feedstock/actions/workflows/conda-build.yml">
         <img src="https://github.com/conda-forge/intel_repack-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
       </a>
-    </td>
-  </tr>
-    
-  <tr>
-    <td>Azure</td>
-    <td>
-      <details>
-        <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main">
-          </a>
-        </summary>
-        <table>
-          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
-          <tbody><tr>
-              <td>win_64_python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.12.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.12.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.13.____cp313</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=8901&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/intel_repack-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.13.____cp313" alt="variant">
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </details>
     </td>
   </tr>
 </table>
@@ -553,31 +507,73 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `dal, dal-devel, dal-gpu, dal-include, dal-static, impi-devel, impi_rt, intel-openmp, mkl, mkl-devel, mkl-devel-dpcpp, mkl-dpcpp, mkl-include, mkl-static, onedpl-devel, onemkl-sycl-blas, onemkl-sycl-datafitting, onemkl-sycl-dft, onemkl-sycl-include, onemkl-sycl-lapack, onemkl-sycl-rng, onemkl-sycl-sparse, onemkl-sycl-stats, onemkl-sycl-vm` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda install dal dal-devel dal-gpu dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba install dal dal-devel dal-gpu dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
 ```
 
-It is possible to list all of the versions of `dal` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add dal dal-devel dal-gpu dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+# for installing globally
+pixi global install dal dal-devel dal-gpu dal-include dal-static impi-devel impi_rt intel-openmp mkl mkl-devel mkl-devel-dpcpp mkl-dpcpp mkl-include mkl-static onedpl-devel onemkl-sycl-blas onemkl-sycl-datafitting onemkl-sycl-dft onemkl-sycl-include onemkl-sycl-lapack onemkl-sycl-rng onemkl-sycl-sparse onemkl-sycl-stats onemkl-sycl-vm
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `dal` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search dal --channel conda-forge
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search dal --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search dal --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -589,6 +585,8 @@ mamba repoquery whoneeds dal --channel conda-forge
 # List dependencies of `dal`:
 mamba repoquery depends dal --channel conda-forge
 ```
+
+</details>
 
 
 About conda-forge
