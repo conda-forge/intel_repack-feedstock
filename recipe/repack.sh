@@ -21,6 +21,12 @@ cp -av "$src"/* "$PREFIX/"
 # replace old info folder with our new regenerated one
 rm -rf "$PREFIX/info"
 
+# tcm bundles hwloc; use conda-forge's libhwloc (same soname) instead so the
+# two packages don't clobber each other's libhwloc.so* files.
+if [ "$PKG_NAME" == "tcm" ]; then
+    rm -f "$PREFIX"/lib/libhwloc.so*
+fi
+
 # The Intel upstream packages install license files to a shared path
 # (share/doc/mkl/licensing/) which causes conda ClobberWarnings when multiple
 # packages (e.g. mkl and mkl-include) are installed together into the same env.
