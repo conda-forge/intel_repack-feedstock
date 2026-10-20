@@ -1,42 +1,42 @@
-{% set tbb_version = "2023.1.0" %}
+{% set tbb_version = "2023.2.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2026.1.0" %}
+{% set mkl_version = "2026.2.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "236" %}  # [linux]
-{% set mkl_buildnum = "226" %}  # [win]
+{% set mkl_buildnum = "881" %}  # [linux]
+{% set mkl_buildnum = "882" %}  # [win]
 # this variable defines oneDAL specific version
-{% set dal_version = "2026.1.0" %}
+{% set dal_version = "2026.2.0" %}
 # this variable defines oneDAL specific buildnum
 {% set dal_buildnum = "" %}
-{% set dal_buildnum = "7" %}  # [linux]
-{% set dal_buildnum = "6" %}  # [win]
+{% set dal_buildnum = "299" %}  # [linux]
+{% set dal_buildnum = "300" %}  # [win]
 # this variable defines openmp specific version
-{% set openmp_version = "2026.1.0" %}
+{% set openmp_version = "2026.2.0" %}
 # this variable defines openmp specific buildnum
 {% set openmp_buildnum = "" %}
-{% set openmp_buildnum = "235" %}  # [linux]
-{% set openmp_buildnum = "239" %}  # [win]
+{% set openmp_buildnum = "863" %}  # [linux]
+{% set openmp_buildnum = "864" %}  # [win]
 
 # this variable defines impi specific version
-{% set impi_version = "2021.18.0" %}
+{% set impi_version = "2021.19.0" %}
 # this variable defines impi specific buildnum
 {% set impi_buildnum = "0" %}
-{% set impi_buildnum = "745" %}  # [linux]
-{% set impi_buildnum = "740" %}  # [win]
+{% set impi_buildnum = "561" %}  # [linux]
+{% set impi_buildnum = "562" %}  # [win]
 
 # this variable defines onedpl specific version
-{% set onedpl_version = "2022.13.0" %}
+{% set onedpl_version = "2022.14.0" %}
 # this variable defines onedpl specific buildnum
-{% set onedpl_buildnum = "107" %}  # [linux]
-{% set onedpl_buildnum = "108" %}  # [win]
+{% set onedpl_buildnum = "154" %}  # [linux]
+{% set onedpl_buildnum = "155" %}  # [win]
 
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
-{% set dstbuildnum = '9' %}
+{% set dstbuildnum = '0' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
