@@ -35,7 +35,7 @@ h = h + h.conj().T
 w, v = scipy.linalg.eigh(h)
 assert np.allclose(h @ v, v * w)
 
-# Fortran complex-valued function: wrong interface layer gives a wrong value
+# complex BLAS through scipy; mkl_layers.py checks the calling convention
 zx = np.array([1 + 2j, 3 - 1j])
 zy = np.array([2 - 1j, 1 + 4j])
 assert scipy.linalg.blas.zdotc(zx, zy) == np.vdot(zx, zy) == -1 + 8j

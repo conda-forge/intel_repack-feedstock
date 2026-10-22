@@ -9,8 +9,12 @@ threading layer, MKL kernels need an interface layer), so they are loaded
 with global visibility and retried until a pass makes no progress; whatever
 is left cannot be loaded in any order. Libraries matching a SKIP substring
 need something the test environment does not provide (a SYCL device, MPI).
+Some libraries take their symbols from another package's library that the
+application loads first (onemkl-sycl-* from MKL, dal-gpu from oneDAL core);
+a +LIBRARY argument (relative to the library directory) loads it too, in
+the same retry loop.
 
-Usage: python load_libs.py [SKIP_SUBSTRING ...]
+Usage: python load_libs.py [+LIBRARY ...] [SKIP_SUBSTRING ...]
 """
 import ctypes
 import glob
@@ -21,7 +25,8 @@ import sys
 WIN = sys.platform == "win32"
 prefix = os.environ.get("PREFIX", sys.prefix)
 name = os.environ["PKG_NAME"]
-skip = sys.argv[1:]
+skip = [a for a in sys.argv[1:] if not a.startswith("+")]
+preload = [a[1:] for a in sys.argv[1:] if a.startswith("+")]
 
 metas = [m for m in glob.glob(os.path.join(prefix, "conda-meta", f"{name}-*.json"))
          if json.load(open(m))["name"] == name]
@@ -41,7 +46,8 @@ else:
 
 assert libs, f"{name} installs no shared libraries"
 
-pending = []
+libdir = "Library/bin" if WIN else "lib"
+pending = [f"{libdir}/{lib}" for lib in preload]
 for lib in sorted(libs):
     if any(s in os.path.basename(lib) for s in skip):
         print("skip", lib)
