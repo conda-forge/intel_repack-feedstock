@@ -1,9 +1,12 @@
 {% set tbb_version = "2023.2.0" %}
 # this variable defines oneMKL specific version
 {% set mkl_version = "2026.2.0" %}
+# linux-64 2026.2.0 (intel_881) lacks libmkl_gf_*: stay on 2026.1.0 until
+# Intel ships a fixed build (intel_repack-feedstock#145)
+{% set mkl_version = "2026.1.0" %}  # [linux]
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "881" %}  # [linux]
+{% set mkl_buildnum = "236" %}  # [linux]
 {% set mkl_buildnum = "882" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2026.2.0" %}
@@ -37,6 +40,9 @@
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '0' %}
+# mkl outputs only: linux-64 2026.1.0 already went up to build 245
+{% set mkl_dstbuildnum = dstbuildnum %}
+{% set mkl_dstbuildnum = '10' %}  # [linux]
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -138,7 +144,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -172,7 +178,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -200,7 +206,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -252,7 +258,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -304,7 +310,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -356,7 +362,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -410,7 +416,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -462,7 +468,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -516,7 +522,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -568,7 +574,7 @@ outputs:
     build:
       ignore_run_exports_from:
         {{ openmp_mutex }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -617,7 +623,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -642,7 +648,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
@@ -684,7 +690,7 @@ outputs:
 
   - name: mkl-devel-dpcpp
     version: {{ mkl_version }}
-    number: {{ mkl_buildnum|int + dstbuildnum|int + 1|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int + 1|int }}
     build:
       script:
         - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR  # [linux]
@@ -777,7 +783,7 @@ outputs:
     version: {{ mkl_version }}
     script: install-devel.sh   # [linux]
     script: install-devel.bat  # [win]
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     build:
       run_exports:
         - {{ pin_subpackage('mkl') }}
@@ -831,7 +837,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('mkl-include', exact=True) }}
