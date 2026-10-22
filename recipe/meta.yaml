@@ -163,10 +163,32 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python
+        - libgomp  # [linux]
+        {% if 'conda-forge' in my_channel_targets %}
+        # consumers as users get them: gfortran-built, reaching MKL through
+        # libblas. On an MKL major bump this stops solving until the
+        # blas-feedstock allows the new major version.
+        - libblas * *mkl
+        - numpy
+        - scipy
+        - threadpoolctl
+        {% endif %}
+      files:
+        - tests/load_libs.py
+        - tests/mkl_layers.py
+        - tests/mkl_ecosystem.py
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libmkl_core.so.3  # [linux]
         - if not exist %LIBRARY_BIN%\\mkl_core.3.dll exit 1  # [win]
+        # MPI-only libraries, and CPU kernels that would fault on older CPUs
+        - python tests/load_libs.py blacs scalapack cdft avx mc3
+        - python tests/mkl_layers.py
+        {% if 'conda-forge' in my_channel_targets %}
+        - python tests/mkl_ecosystem.py
+        {% endif %}
 
   - name: mkl-include
     version: {{ mkl_version }}
@@ -896,9 +918,14 @@ outputs:
         for the oneDAL component.
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
+      requires:
+        - python
+      files:
+        - tests/load_libs.py
       commands:
         - test -f $PREFIX/lib/libonedal.so.4  # [linux]
         - if not exist %LIBRARY_BIN%\\onedal.4.dll exit 1  # [win]
+        - python tests/load_libs.py
 
   - name: dal-gpu
     version: {{ dal_version }}
