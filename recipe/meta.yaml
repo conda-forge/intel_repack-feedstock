@@ -795,7 +795,7 @@ outputs:
         - test -f $PREFIX/lib/libmkl_sycl.so  # [linux]
         - if not exist %LIBRARY_LIB%\\mkl_sycl_dll.lib exit 1  # [win]
 
-  # skip: instead of {% if %}, as conda-build matches each rendered output
+  # skip: instead of a jinja if, as conda-build matches each rendered output
   # to its raw text block by position
   - name: intel-openmp
     script: repack.sh   # [linux]
