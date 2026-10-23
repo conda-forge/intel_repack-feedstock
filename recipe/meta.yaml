@@ -50,6 +50,14 @@
 {% set openmp_pkg = "llvm-openmp" %}
 {% set use_openmp_mutex = not win and 'conda-forge' in my_channel_targets %}
 
+# MKL major that conda-forge's libblas MKL builds accept. The blas-feedstock
+# builds against mkl-devel from here, so on a major bump the MKL ecosystem
+# test is skipped; bump this after the blas migration to turn it back on.
+{% set libblas_mkl_major = "2026" %}
+# no "mkl" in this name: conda-build counts any jinja "if" containing it as a
+# use of the mkl variant, which changes the mkl build hash
+{% set run_ecosystem_test = 'conda-forge' in my_channel_targets and mkl_version.split('.')[0] == libblas_mkl_major %}
+
 package:
   name: intel_repack
   # Use oneDAL as overall repack package version
@@ -217,10 +225,9 @@ outputs:
     test:
       requires:
         - python *
-        {% if 'conda-forge' in my_channel_targets %}
+        {% if run_ecosystem_test %}
         # consumers as users get them: gfortran-built, reaching MKL through
-        # libblas. On an MKL major bump this stops solving until the
-        # blas-feedstock allows the new major version.
+        # libblas
         - libblas * *mkl
         - numpy *
         - scipy
@@ -237,7 +244,7 @@ outputs:
         # MPI-only libraries, and CPU kernels that would fault on older CPUs
         - python tests/load_libs.py blacs scalapack cdft avx mc3
         - python tests/mkl_layers.py
-        {% if 'conda-forge' in my_channel_targets %}
+        {% if run_ecosystem_test %}
         - python tests/mkl_ecosystem.py
         {% endif %}
 
@@ -931,7 +938,7 @@ outputs:
 
   # mutex package to keep only one blas implementation in a given env
   - name: blas
-    version: 1.0
+    version: "1.0"
     build:
       string: mkl
       skip: {{ ('conda-forge' in my_channel_targets) | lower }}
