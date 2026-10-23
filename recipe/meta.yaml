@@ -48,10 +48,7 @@
 # More info about OpenMP mutex could be found on conda-forge wiki:
 # https://conda-forge.org/docs/maintainer/knowledge_base/#openmp
 {% set openmp_pkg = "llvm-openmp" %}
-{% set openmp_mutex = "- _openmp_mutex * *_llvm" %}
-{% if win or 'conda-forge' not in my_channel_targets %}
-{% set openmp_mutex = "" %}
-{% endif %}
+{% set use_openmp_mutex = not win and 'conda-forge' in my_channel_targets %}
 
 package:
   name: intel_repack
@@ -60,77 +57,124 @@ package:
 
 source:
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 7c42de217537b7c859dd82173b5cc36eefc17422d25dd70250f935e7489faf14  # [linux]
+    sha256: f8cfb3b3b85c73f19e9efa8b596b0869756666f6f6a019a9392883c211ac92fc  # [win]
     folder: mkl
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 19f9c6490d9f211c35298eb553258dfebaa996a013479732e42668da43691492  # [linux]
+    sha256: 35c48317d0ac4096ef2e0ad0f9c77509c005ee9bd4f733a80c7d852775eda727  # [win]
     folder: mkl-devel
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 6f5e9476564543871ed49ba64e4bd3843cfea894bdf7e040cdf24c6fa7d35ee7  # [linux]
+    sha256: d65556485d1c25e092bb56bbe563b852b526f46ad3b5ac90b6e79599d2eb50c5  # [win]
     folder: mkl-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-static-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 11cf5243a0745b389b5c3c90e96ef2adaaef8d036d063758fec618c14a31d9b7  # [linux]
+    sha256: 0161f4ab315a70a940e22ea6bc937856e972f2cc0c56186fbff5cb7eb8313d20  # [win]
     folder: mkl-static
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 63d92a1a338cdfd053244205f9d3a411529a856299012dbb2bc860198faa5a2a  # [linux]
+    sha256: 02d7bcc625c50dcf6115e53e033b2c28ce83ce05c24c52901366c12d8a79c9fa  # [win]
     folder: onemkl-sycl-blas
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: a9f97c54f8bd2bc877d23f7181f3157994f9782121d65e36b64ba223c744a9b7  # [linux]
+    sha256: 13f9207473c1493029b07b47a73cfe2a72876b9d2c1cdbeeea5b71dfdc204972  # [win]
     folder: onemkl-sycl-datafitting
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: f7635f49123952c90bb2914d257e99eb42e270c17aa38ef2be4f051b50a927cb  # [linux]
+    sha256: 5e3c05207c26563ded6a5161f1dc687efa30493c6a1b8100c5226a15e959399a  # [win]
     folder: onemkl-sycl-dft
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 3cc047fadbf02f014b02be5eb0a473277f54ac1b7430c3515a7d9ffc1f6c0b4c  # [linux]
+    sha256: 54af595e3f0bbf5e26100b6420958950d6887008b7877e942ac8083b70763be0  # [win]
     folder: onemkl-sycl-lapack
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 3aaf130954b5889844d098de0eee72693590495606ba42d5fc4edf80dcb6370f  # [linux]
+    sha256: b82b490b77bee24a3e95c9d5c4f6245c422dde6c3f42a78e6d18ebc029689ab1  # [win]
     folder: onemkl-sycl-rng
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: a06ee503ab7215e74f029b4aa8ac33cba49bc9c0d59ae4349c051860b3977260  # [linux]
+    sha256: d6d4d39dc6c5d4a805ea0819f0ea74bc82965b1acf0e6ab2bb2767306c4bf0d0  # [win]
     folder: onemkl-sycl-sparse
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: a4014b106f87c556dd9467bb58dc37e5153647ba5aec33a5aac2fe82b6140a6a  # [linux]
+    sha256: 3974c4a45109d3c2a70e7af647b5439b5351df585903cb502bf4e1d05d5e9320  # [win]
     folder: onemkl-sycl-stats
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 4c56a4f5f1a5979d545fe13f121fadc334b3d4ea295d4d7a8ce806f39c00d013  # [linux]
+    sha256: 24b696ac017d1f43a2ac6e8e0da89df6a1418a433c8e97dc024eccc83ca7a173  # [win]
     folder: onemkl-sycl-vm
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: dd5a6708327e2918f334982770926362b0ec3287af761369f0dcd89c6262e202  # [linux]
+    sha256: cee22aabb33fcaed2d6d4eac86ec4d16b91c6c4805e9a1690091c926cf48a620  # [win]
     folder: onemkl-sycl-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: 32d8e7276444671357ba0f69179cbeee24757bca2934d6af25c7956959fb64b0  # [linux]
+    sha256: 37e2d47e08a4f0e2b67e2a881fcb77926ae05f59fef25254c8cb2bd4c03bbb2e  # [win]
     folder: mkl-devel-dpcpp
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
+    sha256: e4066ebdb0352a05c8596b9f047bd9d3ed416cc2ee5d179740b11b541bbad6df  # [linux]
+    sha256: 213a675a27e16f5348246cf4484af6a3c11a761c922907b1fc37f03ec2dbe364  # [win]
     folder: mkl-dpcpp
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
   - url: {{ intel_ch }}/{{ target_platform }}/intel-openmp-{{ openmp_version }}-intel_{{ openmp_buildnum }}.conda
+    sha256: 6c0eecf5939d7d63a7298d98daf6415f7d6e02f90b90e0449c7b7adb17a48589  # [win]
     folder: intel-openmp
     no_hoist: true
   {% endif %}
   - url: {{ intel_ch }}/{{ target_platform }}/dal-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
+    sha256: e42874878708c1c82c4b0acaae3374e2ebf18482bf19e5a7bd6f621318f1ebc2  # [linux]
+    sha256: 730f7841165addf6830d923588450b489b98d8433658fb6fcd0dfcf04e81c7c5  # [win]
     folder: dal
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/dal-gpu-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
+    sha256: 60e91f8a9c507e2d663be3be20889198b5c6b0a665bfcb2bc53d7c5dd94032ba  # [linux]
+    sha256: a2bcdacea3248a243cc541d2f99733707a2a23893661e74238cab4573594d9a7  # [win]
     folder: dal-gpu
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/dal-include-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
+    sha256: c20ba310f867170b698cd56aa961b7f62ed2d99b80c06ddb52ba9da5f9f235a6  # [linux]
+    sha256: 779a299c5b403bd5f71e992a9ca901c146b1d8519225cf07e599aba3487a6225  # [win]
     folder: dal-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/dal-static-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
+    sha256: 9e29bda7b478a788cc4b7974bdf36201c6e257e752da1b313ca7d1c168b1ec16  # [linux]
+    sha256: 90592152c890f9bd426d037c0f2c6e1a261401628fdfc3c52b2f2f0066081e88  # [win]
     folder: dal-static
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/dal-devel-{{ dal_version }}-intel_{{ dal_buildnum }}.conda
+    sha256: c40adf72b82edb92d31969343c0c16a8d8138af4b2e48a09713dd1353afa0ad1  # [linux]
+    sha256: 4db5cf28ef0b62a2db8bffb1c08f1b51590505f531eacd567b0da9ad699b1c3c  # [win]
     folder: dal-devel
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/impi_rt-{{ impi_version }}-intel_{{ impi_buildnum }}.conda
+    sha256: fcfb40d9ab74a56beb752a225ff9fd2ee2aeb788126b9f2698698a28d18f41b8  # [linux]
+    sha256: f4a76ba6e2b946b7796923a86138a5912196e6e02ae730cd3f8211ba64b46976  # [win]
     folder: impi_rt
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/impi-devel-{{ impi_version }}-intel_{{ impi_buildnum }}.conda
+    sha256: 0335bb66619fd041c99bb9ef5342a958bdb045b4ccbd298c90a324aa558209e6  # [linux]
+    sha256: 51a9db5c835959739eb1138af7051f957808c4ad3c7446eae0726fbc6461b46c  # [win]
     folder: impi-devel
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onedpl-devel-{{ onedpl_version }}-intel_{{ onedpl_buildnum }}.conda
+    sha256: 8ca225ba232bf642c7622d8b3291f8694beab978ed01de4fe5725a8ea86aca2c  # [linux]
+    sha256: 9f558115260a5afac463158e4e74ceb93004f902a63d16dc972f60792e28d919  # [win]
     folder: onedpl-devel
     no_hoist: true
 build:
@@ -151,7 +195,9 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ stdlib('c') }}
         - {{ openmp_pkg }}
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - tbb-devel {{ tbb_version.split('.')[0] }}.*
     about:
@@ -205,19 +251,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -257,19 +309,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -309,19 +367,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -361,19 +425,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -415,19 +485,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -467,19 +543,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         - {{ pin_subpackage('onemkl-sycl-blas', exact=True) }}
@@ -521,19 +603,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -573,19 +661,25 @@ outputs:
     script: repack.bat  # [win]
     build:
       ignore_run_exports_from:
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
     number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ c_stdlib }}_{{ target_platform }} {{ c_stdlib_sycl_version }}  # [linux]
         - {{ stdlib('c') }}  # [not linux]
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       host:
         - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
         # cpu runtime
         - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
         - ocl-icd  # [linux]
         - khronos-opencl-icd-loader  # [win]
         # We need mkl because onemkl-sycl-* packages uses symbols from mkl, but
@@ -933,7 +1027,9 @@ outputs:
         - khronos-opencl-icd-loader  # [win]
         # cpu runtime
         - intel-opencl-rt {{ dal_version.split('.')[0] }}.*
-        {{ openmp_mutex }}
+        {% if use_openmp_mutex %}
+        - _openmp_mutex * *_llvm
+        {% endif %}
       run:
         - {{ pin_subpackage('dal', exact=True) }}
         - mkl-dpcpp {{ dal_version.split('.')[0] }}.*
@@ -1196,7 +1292,6 @@ outputs:
       home: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
       summary: Intel® oneAPI DPC++ Library
       license: Apache-2.0
-      license_file: clang/LICENSE.TXT
       license_file:
          - onedpl-devel/share/licensing/dpl/license.txt
          - onedpl-devel/share/licensing/dpl/third-party-programs.txt
