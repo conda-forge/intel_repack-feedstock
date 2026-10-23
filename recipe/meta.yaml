@@ -50,6 +50,14 @@
 {% set openmp_pkg = "llvm-openmp" %}
 {% set use_openmp_mutex = not win and 'conda-forge' in my_channel_targets %}
 
+# MKL major that conda-forge's libblas MKL builds accept. The blas-feedstock
+# builds against mkl-devel from here, so on a major bump the MKL ecosystem
+# test is skipped; bump this after the blas migration to turn it back on.
+{% set libblas_mkl_major = "2026" %}
+# no "mkl" in this name: conda-build counts any jinja "if" containing it as a
+# use of the mkl variant, which changes the mkl build hash
+{% set run_ecosystem_test = 'conda-forge' in my_channel_targets and mkl_version.split('.')[0] == libblas_mkl_major %}
+
 package:
   name: intel_repack
   # Use oneDAL as overall repack package version
@@ -215,10 +223,30 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+        {% if run_ecosystem_test %}
+        # consumers as users get them: gfortran-built, reaching MKL through
+        # libblas
+        - libblas * *mkl
+        - numpy *
+        - scipy
+        - threadpoolctl
+        {% endif %}
+      files:
+        - tests/load_libs.py
+        - tests/mkl_layers.py
+        - tests/mkl_ecosystem.py
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libmkl_core.so.3  # [linux]
         - if not exist %LIBRARY_BIN%\\mkl_core.3.dll exit 1  # [win]
+        # MPI-only libraries, and CPU kernels that would fault on older CPUs
+        - python tests/load_libs.py blacs scalapack cdft avx mc3
+        - python tests/mkl_layers.py
+        {% if run_ecosystem_test %}
+        - python tests/mkl_ecosystem.py
+        {% endif %}
 
   - name: mkl-include
     version: {{ mkl_version }}
@@ -240,9 +268,12 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - {{ compiler('c') }}  # [linux]
       commands:
         - ls -A $PREFIX/include/*  # [linux]
         - test -f $PREFIX/include/mkl.h  # [linux]
+        - $CC -fsyntax-only -x c -include mkl.h -I$PREFIX/include /dev/null  # [linux]
         - if not exist %LIBRARY_INC%\\mkl.h exit 1  # [win]
 
   - name: onemkl-sycl-blas
@@ -298,9 +329,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_blas.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_blas.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-datafitting
@@ -356,9 +393,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_data_fitting.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_data_fitting.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-dft
@@ -414,9 +457,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_dft.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_dft.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-lapack
@@ -474,9 +523,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_lapack.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_lapack.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-rng
@@ -532,9 +587,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_rng.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_rng.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-sparse
@@ -592,9 +653,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_sparse.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_sparse.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-stats
@@ -650,9 +717,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_stats.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_stats.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-vm
@@ -708,9 +781,15 @@ outputs:
         Integrating oneMKL with R: https://www.intel.com/content/www/us/en/developer/articles/technical/using-onemkl-with-r.html
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
           - ls -A $PREFIX/lib/*  # [linux]
           - test -f $PREFIX/lib/libmkl_sycl_vm.so.6  # [linux]
+          # takes its MKL symbols from the application's MKL link line
+          - python tests/load_libs.py +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
           - if not exist %LIBRARY_BIN%\\mkl_sycl_vm.6.dll exit 1  # [win]
 
   - name: onemkl-sycl-include
@@ -823,13 +902,15 @@ outputs:
         - test -f $PREFIX/lib/libmkl_sycl.so  # [linux]
         - if not exist %LIBRARY_LIB%\\mkl_sycl_dll.lib exit 1  # [win]
 
-  {% if win or 'conda-forge' not in my_channel_targets %}
+  # skip: instead of a jinja if, as conda-build matches each rendered output
+  # to its raw text block by position
   - name: intel-openmp
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
     number: {{ openmp_buildnum|int + dstbuildnum|int }}
     version: {{ openmp_version }}
     build:
+      skip: {{ (not win and 'conda-forge' in my_channel_targets) | lower }}
       host:
         - intel-cmplr-lib-ur {{ openmp_version.split('.')[0] }}.*
       run_constrained:
@@ -855,14 +936,12 @@ outputs:
         - test -f $PREFIX/lib/libomp5.so  # [linux]
         - if not exist %LIBRARY_BIN%\\omptarget.dll exit 1  # [win]
 
-  {% endif %}
-
-  {% if 'conda-forge' not in my_channel_targets %}
   # mutex package to keep only one blas implementation in a given env
   - name: blas
-    version: 1.0
+    version: "1.0"
     build:
       string: mkl
+      skip: {{ ('conda-forge' in my_channel_targets) | lower }}
     test:
       commands:
         - echo 'works!'
@@ -871,7 +950,6 @@ outputs:
       license: BSD-3-Clause
       license_file: ANACONDA_LICENSE
       summary: 'BLAS mutex for MKL'
-  {% endif %}
 
   - name: mkl-devel
     version: {{ mkl_version }}
@@ -913,8 +991,11 @@ outputs:
         - cmake
         - ninja
         - pkg-config
+        - mkl-static {{ mkl_version }}  # [linux]
+        - tbb-devel  # [linux]
       files:
         - cmake_test/
+        - tests/src/mkl_dgemm.c
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - ls -A $PREFIX/include/*  # [linux]
@@ -926,6 +1007,8 @@ outputs:
         - cd cmake_test
         - cmake -GNinja $CMAKE_ARGS .   # [unix]
         - cmake -GNinja %CMAKE_ARGS% .  # [win]
+        # build and run through every threading layer and link type
+        - for t in sequential gnu_thread tbb_thread intel_thread; do for l in dynamic static; do cmake -S . -B build_$t$l -GNinja $CMAKE_ARGS -DMKL_THREADING=$t -DMKL_LINK=$l && cmake --build build_$t$l && ./build_$t$l/mkl_dgemm || exit 1; done; done  # [linux]
 
   - name: mkl-static
     version: {{ mkl_version }}
@@ -953,9 +1036,15 @@ outputs:
          - mkl-static/info/licenses/license.txt
          - mkl-static/info/licenses/tpp.txt
     test:
+      requires:
+        - {{ compiler('c') }}  # [linux]
+      files:
+        - tests/src/mkl_dgemm.c
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libmkl_core.a  # [linux]
+        - $CC tests/src/mkl_dgemm.c -I$PREFIX/include -o mkl_dgemm -Wl,--start-group $PREFIX/lib/libmkl_intel_lp64.a $PREFIX/lib/libmkl_sequential.a $PREFIX/lib/libmkl_core.a -Wl,--end-group -lpthread -lm -ldl  # [linux]
+        - ./mkl_dgemm  # [linux]
         - if not exist %LIBRARY_LIB%\\mkl_core.lib exit 1  # [win]
 
   - name: dal
@@ -996,9 +1085,14 @@ outputs:
         for the oneDAL component.
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
         - test -f $PREFIX/lib/libonedal.so.4  # [linux]
         - if not exist %LIBRARY_BIN%\\onedal.4.dll exit 1  # [win]
+        - python tests/load_libs.py
 
   - name: dal-gpu
     version: {{ dal_version }}
@@ -1062,8 +1156,14 @@ outputs:
         for the oneDAL component.
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
         - test -f $PREFIX/lib/libonedal_dpc.so.4  # [linux]
+        # extends oneDAL core and takes MKL symbols from the application
+        - python tests/load_libs.py +libtbb.so.12 +libonedal_thread.so.4 +libonedal_core.so.4 +libonedal_parameters.so.4 +libonedal.so.4 +libmkl_core.so.3 +libmkl_sequential.so.3 +libmkl_intel_ilp64.so.3  # [linux]
         - if not exist %LIBRARY_BIN%\\onedal_dpc.4.dll exit 1  # [win]
 
   - name: dal-include
@@ -1129,10 +1229,24 @@ outputs:
         for the oneDAL component.
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
+      requires:
+        - {{ compiler('cxx') }}  # [linux]
+        - cmake  # [linux]
+        - ninja  # [linux]
+        - dal-devel {{ dal_version }}  # [linux]
+        - mkl-static {{ mkl_version }}  # [linux]
+        - mkl-devel {{ mkl_version }}  # [linux]
+        - tbb-devel  # [linux]
+      files:
+        - tests/src/dal_mean.cpp
+        - tests/dal_cmake/
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/lib/libonedal.a  # [linux]
         - test -f $PREFIX/lib/libonedal_core.a  # [linux]
+        - cmake -S tests/dal_cmake -B build -GNinja $CMAKE_ARGS -DONEDAL_LINK=static  # [linux]
+        - cmake --build build  # [linux]
+        - ./build/dal_mean  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_core.lib exit 1  # [win]
 
@@ -1190,8 +1304,19 @@ outputs:
         for the oneDAL component.
       doc_url: http://uxlfoundation.github.io/oneDAL
     test:
+      requires:
+        - {{ compiler('cxx') }}  # [linux]
+        - cmake  # [linux]
+        - ninja  # [linux]
+        - tbb-devel  # [linux]
+      files:
+        - tests/src/dal_mean.cpp
+        - tests/dal_cmake/
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
+        - cmake -S tests/dal_cmake -B build -GNinja $CMAKE_ARGS -DONEDAL_LINK=dynamic  # [linux]
+        - cmake --build build  # [linux]
+        - ./build/dal_mean  # [linux]
         - if not exist %LIBRARY_LIB%\\onedal_dpc_dll.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_dll.lib exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\onedal_core_dll.lib exit 1  # [win]
@@ -1227,10 +1352,17 @@ outputs:
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
+      requires:
+        - python *
+      files:
+        - tests/load_libs.py
       commands:
         - ls -A $PREFIX/bin/*  # [linux]
         - ls -A $PREFIX/lib/*  # [linux]
         - test -f $PREFIX/bin/mpiexec  # [linux]
+        # the Level Zero hooks need a GPU driver
+        - python tests/load_libs.py ze_hooks  # [linux]
+        - I_MPI_FABRICS=shm mpiexec -n 2 true  # [linux]
         - test -f $PREFIX/bin/impi_info  # [linux]
         - test -f $PREFIX/lib/libmpi.so  # [linux]
         - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
@@ -1265,9 +1397,15 @@ outputs:
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
       doc_url: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
     test:
+      requires:
+        - {{ compiler('c') }}  # [linux]
+      files:
+        - tests/src/mpi_hello.c
       commands:
         - ls -A $PREFIX/bin/*  # [linux]
         - test -f $PREFIX/bin/mpicc  # [linux]
+        - I_MPI_CC=$CC mpicc tests/src/mpi_hello.c -o mpi_hello  # [linux]
+        - I_MPI_FABRICS=shm mpiexec -n 2 ./mpi_hello  # [linux]
         - test -f $PREFIX/bin/mpifc  # [linux]
         - test -f $PREFIX/bin/mpicxx  # [linux]
         - test -f $PREFIX/include/mpi.h  # [linux]
@@ -1305,8 +1443,15 @@ outputs:
         This package is a repackaged set of binaries obtained directly from Intel's conda channel.
       doc_url: https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/dpc-library.html
     test:
+      requires:
+        - {{ compiler('cxx') }}  # [linux]
+        - tbb-devel  # [linux]
+      files:
+        - tests/src/onedpl_reduce.cpp
       commands:
         - ls -A $PREFIX/include/oneapi/*  # [linux]
+        - $CXX -std=c++17 tests/src/onedpl_reduce.cpp -I$PREFIX/include -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib -ltbb -o onedpl_reduce  # [linux]
+        - ./onedpl_reduce  # [linux]
         - test -f $PREFIX/include/oneapi/dpl/cmath  # [linux]
         - test -f $PREFIX/lib/cmake/oneDPL/oneDPLConfig.cmake  # [linux]
         - test -f $PREFIX/lib/pkgconfig/dpl.pc  # [linux]
