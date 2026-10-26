@@ -3,11 +3,13 @@
 {% set mkl_version = "2026.2.0" %}
 # linux-64 2026.2.0 (intel_881) lacks libmkl_gf_*: stay on 2026.1.0 until
 # Intel ships a fixed build (intel_repack-feedstock#145)
-{% set mkl_version = "2026.1.0" %}  # [linux]
+# win-64 2026.2.0 (intel_882) has a non-deterministic dnrm2: stay on 2026.1.0
+# too (intel_repack-feedstock#149)
+{% set mkl_version = "2026.1.0" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
 {% set mkl_buildnum = "236" %}  # [linux]
-{% set mkl_buildnum = "882" %}  # [win]
+{% set mkl_buildnum = "226" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2026.2.0" %}
 # this variable defines oneDAL specific buildnum
@@ -40,9 +42,9 @@
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '0' %}
-# mkl outputs only: linux-64 2026.1.0 already went up to build 245
-{% set mkl_dstbuildnum = dstbuildnum %}
-{% set mkl_dstbuildnum = '10' %}  # [linux]
+# mkl outputs only: 2026.1.0 already went up to build 245 on linux-64 and
+# 235 on win-64
+{% set mkl_dstbuildnum = '10' %}
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -66,77 +68,77 @@ package:
 source:
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 7c42de217537b7c859dd82173b5cc36eefc17422d25dd70250f935e7489faf14  # [linux]
-    sha256: f8cfb3b3b85c73f19e9efa8b596b0869756666f6f6a019a9392883c211ac92fc  # [win]
+    sha256: b9f646bf7fa3f152b3badb19bee6725fb73acebbb29ce54bcc696bf8a1df9a1c  # [win]
     folder: mkl
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 19f9c6490d9f211c35298eb553258dfebaa996a013479732e42668da43691492  # [linux]
-    sha256: 35c48317d0ac4096ef2e0ad0f9c77509c005ee9bd4f733a80c7d852775eda727  # [win]
+    sha256: e3faeccf44444502452eb033c1113cf000823b6b75eaac7c1c4ce094cf2f84d6  # [win]
     folder: mkl-devel
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 6f5e9476564543871ed49ba64e4bd3843cfea894bdf7e040cdf24c6fa7d35ee7  # [linux]
-    sha256: d65556485d1c25e092bb56bbe563b852b526f46ad3b5ac90b6e79599d2eb50c5  # [win]
+    sha256: 65cbbf4241f16d334c30559dff2af39e69891cc58d4fddb7a65c58bac7186764  # [win]
     folder: mkl-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-static-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 11cf5243a0745b389b5c3c90e96ef2adaaef8d036d063758fec618c14a31d9b7  # [linux]
-    sha256: 0161f4ab315a70a940e22ea6bc937856e972f2cc0c56186fbff5cb7eb8313d20  # [win]
+    sha256: a55dc7dc0a0ccad58a8a0d84c50b442f21fdb0c591ad477ee067aa5fa980fb1c  # [win]
     folder: mkl-static
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 63d92a1a338cdfd053244205f9d3a411529a856299012dbb2bc860198faa5a2a  # [linux]
-    sha256: 02d7bcc625c50dcf6115e53e033b2c28ce83ce05c24c52901366c12d8a79c9fa  # [win]
+    sha256: e4f2947a9fe93294d2e5bfba0e15502537e060817bbdd2629b243658a89aab27  # [win]
     folder: onemkl-sycl-blas
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: a9f97c54f8bd2bc877d23f7181f3157994f9782121d65e36b64ba223c744a9b7  # [linux]
-    sha256: 13f9207473c1493029b07b47a73cfe2a72876b9d2c1cdbeeea5b71dfdc204972  # [win]
+    sha256: b7209caa9a8c7792260b54aefd0365f126f9a01be2e339f3311733d07e05d1b8  # [win]
     folder: onemkl-sycl-datafitting
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: f7635f49123952c90bb2914d257e99eb42e270c17aa38ef2be4f051b50a927cb  # [linux]
-    sha256: 5e3c05207c26563ded6a5161f1dc687efa30493c6a1b8100c5226a15e959399a  # [win]
+    sha256: dd092638c097ef610d87e41524974c20463832041a0f8a4e95d9494187067f0d  # [win]
     folder: onemkl-sycl-dft
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 3cc047fadbf02f014b02be5eb0a473277f54ac1b7430c3515a7d9ffc1f6c0b4c  # [linux]
-    sha256: 54af595e3f0bbf5e26100b6420958950d6887008b7877e942ac8083b70763be0  # [win]
+    sha256: acaa2c3a43d144bc131f2c24e460d4e1c1af8af8fbedfd5b1a858da575b9a71a  # [win]
     folder: onemkl-sycl-lapack
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 3aaf130954b5889844d098de0eee72693590495606ba42d5fc4edf80dcb6370f  # [linux]
-    sha256: b82b490b77bee24a3e95c9d5c4f6245c422dde6c3f42a78e6d18ebc029689ab1  # [win]
+    sha256: ddcbfe78aa966cddfddc40f011e0ad2d340fd354c29eda5f60a2c6dd0047be69  # [win]
     folder: onemkl-sycl-rng
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: a06ee503ab7215e74f029b4aa8ac33cba49bc9c0d59ae4349c051860b3977260  # [linux]
-    sha256: d6d4d39dc6c5d4a805ea0819f0ea74bc82965b1acf0e6ab2bb2767306c4bf0d0  # [win]
+    sha256: 1083402d3f705ce8857f4c35194028680f1edb681d54a78b6bc4ba8e2377fbfe  # [win]
     folder: onemkl-sycl-sparse
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: a4014b106f87c556dd9467bb58dc37e5153647ba5aec33a5aac2fe82b6140a6a  # [linux]
-    sha256: 3974c4a45109d3c2a70e7af647b5439b5351df585903cb502bf4e1d05d5e9320  # [win]
+    sha256: f70fedda40d1c153db979c5595d2c7849f728ac54aee74c2a8cce2ef1623c4c0  # [win]
     folder: onemkl-sycl-stats
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 4c56a4f5f1a5979d545fe13f121fadc334b3d4ea295d4d7a8ce806f39c00d013  # [linux]
-    sha256: 24b696ac017d1f43a2ac6e8e0da89df6a1418a433c8e97dc024eccc83ca7a173  # [win]
+    sha256: c033e37b22ab2876efca787e3d5a0d52b15a7a7f247e1199310032ce6296a495  # [win]
     folder: onemkl-sycl-vm
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: dd5a6708327e2918f334982770926362b0ec3287af761369f0dcd89c6262e202  # [linux]
-    sha256: cee22aabb33fcaed2d6d4eac86ec4d16b91c6c4805e9a1690091c926cf48a620  # [win]
+    sha256: 029276cfd118f8637a03e123f8e1181794561b6e9e17accb2346ed1596fc4ad7  # [win]
     folder: onemkl-sycl-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: 32d8e7276444671357ba0f69179cbeee24757bca2934d6af25c7956959fb64b0  # [linux]
-    sha256: 37e2d47e08a4f0e2b67e2a881fcb77926ae05f59fef25254c8cb2bd4c03bbb2e  # [win]
+    sha256: 925be89af269669704d1a08826661e47e51d9e92695b43738a41623615ad6d14  # [win]
     folder: mkl-devel-dpcpp
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
     sha256: e4066ebdb0352a05c8596b9f047bd9d3ed416cc2ee5d179740b11b541bbad6df  # [linux]
-    sha256: 213a675a27e16f5348246cf4484af6a3c11a761c922907b1fc37f03ec2dbe364  # [win]
+    sha256: 254e4d2beb7072d11b1e032a688be43d945f5ab90e681429cadc3848460815d1  # [win]
     folder: mkl-dpcpp
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
@@ -236,6 +238,7 @@ outputs:
       files:
         - tests/load_libs.py
         - tests/mkl_layers.py
+        - tests/mkl_determinism.py
         - tests/mkl_ecosystem.py
       commands:
         - ls -A $PREFIX/lib/*  # [linux]
@@ -244,6 +247,7 @@ outputs:
         # MPI-only libraries, and CPU kernels that would fault on older CPUs
         - python tests/load_libs.py blacs scalapack cdft avx mc3
         - python tests/mkl_layers.py
+        - python tests/mkl_determinism.py
         {% if run_ecosystem_test %}
         - python tests/mkl_ecosystem.py
         {% endif %}
