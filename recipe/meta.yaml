@@ -43,6 +43,9 @@
 # mkl outputs only: linux-64 2026.1.0 already went up to build 245
 {% set mkl_dstbuildnum = dstbuildnum %}
 {% set mkl_dstbuildnum = '10' %}  # [linux]
+# impi outputs only: linux-64 2021.19.0 build 561 shipped without its libfabric dependency
+{% set impi_dstbuildnum = dstbuildnum %}
+{% set impi_dstbuildnum = '1' %}  # [linux]
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -1325,7 +1328,7 @@ outputs:
     version: {{ impi_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
+    number: {{ impi_buildnum|int + impi_dstbuildnum|int }}  # [linux or win]
     build:
       detect_binary_files_with_prefix: false
     requirements:
@@ -1336,6 +1339,8 @@ outputs:
         - {{ openmp_pkg }}
       run:
         - mpi 1.0 impi
+        # since 2021.19 libfabric is no longer bundled with Intel MPI
+        - libfabric >=2.6  # [linux]
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html
       summary: Intel® MPI Library
@@ -1363,6 +1368,9 @@ outputs:
         # the Level Zero hooks need a GPU driver
         - python tests/load_libs.py ze_hooks  # [linux]
         - I_MPI_FABRICS=shm mpiexec -n 2 true  # [linux]
+        # shm alone never loads libfabric; go through OFI so a missing libfabric fails
+        - test -f $PREFIX/lib/libfabric.so.1  # [linux]
+        - I_MPI_FABRICS=ofi FI_PROVIDER=tcp mpiexec -n 2 true  # [linux]
         - test -f $PREFIX/bin/impi_info  # [linux]
         - test -f $PREFIX/lib/libmpi.so  # [linux]
         - if not exist %LIBRARY_BIN%\\mpiexec.exe exit 1  # [win]
@@ -1373,7 +1381,7 @@ outputs:
     version: {{ impi_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ impi_buildnum|int + dstbuildnum|int }}  # [linux or win]
+    number: {{ impi_buildnum|int + impi_dstbuildnum|int }}  # [linux or win]
     build:
       detect_binary_files_with_prefix: false
       run_exports:
