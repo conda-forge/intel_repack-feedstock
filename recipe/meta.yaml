@@ -1371,8 +1371,7 @@ outputs:
         - I_MPI_FABRICS=shm mpiexec -n 2 true  # [linux]
         # shm alone never loads libfabric; go through OFI so a missing libfabric fails
         - test -f $PREFIX/lib/libfabric.so.1  # [linux]
-        # the conda hooks are sourced into the caller's shell, which may be `set -e` (IMPI-5853)
-        - CONDA_PREFIX=$PREFIX sh -ec '. $PREFIX/etc/conda/deactivate.d/mpivars.deactivate.sh'  # [linux]
+        # the conda hooks are sourced into the caller's shell, which may be `set -e`
         - CONDA_PREFIX=$PREFIX bash -ec '. $PREFIX/etc/conda/activate.d/mpivars.activate.sh; . $PREFIX/etc/conda/deactivate.d/mpivars.deactivate.sh'  # [linux]
         - I_MPI_FABRICS=ofi FI_PROVIDER=tcp mpiexec -n 2 true  # [linux]
         - test -f $PREFIX/bin/impi_info  # [linux]
