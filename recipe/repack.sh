@@ -30,3 +30,15 @@ if [ -d "$PREFIX/share/doc/mkl/licensing" ] && [ "$PKG_NAME" != "mkl" ]; then
     mv "$PREFIX/share/doc/mkl/licensing"/* "$PREFIX/share/doc/$PKG_NAME/licensing/"
     rm -rf "$PREFIX/share/doc/mkl/licensing"
 fi
+
+# impi_rt 2021.19 no longer ships fi_info, and conda sources this hook into a shell that
+# may run under `set -e` (other packages' post-link scripts), so a failing `which fi_info`
+# aborts the whole install.
+deact="$PREFIX/etc/conda/deactivate.d/mpivars.deactivate.sh"
+if [ "$PKG_NAME" = "impi_rt" ] && [ -f "$deact" ]; then
+    sed -i 's/FIP=`which fi_info`/FIP=$(command -v fi_info 2>\/dev\/null || true)/' "$deact"
+    if grep -q 'which fi_info' "$deact"; then
+        echo "mpivars.deactivate.sh patch did not apply" >&2
+        exit 1
+    fi
+fi

@@ -43,9 +43,10 @@
 # mkl outputs only: linux-64 2026.1.0 already went up to build 245
 {% set mkl_dstbuildnum = dstbuildnum %}
 {% set mkl_dstbuildnum = '10' %}  # [linux]
-# impi outputs only: linux-64 2021.19.0 build 561 shipped without its libfabric dependency
+# impi outputs only: linux-64 2021.19.0 build 561 shipped without its libfabric dependency,
+# build 562 with a deactivate hook that fails under `set -e`
 {% set impi_dstbuildnum = dstbuildnum %}
-{% set impi_dstbuildnum = '1' %}  # [linux]
+{% set impi_dstbuildnum = '2' %}  # [linux]
 
 
 # More info about OpenMP mutex could be found on conda-forge wiki:
@@ -1370,6 +1371,8 @@ outputs:
         - I_MPI_FABRICS=shm mpiexec -n 2 true  # [linux]
         # shm alone never loads libfabric; go through OFI so a missing libfabric fails
         - test -f $PREFIX/lib/libfabric.so.1  # [linux]
+        # the conda hooks are sourced into the caller's shell, which may be `set -e`
+        - CONDA_PREFIX=$PREFIX bash -ec '. $PREFIX/etc/conda/activate.d/mpivars.activate.sh; . $PREFIX/etc/conda/deactivate.d/mpivars.deactivate.sh'  # [linux]
         - I_MPI_FABRICS=ofi FI_PROVIDER=tcp mpiexec -n 2 true  # [linux]
         - test -f $PREFIX/bin/impi_info  # [linux]
         - test -f $PREFIX/lib/libmpi.so  # [linux]
