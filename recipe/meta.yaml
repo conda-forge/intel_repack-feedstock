@@ -34,6 +34,13 @@
 {% set onedpl_buildnum = "154" %}  # [linux]
 {% set onedpl_buildnum = "155" %}  # [win]
 
+# this variable defines tcm specific version
+{% set tcm_version = "1.5.0" %}
+# this variable defines tcm specific buildnum
+{% set tcm_buildnum = "0" %}
+{% set tcm_buildnum = "489" %}  # [linux]
+{% set tcm_buildnum = "484" %}  # [win]
+
 
 {% set my_channel_targets = channel_targets if channel_targets is defined else ['conda-forge', 'defaults'] %}
 
@@ -187,6 +194,11 @@ source:
     sha256: 8ca225ba232bf642c7622d8b3291f8694beab978ed01de4fe5725a8ea86aca2c  # [linux]
     sha256: 9f558115260a5afac463158e4e74ceb93004f902a63d16dc972f60792e28d919  # [win]
     folder: onedpl-devel
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/tcm-{{ tcm_version }}-intel_{{ tcm_buildnum }}.conda
+    sha256: 594d122995085e639ac1383b6e39786f3617bbf8ac447cbcd2914ed1f2214c74  # [linux]
+    sha256: 6f97809fe77c94acf095c00c6db8c73c5fb9d601646ecce6db71790b04865f07  # [win]
+    folder: tcm
     no_hoist: true
 build:
   number: {{ dal_buildnum|int + dstbuildnum|int }}
@@ -1466,6 +1478,49 @@ outputs:
         - if not exist %LIBRARY_INC%\\oneapi\\dpl\\cmath exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\cmake\\oneDPL\\oneDPLConfig.cmake exit 1  # [win]
         - if not exist %LIBRARY_LIB%\\pkgconfig\\dpl.pc exit 1  # [win]
+
+  - name: tcm
+    version: {{ tcm_version }}
+    script: repack.sh   # [linux]
+    script: repack.bat  # [win]
+    number: {{ tcm_buildnum|int + dstbuildnum|int }}  # [linux or win]
+    build:
+      detect_binary_files_with_prefix: false
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
+      run:
+        # Intel bundles hwloc. On linux repack.sh drops it in favour of
+        # conda-forge's (same libhwloc.so.15 soname) to avoid clobbering.
+        # On windows the bundled libhwloc-15.dll doesn't clash with
+        # conda-forge's hwloc-15.dll, so it is kept.
+        - libhwloc >=2.13  # [linux]
+    about:
+      home: https://github.com/uxlfoundation/oneTBB
+      summary: Intel® Thread Composability Manager
+      license: LicenseRef-IntelSimplifiedSoftwareOct2022
+      license_family: Proprietary
+      license_file:
+         - tcm/info/licenses/license.txt
+         - tcm/info/licenses/tpp.txt
+      description: |
+        Thread Composability Manager (TCM) coordinates CPU resource usage between
+        oneTBB and other threading runtimes in the same process.
+        This package is a repackaged set of binaries obtained directly from Intel's conda channel.
+      doc_url: https://uxlfoundation.github.io/oneTBB/
+    test:
+      requires:
+        - python
+      commands:
+        - test -f $PREFIX/lib/libtcm.so.1  # [linux]
+        - test -f $PREFIX/lib/libtcm_debug.so.1  # [linux]
+        - test ! -e $PREFIX/lib/libhwloc.so.15.10.2  # [linux]
+        - python -c "import ctypes, os; ctypes.CDLL(os.path.join(os.environ['PREFIX'], 'lib', 'libtcm.so.1'))"  # [linux]
+        - if not exist %LIBRARY_BIN%\\tcm.dll exit 1  # [win]
+        - if not exist %LIBRARY_BIN%\\libhwloc-15.dll exit 1  # [win]
+        - python -c "import ctypes, os; ctypes.CDLL(os.path.join(os.environ['LIBRARY_BIN'], 'tcm.dll'))"  # [win]
 # please the linter
 about:
   home: https://github.com/conda-forge/intel_repack-feedstock
