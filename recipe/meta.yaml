@@ -1,13 +1,10 @@
 {% set tbb_version = "2023.2.0" %}
 # this variable defines oneMKL specific version
-{% set mkl_version = "2026.2.0" %}
-# linux-64 2026.2.0 (intel_881) lacks libmkl_gf_*: stay on 2026.1.0 until
-# Intel ships a fixed build (intel_repack-feedstock#145)
-{% set mkl_version = "2026.1.0" %}  # [linux]
+{% set mkl_version = "2026.2.1" %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
-{% set mkl_buildnum = "236" %}  # [linux]
-{% set mkl_buildnum = "882" %}  # [win]
+{% set mkl_buildnum = "11" %}  # [linux]
+{% set mkl_buildnum = "12" %}  # [win]
 # this variable defines oneDAL specific version
 {% set dal_version = "2026.2.0" %}
 # this variable defines oneDAL specific buildnum
@@ -40,9 +37,6 @@
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 # use this if our build script changes and we need to increment beyond intel's version
 {% set dstbuildnum = '0' %}
-# mkl outputs only: linux-64 2026.1.0 already went up to build 245
-{% set mkl_dstbuildnum = dstbuildnum %}
-{% set mkl_dstbuildnum = '10' %}  # [linux]
 # impi outputs only: linux-64 2021.19.0 build 561 shipped without its libfabric dependency
 {% set impi_dstbuildnum = dstbuildnum %}
 {% set impi_dstbuildnum = '1' %}  # [linux]
@@ -68,78 +62,78 @@ package:
 
 source:
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 7c42de217537b7c859dd82173b5cc36eefc17422d25dd70250f935e7489faf14  # [linux]
-    sha256: f8cfb3b3b85c73f19e9efa8b596b0869756666f6f6a019a9392883c211ac92fc  # [win]
+    sha256: 52abfeb730e9b4081a33f193db224334cca822f8951664697a7fac19435bb33b  # [linux]
+    sha256: d86bc5095efcf8045507d4fb5577f74238a93baf471dd6f4115bf857a7763724  # [win]
     folder: mkl
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 19f9c6490d9f211c35298eb553258dfebaa996a013479732e42668da43691492  # [linux]
-    sha256: 35c48317d0ac4096ef2e0ad0f9c77509c005ee9bd4f733a80c7d852775eda727  # [win]
+    sha256: 788bd52b9cefb3de4827030733ce54d8bc1dc000e4d700889101c423d2fb1f01  # [linux]
+    sha256: 30e7a63de1fb624382edcdff203620bfb7a47c7d378d509649470d06a556328e  # [win]
     folder: mkl-devel
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 6f5e9476564543871ed49ba64e4bd3843cfea894bdf7e040cdf24c6fa7d35ee7  # [linux]
-    sha256: d65556485d1c25e092bb56bbe563b852b526f46ad3b5ac90b6e79599d2eb50c5  # [win]
+    sha256: a7edca7887ef0909c52a9531f846fe40fe1892684cbf9c68ff3a13a4c5e3f395  # [linux]
+    sha256: af2fb624c689f8c9ccd8137afc38e16c5c6ac2476615c5c67fc9f6a496c57a0c  # [win]
     folder: mkl-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-static-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 11cf5243a0745b389b5c3c90e96ef2adaaef8d036d063758fec618c14a31d9b7  # [linux]
-    sha256: 0161f4ab315a70a940e22ea6bc937856e972f2cc0c56186fbff5cb7eb8313d20  # [win]
+    sha256: 1d186a13958501d70d2d35b89d73a0a8eda277c25f6f9fb7d05ccbf4e2634358  # [linux]
+    sha256: b87fc03b59a7492d6131c5b1b53af38245c509a28f893d74dc5949c0d833d4cd  # [win]
     folder: mkl-static
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-blas-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 63d92a1a338cdfd053244205f9d3a411529a856299012dbb2bc860198faa5a2a  # [linux]
-    sha256: 02d7bcc625c50dcf6115e53e033b2c28ce83ce05c24c52901366c12d8a79c9fa  # [win]
+    sha256: 491d81487a14d6b3d6276b7f52ad4e9756cfb432f285490b1cb5f72e70e91f2f  # [linux]
+    sha256: c950bb2b91adc6d57f0c65dbcf7474ac7a2e0cd6fe87c18bbd75634a4085e85b  # [win]
     folder: onemkl-sycl-blas
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-datafitting-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: a9f97c54f8bd2bc877d23f7181f3157994f9782121d65e36b64ba223c744a9b7  # [linux]
-    sha256: 13f9207473c1493029b07b47a73cfe2a72876b9d2c1cdbeeea5b71dfdc204972  # [win]
+    sha256: 2af86e81966d0417c66d261f49103f3c40d9e2a29fab50a0681c0fa6e2202f99  # [linux]
+    sha256: 52f2107015de07599badb69d37c50b0be6f01cbd6b66585954fe079dae6ef934  # [win]
     folder: onemkl-sycl-datafitting
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-dft-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: f7635f49123952c90bb2914d257e99eb42e270c17aa38ef2be4f051b50a927cb  # [linux]
-    sha256: 5e3c05207c26563ded6a5161f1dc687efa30493c6a1b8100c5226a15e959399a  # [win]
+    sha256: bcb00ad14e62966702d90b4f8572264e7ee03049e660cc2172ab7c3f46df976f  # [linux]
+    sha256: b099b745a85a5c6879ed4725019ef454372d7a99580a083378cb97c02b7cd4ec  # [win]
     folder: onemkl-sycl-dft
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-lapack-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 3cc047fadbf02f014b02be5eb0a473277f54ac1b7430c3515a7d9ffc1f6c0b4c  # [linux]
-    sha256: 54af595e3f0bbf5e26100b6420958950d6887008b7877e942ac8083b70763be0  # [win]
+    sha256: f184c1c9e44105421dc0536c01aa58329c4693b321f363657829cabe41c275b6  # [linux]
+    sha256: c68b9156e2c635753747c6f29de0313cc33bc4fcf9bbe495bbc538c16d6a12c3  # [win]
     folder: onemkl-sycl-lapack
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-rng-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 3aaf130954b5889844d098de0eee72693590495606ba42d5fc4edf80dcb6370f  # [linux]
-    sha256: b82b490b77bee24a3e95c9d5c4f6245c422dde6c3f42a78e6d18ebc029689ab1  # [win]
+    sha256: 0bd4164e997ab878f817aa4400f5acaad3ca388b5870d7bf32766f810143bf71  # [linux]
+    sha256: be0148634ba91c40b7b72b719be000755fcaae12089572bda54802876b22ac04  # [win]
     folder: onemkl-sycl-rng
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-sparse-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: a06ee503ab7215e74f029b4aa8ac33cba49bc9c0d59ae4349c051860b3977260  # [linux]
-    sha256: d6d4d39dc6c5d4a805ea0819f0ea74bc82965b1acf0e6ab2bb2767306c4bf0d0  # [win]
+    sha256: 27dcab13466b3749037fd415ca16c50658eabb684f207c5913233d9881790a6d  # [linux]
+    sha256: 3bd3685cc7d19d528a6bba6985b9e857645d9e83eb69465b4e5162af8ca1bcce  # [win]
     folder: onemkl-sycl-sparse
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-stats-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: a4014b106f87c556dd9467bb58dc37e5153647ba5aec33a5aac2fe82b6140a6a  # [linux]
-    sha256: 3974c4a45109d3c2a70e7af647b5439b5351df585903cb502bf4e1d05d5e9320  # [win]
+    sha256: a399131aebd1e2d967401fadb5284c8cc0934622bdc62a354fdafab299cd3b4e  # [linux]
+    sha256: 0c769e9fb90d936f4e1ffb9e6781f47b44d8fa371e64ee2d7075765ea981a90e  # [win]
     folder: onemkl-sycl-stats
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-vm-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 4c56a4f5f1a5979d545fe13f121fadc334b3d4ea295d4d7a8ce806f39c00d013  # [linux]
-    sha256: 24b696ac017d1f43a2ac6e8e0da89df6a1418a433c8e97dc024eccc83ca7a173  # [win]
+    sha256: bdcf59c9cefd6d952df26770ebdf11aa76af5bfe364d95aab2b9f2db580d4964  # [linux]
+    sha256: 42d42514a7ac3b25d52193761d392e6b6df69dac42517036b5ad2e660bca1125  # [win]
     folder: onemkl-sycl-vm
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/onemkl-sycl-include-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: dd5a6708327e2918f334982770926362b0ec3287af761369f0dcd89c6262e202  # [linux]
-    sha256: cee22aabb33fcaed2d6d4eac86ec4d16b91c6c4805e9a1690091c926cf48a620  # [win]
+    sha256: a23dec3430943260d7655cf467db91fd2fac00b8b3506861cc06cea22a151a0e  # [linux]
+    sha256: 90e72b7daa737e3302c26a23b1db634af2d03849602b68440615c2c846ddf0af  # [win]
     folder: onemkl-sycl-include
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-devel-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: 32d8e7276444671357ba0f69179cbeee24757bca2934d6af25c7956959fb64b0  # [linux]
-    sha256: 37e2d47e08a4f0e2b67e2a881fcb77926ae05f59fef25254c8cb2bd4c03bbb2e  # [win]
+    sha256: 26c653572f9ae061ef44f92241aedc9439c971e47542415664436b34b965ff5e  # [linux]
+    sha256: b2e825129b44427bd816ea14a8b53fad530368f23381cef52dc6da1a0bb33a70  # [win]
     folder: mkl-devel-dpcpp
     no_hoist: true
   - url: {{ intel_ch }}/{{ target_platform }}/mkl-dpcpp-{{ mkl_version }}-intel_{{ mkl_buildnum }}.conda
-    sha256: e4066ebdb0352a05c8596b9f047bd9d3ed416cc2ee5d179740b11b541bbad6df  # [linux]
-    sha256: 213a675a27e16f5348246cf4484af6a3c11a761c922907b1fc37f03ec2dbe364  # [win]
+    sha256: de5bb634f5f3a42018a7a6ad43cb1b26b7fd95b03f318f5f417fbce75eaa160b  # [linux]
+    sha256: ca692bfe861bd0a5b9fdc40c657bc751ea4c855c60c19d5b2f040b2a6fbeda4b  # [win]
     folder: mkl-dpcpp
     no_hoist: true
   {% if win or 'conda-forge' not in my_channel_targets %}
@@ -199,7 +193,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -255,7 +249,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -288,7 +282,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -352,7 +346,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -416,7 +410,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -480,7 +474,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -546,7 +540,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -610,7 +604,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -676,7 +670,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -740,7 +734,7 @@ outputs:
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -799,7 +793,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     about:
       home: https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html
       license: LicenseRef-IntelSimplifiedSoftwareOct2022
@@ -824,7 +818,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('mkl', exact=True) }}
@@ -866,7 +860,7 @@ outputs:
 
   - name: mkl-devel-dpcpp
     version: {{ mkl_version }}
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int + 1|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int + 1|int }}
     build:
       script:
         - cp -f $SRC_DIR/mkl/info/licenses/license.txt $SRC_DIR  # [linux]
@@ -958,7 +952,7 @@ outputs:
     version: {{ mkl_version }}
     script: install-devel.sh   # [linux]
     script: install-devel.bat  # [win]
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     build:
       run_exports:
         - {{ pin_subpackage('mkl') }}
@@ -1017,7 +1011,7 @@ outputs:
     version: {{ mkl_version }}
     script: repack.sh   # [linux]
     script: repack.bat  # [win]
-    number: {{ mkl_buildnum|int + mkl_dstbuildnum|int }}
+    number: {{ mkl_buildnum|int + dstbuildnum|int }}
     requirements:
       run:
         - {{ pin_subpackage('mkl-include', exact=True) }}
