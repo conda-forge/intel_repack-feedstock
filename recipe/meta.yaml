@@ -1,6 +1,8 @@
 {% set tbb_version = "2023.2.0" %}
 # this variable defines oneMKL specific version
 {% set mkl_version = "2026.2.1" %}
+# oneMKL x.y SYCL libraries are built with compiler x.y and need its runtime or newer
+{% set mkl_sycl_rt_version = mkl_version.split('.')[:2]|join('.') %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
 {% set mkl_buildnum = "11" %}  # [linux]
@@ -292,9 +294,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -356,9 +358,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -420,9 +422,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -484,9 +486,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -550,9 +552,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -614,9 +616,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -680,9 +682,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
@@ -744,9 +746,9 @@ outputs:
         - _openmp_mutex * *_llvm
         {% endif %}
       host:
-        - intel-sycl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-sycl-rt {{ mkl_sycl_rt_version }}.*
         # cpu runtime
-        - intel-opencl-rt {{ mkl_version.split('.')[0] }}.*
+        - intel-opencl-rt {{ mkl_sycl_rt_version }}.*
         {% if use_openmp_mutex %}
         - _openmp_mutex * *_llvm
         {% endif %}
