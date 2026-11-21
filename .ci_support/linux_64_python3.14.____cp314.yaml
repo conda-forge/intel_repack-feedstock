@@ -1,3 +1,5 @@
+DOCKER_PLATFORM:
+- linux/amd64
 c_compiler:
 - gcc
 c_compiler_version:
@@ -28,6 +30,8 @@ python:
 - 3.14.* *_cp314
 target_platform:
 - linux-64
+tbb_devel:
+- '2023'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
