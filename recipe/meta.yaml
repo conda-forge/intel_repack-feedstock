@@ -1,7 +1,7 @@
 {% set tbb_version = "2023.2.0" %}
 # this variable defines oneMKL specific version
 {% set mkl_version = "2026.2.1" %}
-# oneMKL x.y SYCL libraries are built with compiler x.y and need its runtime or newer
+# oneMKL x.y SYCL libraries are built with compiler x.y and need runtime >=x.y,<x+1
 {% set mkl_sycl_rt_version = mkl_version.split('.')[:2]|join('.') %}
 # this variable defines oneMKL specific buildnum
 {% set mkl_buildnum = "" %}
